@@ -1,0 +1,277 @@
+\documentclass[../johdoksia.tex]{subfiles}
+\graphicspath{{\subfix{../kuvat/}}}
+
+\begin{document}
+	
+	Monet tämän osion aiheet ovat seurausta siitä, matemaatikot ovat halunneet formalisoida joitakin fyysikoiden käyttämiä menetelmiä differentiaaliyhtälöiden ratkaisemisessa sekä kvanttimekaniikassa. Kirjoitan näistä, koska aihe kiinnostaa ja haluan ymmärtää konsepteja kuten Diracin deltafunktio, Hilbertin avaruus, Lineaarinen funktionaali, operaattoriteoria, spektraaliteoria ja monet muut paremmin.
+	
+	\subsection{Funktionaalit}
+	
+	Funktionaaleille on monta määritelmää, joista klassisisin on jotakuinkin: Funktionaali on funktion yleistys, joka ottaa muuttujien sijasta funktioita argumentikseen. Toisin sanoen siinä missä funktiot ottavat jonkin arvon $x = x_0$ ja muuntavat sen arvoksi $f(x_0)$:
+	
+	\begin{equation*}
+		x_0 \mapsto f(x_0)
+	\end{equation*}
+
+	Funktionaalit ottavat jonkin funktion $f$ ja muuntavat sen arvoksi $f(x_0)$ (HUOM! Nyt $x_0$ ei ole argumentti, vaan parametri eli tässä ei syötetä arvoa $x_0$ funktioon $f$ vaan $x_0$ on sisäänrakenttettu funktioon $f$):
+	
+	\begin{equation*}
+		f \mapsto f(x_0)
+	\end{equation*}
+
+	Usein tarkastellaan lineaarisia funktionaaleja (eli niille pätee lineaarisuuden ehdot), jolloin itseasiassa funktiot ja funktionaalit ovat toistensa dualismeja ja molempia kutsutaan termillä \emph{lineaarinen funktionaali}. Tähän törmättiin kun huomattiin, että funktioavaruuksissa esimerkiksi määrätty integrointi on duaaliavaruudessa elävä funktionaali.  
+	
+	Koska funktionaalit kuvaavat funktioita yksittäisiksi (kompleksi)luvuiksi, on funktionaalien määrittelyjoukkona jokin avaruus $S$, joka sisältää tietyntyyyppisiä funktioita (vektoreita) ja arvojoukkona reaali- tai kompleksilukujen joukko. Toisin sanoen funktionaali $J$ on kuvaus:
+	
+	\begin{equation*}
+		J: S \to \mathbb{R} \ \ \ \ \lor \ \ \ \ J: S \to \mathbb{C}
+	\end{equation*}
+	
+	Funktionaaleja merkitään usein laittamalla funktio, jota funktionaali operoi hakasulkeisiin, esimerkiksi $J[f]$ tai $\mathcal{L}[g]$. Fysiikassa funktionaalit ovat tyypillisesti lineaarisia, sillä fysiikassa esiintyvät funktionaalit ovat pitkälti jonkinlaisia määrättyjä integraaleja tai vaihtoehtoisesti jonkinlaisia sisätuloja. Taulukkoon 5.1 on koottu muutamia esimerkkejä funktionaaleista, joita esiintyy fysiikassa. Funktionaalien syvällisempi tarkastelu jää myöhemmälle.
+	
+	\begin{table}[h!]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Nimi & Määritelmä & Funktioavaruus/Lähtöjoukko & Maalijoukko \\
+			\hline
+			Määrätty integraali & $I[f]: f \mapsto \int_{a}^{b}f(x)\odif{x}$ & Riemann-integ. funktiot & $\mathbb{R}$ \\
+			Käyrän alla oleva pinta-ala & $A[f]: f \mapsto \int_{a}^{b}|f(x)|\odif{x}$ & Riemann-integ. funktiot & $\mathbb{R}$ \\
+			Käyrän pituus & $L[f]: f \mapsto \int_{a}^{b}\sqrt{1 + [f'(x)]^2}\odif{x}$ & Rectifiable curves & $\mathbb{R}$ \\
+			Pyör.kappaleen vaipan pinta-ala & $A[f]: f \mapsto \int_{a}^{b}2\pi f\sqrt{1 + [f'(x)]^2}\odif{x}$ & Rectifiable curves & $\mathbb{R}$ \\
+			Pyörähdyskappaleen tilavuus & $V[f]: f \mapsto \int_{a}^{b}\pi [f(x)]^2\odif{x}$ & Riemann-integ. funktiot & $\mathbb{R}$ \\
+			Aktio & $S[f]: f \mapsto \int_{t_0}^{t_1}\mathcal{L}(\dot{f}, f, t)\odif{t}$ & Riemann-integ. funktio & $\mathbb{R}$ \\
+			$L^2([a, b])$-avaruuden normi & $N[f]: f \mapsto \sqrt{\int_{a}^{b}f^{*}(x)f(x)\odif{x}}$ & Neliöintegroituvat funktiot & $\mathbb{C}$ \\
+			$L^p([a, b])$-avaruuden ''normi'' & $N[f]: f \mapsto \left(\int_{a}^{b}|f(x)|^p\odif{x}\right)^{1/p}$ & $p$-integroituvat funktiot & $\mathbb{C}$ \\
+			3D-Euklidisen avaruuden sisätulo & $\vtr{a}\cdot\vtr{b}: \mathbb{R}^3 \to \mathbb{R}$ & Euklidiset vektorit & $\mathbb{R}$ \\
+			Kompleksivektoriavaruuden sisätulo & $\braket{u}{v}: \mathbb{C}^N \to \mathbb{C}$ & N-ulotteiset kompleksivektorit & $\mathbb{C}$ \\
+			Kompleksifunktioiden sisätulo & $\langle f,g\rangle = \int_{-\infty}^{\infty}f^\ast(x)g(x)\odif{x}$ & Kompleksifunktiot & $\mathbb{C}$ \\
+			Diracin deltafunktio & $\delta[f]: f \mapsto \int_{-\infty}^{\infty}\delta(x)f(x)\odif{x} = f(0)$ & Testifunktiot & $\mathbb{R}$, $\mathbb{C}$ \\
+			Distribuutiot & $F[f]: f \mapsto \int_{\mathbb{R}^{n}}F(\vtr{x})f(\vtr{x})\odif{^nx}$ & Testifunktiot & $\mathbb{R}$ \\
+			\hline
+		\end{tabular}
+		\caption{Muutamia esimerkkejä fysiikassa esiintyvistä integraaleista funktionaaleiksi tulkittuna.}
+	\end{table}
+
+	Rajoitutaan nyt tarkastelemaan seuraavaa muotoa olevia funtkionaaleja:
+	
+	\begin{equation}
+		\label{functional}
+		J[y] = \int_{a}^{b}f(y, y', x)\odif{x}
+	\end{equation}
+
+	Nyt $f$:n on oltava derivoituva vähintään kerran kunkin argumentin suhteen ja $y$:n on kuuluttava välillä $[a, b]$ kahdesti derivoituviin funktioihin $C^2$. Tällaisia funktionaaleja esiintyy nk. variaatiolaskennassa.
+	
+	Siinä missä tavalliset funktiot ovat stationäärisiä jonkin yksittäisen pisteen suhteen derivaatan nollakohdissa, ovat variaatiolaskennan funktionaalit stationäärisiä kokonaisten käyrien suhteen kun nk. funktionaaliderivaatta menee nollaan. Tästä funktionaaliderivaatan nollaan menemisestä seuraa nk. Eulerin\textendash Lagrangen yhtälönä tunnettu differentiaaliyhtälö, joka määrittää stationäärisen käyrän muodon.
+	
+	Johdetaan EL-yhtälö käyttäen kahta menetelmää. Menetelmä 1 perustuu nk. ensimmäiseen variaatioon ja toinen edellämainittuun funktionaaliderivaattaan. 
+	
+	\subsubsection{Ensimmäinen variaatio ja EL-yhtälö}
+	
+	Yhtälön (\ref{functional}) fuktionaalia voidaan varioida lisäämällä käyrään $y$ pieni perturbaatio $\eta$, joka muuttaa $y$:n muotoa hieman. Varmistetaan kuitenkin, että $y$:n arvot välin reunoilla $y(a)$ ja $y(b)$ pysyvät vakioina, eli vaaditaan, että perturbaatio menee reunoilla nollaan: $\eta(a) = \eta(b) = 0$. Merkitään varioidun funktionaalin ja alkuperäisen funktionaalin erotusta $\delta J$, jolloin saadaan:
+	
+	\begin{align*}
+		\delta J &= J[y + \eta] - J[y] \\
+		\delta J &= \int_{a}^{b}f(y' + \eta', y + \eta, x)\odif{x} - \int_{a}^{b}f(y', y, x)\odif{x}
+	\end{align*}
+
+	Kehitetään ensimmäisen termin $f$ Taylorin sarjaksi pisteen $y', y, x$ ympäristössä muuttujien $y' + \eta'$ ja $y + \eta$ suhteen. Kahden muuttujan Taylorin sarja ensimmäiseen asteeseen asti kirjoitettuna pisteen $(x_0, y_0)$ ympäristössä on muotoa:
+	
+	\begin{equation}
+		f(x,y) = f(x_0, y_0) + \left(\pdv{f}{x}\right)_{(x,y) = (x_0,y_0)}(x - x_0) + \left(\pdv{f}{y}\right)_{(x,y) = (x_0,y_0)}(y - y_0) + O(x^2,y^2) 
+	\end{equation}
+	
+	Saadaan:
+	
+	\begin{align*}
+		\delta J &= \int_{a}^{b}\left[f(y', y, x) + \left(\pdv{f}{y'}\right)_{(y',y,x) = (y',y,x)}(\cancel{y'} + \eta' - \cancel{y'}) + \left(\pdv{f}{y}\right)_{(y',y,x) = (y',y,x)}(\cancel{y} + \eta - \cancel{y}) + O\left([y'+\eta']^2,[y+\eta]^2\right)\right]\odif{x} \\
+		&\quad - \int_{a}^{b}f(y', y, x)\odif{x} 
+	\end{align*}
+	
+	Havaitaan, että muuttujiksi jää jäljelle vain $\eta'$ ja $\eta$. Lisäksi jätetään kompaktiuden vuoksi merkitsemättä piste, jossa derivaatat määritetään. Saadaan:
+	
+	\begin{equation*}
+		\delta J = \int_{a}^{b}\left[f(y', y, x) + \left(\pdv{f}{y'}\right)\eta' + \left(\pdv{f}{y}\right)\eta + O\left(\eta'^2,\eta^2\right)\right]\odif{x} - \int_{a}^{b}f(y', y, x)\odif{x}
+	\end{equation*}
+
+	Integroinnin lineaarisuuden nojalla integraali voidaan erotellaan useksi integraaliksi:
+	
+	\begin{equation*}
+		\delta J = \cancel{\int_{a}^{b}f(y', y, x)\odif{x}} + \int_{a}^{b}\left[\left(\pdv{f}{y'}\right)\eta' + \left(\pdv{f}{y}\right)\eta\right]\odif{x} + \int_{a}^{b}O\left(\eta'^2,\eta^2\right)\odif{x} - \cancel{\int_{a}^{b}f(y', y, x)\odif{x}}
+	\end{equation*}
+
+	$J$ on sationäärinen, mikäli sen variaatio $\delta J$ katoaa ensimmäiseen asteeseen, eli mikäli $\delta J = 0 + O\left(\eta'^2,\eta^2\right)$ Saadaan siis vaatimus:
+	
+	\begin{equation*}
+		\int_{a}^{b}\left[\left(\pdv{f}{y'}\right)\eta' + \left(\pdv{f}{y}\right)\eta\right]\odif{x} = 0
+	\end{equation*}
+
+	Erotellaan integraali kahdeksi:
+	
+	\begin{equation*}
+		\int_{a}^{b}\left(\pdv{f}{y'}\right)\eta'\odif{x} + \int_{a}^{b}\left(\pdv{f}{y}\right)\eta\odif{x} = 0
+	\end{equation*}
+
+	Oaittaisintegroidaan ensimmäistä integraalia. Valitaan $u = \pdv{f}{y'} \iff \odv{u}{x} = \odv{}{x}\left(\pdv{f}{y'}\right)$ ja $\odv{v}{x} = \eta' \iff v = \eta$. Saadaan:
+	
+	\begin{align*}
+		\left[uv\right]_{a}^{b} - \int_{a}^{b}v\odv{u}{x}\odif{x} + \int_{a}^{b}\left(\pdv{f}{y}\right)\eta\odif{x} &= 0 \\
+		\left[\left(\pdv{f}{y'}\right)\eta\right]_{a}^{b} - \int_{a}^{b}\eta\odv{}{x}\left(\pdv{f}{y'}\right)\odif{x} + \int_{a}^{b}\left(\pdv{f}{y}\right)\eta\odif{x} &= 0
+	\end{align*}
+
+	Perturbaatio $\eta$ valittiin siten, että $\eta(a) = \eta(b) = 0$, jolloin sijoitustermi katoaa. Yhdistetään jäljellä olevat integraalit, jolloin saadaan:
+	
+	\begin{align*}
+		\int_{a}^{b}\left[\left(\pdv{f}{y}\right)\eta - \eta\odv{}{x}\left(\pdv{f}{y'}\right)\right]\odif{x} &= 0 \\
+		\intertext{Otetaan $\eta$ yhteiseksi tekijäksi:}
+		\int_{a}^{b}\eta\left[\left(\pdv{f}{y}\right) - \odv{}{x}\left(\pdv{f}{y'}\right)\right]\odif{x} &= 0 \\
+	\end{align*}
+
+	Jotta integraali menisi nollaan, tulee toisen tulontekijöistä mennä nollaan. Koska $\eta$:n on tarkoitus olla perturbaatio $y$:hyn, ei se ole nolla, jolloin saadaan Eulerin\textendash Lagrangen yhtälö:
+	
+	\begin{equation}
+		\boxed{\pdv{f}{y} - \odv{}{x}\left(\pdv{f}{y'}\right) = 0}
+	\end{equation}
+	
+	Ollaan johdettu ehto $J[y]$:n stationarisoitumiselle, eli $y$ stationarisoi $J[y]$:n, kun $f$ toteuttaa yllä olevan differentiaaliyhtälön.
+	
+	Mikäli haluttaisiin tietää, onko stationäärinen käyrä funktionaalin minimi vai maksimi, tulisi määrittää nk. toinen variaatio $\fdif{^2J}$, jonka etumerkki kertoisi derivaatoille analogisella tavalla onko kyseessä minimi vai maksimi. Tästä seuraa Legendren ehtoina tunnetut tulokset. Olkoon $\tilde{y}$ EL-yhtälön ratkaisu funktiolle $f(y', y', x), x\in[a,b]$. Tällöin $\tilde{y}$ voi olla minimi, mikäli:
+	
+	\begin{equation}
+		\boxed{\forall x \in[a,b]: \ \ \left(\pdv{^2f}{(y')^2}\right)_{y=\tilde{y}} \geq 0}
+	\end{equation} 
+
+	Vastaavasti $\tilde{y}$ voi olla maksimi, mikäli:
+	
+	\begin{equation}
+		\boxed{\forall x \in[a,b]: \ \ \left(\pdv{^2f}{(y')^2}\right)_{y=\tilde{y}} \leq 0}
+	\end{equation}
+
+	Kuten sanamuodosta saattoi huomata, nämä ehdot eivät ole yksin riittäviä kertomaan, mikäli jokin käyrä on minimi tai maksimi. Ne ovat kuitenkin välttämättömiä ehtoa, jolloin mikäli esimerkiksi ensimmäinen ehto ei toteudu, kyseessä ei ainakaan ole minimi.
+	
+	\subsubsection{Beltramin identiteetti}
+	
+	Erittäin hyödyllinen erikoistapaus EL-yhtälöstä, joka tunnetaan nimellä Beltramin identiteetti, saadaan kun $f$ ei riipu eksplisiittisesti $x$:stä, eli kun $f = f(y', y)$ eikä $f = f(y', y, x)$. Esimerkiksi pyörähdyskappaleen vaipan pinta-alan kaavassa esiintyvä funktio $f = 2\pi y\sqrt{1 + (y')^2}$ ei riipu eksplisiittisesti $x$:stä, jolloin Beltramin identiteettiä voitaisiin soveltaa. Johdetaan Beltramin itdentiteetti tarkastelemalla kokonaisderivaattaa $\odv{f}{x}$. Koska $f$ on usean muuttujan funktio, riippuu kokonaisderivaatta kaikista $f$:n muuttujista ketjusäännön kautta: 
+	
+	\begin{equation*}
+		\odv{f}{x} = \left(\pdv{f}{y'}\right)\odv{y'}{x} + \left(\pdv{f}{y}\right)\odv{y}{x} + \left(\pdv{f}{x}\right)\odv{x}{x}
+	\end{equation*}
+
+	$y'$ on määritelmän mukaan $\odv{y}{x}$, jolloin $\odv{y'}{x} = \odv{^2y}{x^2} = y''$. Lisäksi $\odv{x}{x} = 1$. Saadaan:
+	
+	\begin{equation*}
+		\odv{f}{x} = \left(\pdv{f}{y'}\right)y'' + \left(\pdv{f}{y}\right)y' + \pdv{f}{x}
+	\end{equation*}
+
+	Koska $f$ valittiin siten, ettei se riipu eksplisiittisesti $x$:stä, menee osittaisderivaatta $\pdv{f}{x}$ nollaan:
+	
+	\begin{equation*}
+		\odv{f}{x} = \left(\pdv{f}{y'}\right)y'' + \left(\pdv{f}{y}\right)y'
+	\end{equation*}
+
+	EL-yhtälön nojalla $\pdv{f}{y} - \odv{}{x}\left(\pdv{f}{y'}\right) = 0 \iff \pdv{f}{y} = \odv{}{x}\left(\pdv{f}{y'}\right)$. Saadaan:
+	
+	\begin{equation*}
+		\odv{f}{x} = \left(\pdv{f}{y'}\right)y'' + \left(\odv{}{x}\left(\pdv{f}{y'}\right)\right)y'
+	\end{equation*}
+
+	Tunnistetaan tulon derivaatta:
+	
+	\begin{equation*}
+		\odv{f}{x} = \odv{}{x}\left(y'\pdv{f}{y'}\right)
+	\end{equation*}
+
+	Siirretään termit samalle puolelle ja hyödynnetään derivaatan lineaarisuutta ottamalla se lausekkeen ulkopuolelle:
+	
+	\begin{equation*}
+		\odv{}{x}\left(f - y'\pdv{f}{y'}\right) = 0
+	\end{equation*}
+
+	Jos jonkin suureen derivaatta on nolla, on tämän suureen itse oltava vakio, jolloin saadaan Beltramin identiteetti:
+	
+	\begin{equation}
+		\boxed{f - y'\pdv{f}{y'} = C}
+	\end{equation}
+
+	On huomattavaa, että siinä missa EL-yhtälö on toisen kertaluvun differentiaaliyhtälö, on Beltramin identiteetti vain ensimmäistä kertalukua, mikä tekee siitä monessa tilanteessa helpomman ratkaista olettaen että sitä voidaan käyttää.
+	
+	\subsection{Diracin deltafunktion määritelmä mittateorian avulla}
+	
+	Diracin delta\emph{funktio} on nimestään huolimatta itseasiassa lineaarinen \emph{funktionaali}, joka ottaa argumentikseen funktion ja palauttaa sen arvon kohdassa nolla. Toisin sanoen:
+	
+	\begin{equation*}
+		\delta[f]: f \mapsto f(0)
+	\end{equation*}
+
+	Tämä on kuitenkin harvoin se tapa, jolla Diracin deltafunktio esitellään tai määritellään. Sitä kun käytetään usein fysiikassa idealisaationa lyhyestä impulssista tai pistevarauksesta, jolloin olennaista on sen käytettävyys fysikaalisissa tilanteissa. Tämän takia usein määritellään epäformaalisti:
+	
+	\begin{equation*}
+		\delta(x) = \begin{cases}
+			\infty, x = 0 \\
+			0, x \neq 0
+		\end{cases}
+	\end{equation*}
+
+	Tämä on kuitenkin hyvin epätäsmällinen ja käsiä heilutteleva määritelmä, sillä se ei täytä funktion vaatimuksia ja deltafunktion ''seulomisominaisuus'', jossa se palauttaa funktion arvon kohdassa nolla tuntuu absurdilta tämän määritelmän valossa. Formaalin määritelmän saamiseksi onkin tarkasteltava tilannetta hieman eri tavalla. Aivan aluksi otetaan annettuna nk. Rieszin\textendash Markovin\textendash Kakutanin lause siitä, että kaikki lineaariset funktionaalit $L[f]$ voidaan esittää integraalimuodossa, kun integroidaan suhteessa johonkin mittaan $\mu$:
+	
+	\begin{equation}
+		\label{linfunc}
+		L[f] = \int_{a}^{b}f(x)\odif{\mu}
+	\end{equation}
+
+	Tulos otetaan annettuna, sillä sen todistaminen ei ole yksinkertaista. Keskitytään seuraavaksi tarkastelemaan, mikä on mitta. Karkeasti mitta on funktio, joka liittää johonkin tutkittavaan joukkoon jonkin halutun suureen. Esimerkiksi funktio, joka palauttaa lukuvälin pituuden on mitta, sillä se liittää tutkittavaan joukkoon (lukuväli) halutun suureen (välin pituus). Mitta voi myös palauttaa lukumäärän, massan, pinta-alan, tilavuuden, todennäköisyyden ja käytännössä mitä vain kunhan mitta täyttää muutamat formaalit ominaisuudet. Formaaleilla ominaisuuksilla ei tässä kohdassa ole niin paljon väliä, mutta ne noudattavat pitkälti intuitiivista käsitystä fysikaalisista suureista, esim. mitta on nolla, jos tarkasteltava joukko on tyhjä ja kahden erillisen joukon mittojen summa on sama kuin joukkojen unionin mitta (vrt. kahden eri käsipainon massojen summa on sama kuin kahden yhteen sidotun käsipainon massa). 
+	
+	Tavallisimmin integroinnissa käytetty mitta on nk. Lebesguen mitta $m$, joka vastaa yksinkertaisesti lukuvälin pituutta eli:
+	
+	\begin{equation*}
+		m([a, b]) = |b - a|
+	\end{equation*}
+
+	Mitan voidaan kuvitella antavan integroimsvälille jonkin massan, joka painottaa sitä kun jotakin funktiota intgegroidaan. Kun mittana on Lebesguen mitta $m$, vastaa integrointi tavallista Riemannin integraalia, sillä funktion kokonaismassa jollakin lukuvälillä $[a, b]$ on karkeasti funktion arvo $f(x)$ kerrottuna välin mitalla, eli tässä tapauksessa pituudella $f(x)m([a,b])$. Kun lukuväli viedään nollaan, lähestyy mitta infinitesimaalia $\odif{m}$, jolloin funktion infinitesimaalisen osan $\odif{f}$ massa on $f(x)\odif{m}$. Koska $m([a, b])$ kuvaa lukuvälin pituutta, voidaan $\odif{m}$ korvata $\odif{x}$:llä ja massaksi tulee $f(x)\odif{x}$, mikä vastaa tavallisen Riemannin integraalin integroitavaa lauseketta.
+	
+	Nyt tullaan tärkeään käännepisteeseen: voimme valita vapaasti mitan, jonka suhteen integrointi tapahtuu ja tällä valinnalla on seurauksia sille, mitä saamme tulokseksi integraalista. Tämä on avain, joka avaa oven Diracin deltaan, sillä Diracin delta on yksinkertaisesti lineaarinen funktionaali (\ref{linfunc}), jossa mittana toimii nk. Diracin mitta. Diracin mitta antaa seuraavan massan lukusuotalle:
+	
+	\begin{equation*}
+		\delta([a, b]) =
+		\begin{cases}
+			1, [a, b] = \{0\} \\
+			0, [a, b] \neq \{0\}
+		\end{cases}
+	\end{equation*}
+
+	Eli mikäli tarkasteltava väli on kohta $x = 0$, antaa diracin mitta sille massan 1 ja kaikissa muissa tapauksissa massa on 0. Tällöin jos funktiota integroidaan Diracin mitan suhteen saadaan:
+	
+	\begin{equation}
+		\int_{-\infty}^{\infty}f(x)\odif{\delta} = f(0) 
+	\end{equation}
+
+	Tämä seuraa suoraan siitä, että $\delta$ palauttaa nollan kaikissa muissa pisteissä paitsi pisteessä $x = 0$, jolloin se palauttaa ykkösen eli ainoa jäljelle jäävä termi on $f(0)$. Tässä kohdassa voidaan pienellä notaation väärinkäytöllä johtaa perinteisesti esitelty kaava Diracin deltan seulomisominaisuudelle. Koska Diracin mitta yksinkertaisesti painottaa tavallisen lukusuoran uudelleen, voidaan se kirjoittaa tavallisen lukusuoran mitan ja jonkinlaisen tiheys''funktion'' tulona $\odif{\delta} = \delta(x)\odif{x}$. Kyseessä ei voi olla tavallinen funktio, sillä pisteen nolla tiheys on ääretön, mutta notaatio on silti hyödyllinen, sillä se mahdollistaa seulomisominaisuuden kirjoittamisen tavallisen integraalin näköisenä lausekkeena:
+	
+	\begin{equation*}
+		\int_{-\infty}^{\infty}f(x)\odif{\delta} = \int_{-\infty}^{\infty}f(x)\delta(x)\odif{x} = f(0)
+	\end{equation*}
+
+	Kertauksena siis Diracin delta on lineaarinen funktionaali, joka palauttaa funktion arvon kohdassa nolla ja sitä (niin kuin mitä tahansa lineaarista funktionaalia) voidaan merkitä Rieszin\textendash Markovin\textendash Kakutanin lauseen nojalla integraalina nk. Diracin mitan suhteen:
+	
+	\begin{equation}
+		\delta[f]: f \mapsto f(0) \iff \delta[f] = \int_{-\infty}^{\infty}f(x)\odif{\delta} \approx \int_{-\infty}^{\infty}f(x)\delta(x)\odif{x} = f(0)
+	\end{equation}
+
+	\subsection{Distribuutiot}
+	
+	Distribuutiot ovat eräs funktionaalien alakategoria, jotka kuvaavat jonkin testifunktioavaruuden funktioita (kompleksi)luvuiksi. Distribuutioille olennaista on se, että testifunktiot ovat rajoitettuja ja katoavat riittävän nopeasti, sillä muuten epäoleellinen integraali testifunktion kanssa hajaantuisi. Esimerkkejä funktioavaruuksista, jotka sopivat testifunktioavaruuksiksi ovat $S_n$: Nopeasti pienenevät $n$:n muuttujan funktiot. Vaatimuksena $S_n$:n funktioille on ääretön derivoituvuus $C^\infty$ (eli sileys) ja se, että kun $|\vtr{x}| \to \infty$ niin $f(\vtr{x}) \to 0$ ja samoin kaikille $f$:n osittaisderivaatoille. $D_n$: Sileät kompaktikantajaiset $n$:n muuttujan funktiot. Näille funktioille pätee $\exists R\in \mathbb{R}: |\vtr{x}| \geq R \implies f(\vtr{x}) = 0$ eli funktiot menevät nollaan ja pysyvät siellä äärellisellä etäisyydellä origosta. Nyt mikä tahansa (rajoitettu) skalaarikenttä $F: \mathbb{R}^n \to \mathbb{R}$ määrittelee distribuution $S_n$:lle tai $D_n$:lle, jos määritellään:
+	
+	\begin{equation*}
+		F[f] = \int_{\mathbb{R}^{n}}F(x)f(x)\odif{^nx}, \ \ \ \ f \in S_n \ \lor \ f \in D_n
+	\end{equation*}
+
+	Funktion $F$ on usein oltava rajoitettu, jotta integraali ei hajaantuisi mutta esimerkiksi polynomit, jotka eivät ole rajoitettuja, voivat mahdollisesti silti tuottaa distribuution sillä kun ne kerrotaan testifunktiolla voi lopputulos olla integroituva.
+
+	\subsubsection{Moni-indeksit}
+	\subsubsection{Heikko derivaatta}
+	\subsubsection{Distribuutiot ja testifunktiot ovat dualismeja}
+	
+	
+
+\end{document}

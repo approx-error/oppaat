@@ -1,0 +1,171 @@
+\documentclass[../johdoksia.tex]{subfiles}
+\graphicspath{{\subfix{../kuvat/}}}
+
+\begin{document}
+	\subsection{1. kl:n osittaisdifferentiaaliyhtälöt}
+	
+	\subsubsection{Lineaarinen vakiokertoiminen homogeeninen:}
+	
+	\begin{equation}
+		a\pdv{f}{x} + b\pdv{f}{y} + cf = 0
+	\end{equation}
+	
+	\subsubsection{Jatkuvuusyhtälö:}
+	
+	\begin{equation}
+		\pdv{\rho}{t} + \divop\vtr{j} = \sigma
+	\end{equation}
+	
+	\subsubsection{Burgersin yhtälö (viskositeetti nolla):}
+	
+	\begin{equation}
+		\pdv{u}{t} + u\pdv{u}{x} = 0
+	\end{equation}
+	
+	
+	\subsection{2. kl:n osittaisdifferentiaaliyhtälöt}
+	
+	\subsubsection{Laplacen yhtälö:}
+	
+	\begin{equation}
+		\nabla^2f = 0
+	\end{equation}
+
+	Laplacen operaattorin homogeeninen yhtälö. Ratkaistaan kahdessa ja kolmessa ulottuvuudessa eri koordinaatistoissa
+
+	\begin{enumerate}
+		\item \textbf{Karteesisessa koordinaatistossa}
+		
+		Analyyttiset kompleksifunktiot 2D:ssä
+		
+		\item \textbf{Sylinterikoordinaatistossa}
+		
+		Besselin funktiot
+		
+		\item \textbf{Pallokoordinaatistossa}
+		
+		Palloharmoniset funktiot
+	\end{enumerate}
+	
+	\subsubsection{Poissonin yhtälö:}
+	
+	\begin{equation}
+		\nabla^2f = u 
+	\end{equation}
+
+	Laplacen yhtälön epähomogeeninen versio.
+	
+	\begin{enumerate}
+		\item \textbf{Karteesisessa koordinaatistossa}
+		
+		\item \textbf{Sylinterikoordinaatistossa}
+		
+		\item \textbf{Pallokoordinaatistossa}
+	\end{enumerate}
+	
+	\subsubsection{Helmholtzin yhtälö:}
+	
+	\begin{equation}
+		\nabla^2f = -k^2f
+	\end{equation}
+
+	Laplacen operaattorin ominaisarvoyhtälö.
+
+	\begin{enumerate}
+		\item \textbf{Karteesisessa koordinaatistossa}
+		
+		\item \textbf{Sylinterikoordinaatistossa}
+		
+		\item \textbf{Pallokoordinaatistossa}
+		
+		Radiaalisen yhtälön ratkaisee Besselin pallofunktiot. \\
+		
+		Kulmayhtälön ratkaisee palloharmoniset funktiot.
+	\end{enumerate}
+
+
+	
+	\subsubsection{Lämpöyhtälö:}
+	
+	\begin{equation}
+		\pdv{T}{t} - \alpha\nabla^2T = 0
+	\end{equation}
+
+	Redusoituu laplacen yhtälöksi staattisessa tapauksessa, eli kun lämpö ei enää virtaa.
+	
+	\begin{enumerate}
+		\item \textbf{Karteesisessa koordinaatistossa}
+		
+		\item \textbf{Sylinterikoordinaatistossa}
+		
+		Besselin funktiot
+		
+		\item \textbf{Pallokoordinaatistossa}
+	\end{enumerate}
+	
+	\subsubsection{Aaltoyhtälö:}
+	
+	\begin{equation}
+		\pdv{^2u}{t^2} - c^2\nabla^2u = 0 \ \ \ \ \text{tai} \ \ \ \ \square^2u = 0
+	\end{equation}
+
+	D'Alembertin operaattorin homogeeninen yhtälö.
+	
+	\subsubsection{Ensimmäisen lajin Lagrange'n yhtälö:}
+	
+	\begin{equation}
+		\pdv{L}{\vtr{r}_k} - \odv{}{t}\pdv{L}{\dot{\vtr{r}}_k} + \sum_{i = 1}^{C}\lambda_i\pdv{f_i}{\vtr{r}_k} = 0
+	\end{equation}
+	
+	Jossa $\pdv{}{\vtr{r}_k} = \left(\pdv{}{x_k}, \pdv{}{y_k}, \pdv{}{z_k}\right)$ ja $\pdv{}{\dot{\vtr{r}}_k} = \left(\pdv{}{\dot{x}_k}, \pdv{}{\dot{y}_k}, \pdv{}{\dot{z}_k}\right)$
+	
+	\subsubsection{Eulerin\textendash Lagrange'n yhtälö (Toisen lajin Lagrange'n yhtälö):}
+	
+	\begin{equation}
+		\pdv{L}{q_j} - \odv{}{t}\pdv{L}{\dot{q}_j} = 0
+	\end{equation}
+	
+	\subsubsection{Schrödingerin yhtälö:}
+	
+	Eräänlainen diffuusioyhtälö.
+	
+	\begin{enumerate}
+		\item \textbf{Yksiulotteinen}:
+		
+		\begin{equation}
+			i\hbar\pdv{\Psi(x, t)}{t} = \left(-\frac{\hbar^2}{2m}\pdv{^2}{x^2} + V(x, t)\right)\Psi(x, t)
+		\end{equation}
+		
+		\item \textbf{Yleinen aikariippuvainen}:
+		
+		\begin{equation}
+			i\hbar\odv{}{t}\ket{\Psi(t)} = \hat{H}\ket{\Psi(t)}
+		\end{equation}
+		
+		\item \textbf{Yleinen aikariippumaton}:
+		
+		\begin{equation}
+			\hat{H}\ket{\Psi} = E\ket{\Psi}
+		\end{equation}
+		
+	\end{enumerate}
+
+	Vapaan hiukkasen radiaalisen yhtälön sylinteri- ja pallokoordinaatistoissa ratkaiseen Besselin funktiot
+	
+	\subsubsection{Kleinin\textendash Gordonin yhtälö:}
+	
+	\begin{equation}
+		\left(\frac{1}{c^2}\pdv{^2}{t^2} - \nabla^2 + \frac{m^2c^2}{\hbar^2}\right)\psi(x, t) = 0 \ \ \ \ \text{tai} \ \ \ \ (\square^2 + \mu^2)\psi = 0, \ \ \mu = mc/\hbar
+	\end{equation}
+
+	Relativistinen aaltoyhtälö
+	
+	\subsubsection{Burgersin yhtälö (viskositeetti ei nolla):}
+	
+	\begin{equation}
+		\pdv{u}{t} + u\pdv{u}{x} = \nu\pdv{^2u}{x^2}
+	\end{equation}
+	
+	\subsubsection{Navierin\textendash Stokesin yhtälöt:}
+	
+\end{document}

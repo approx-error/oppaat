@@ -1,0 +1,328 @@
+\documentclass[../johdoksia.tex]{subfiles}
+\graphicspath{{\subfix{../kuvat/}}}
+
+\begin{document}
+	
+	\subsection{Ominaisuudet}
+	
+	\subsubsection{Kertaluku}
+	
+	\subsubsection{Homogeenisyys}
+	
+	\subsubsection{Autonomisuus}
+	
+	\subsubsection{Separoituvuus}
+	
+	\subsection{Lineaarisuus, semilineaarisuus, kvasilineaarisuus, ja epälineaarisuus}
+	
+	\subsubsection{Lineaariset differentiaaliyhtälöt}
+	
+	Lineaarisia differentiaaliyhtälöitä määrittää se, että tuntematon funktio, ja sen kaikki derivaatat esiintyvät lineaarisina termeinä, eli funktiota tai sen derivaattoja ei ole esim. kororettu potenssiin, sijoitettu toisen funktion sisään jne.
+	
+	\begin{itemize}
+		\item \textbf{Tavalliset DY:t}:
+		
+		Yleinen ensinmmäisen kertaluvun lineaarinen tavallinen differentiaaliyhtälö on muotoa:
+		
+		\begin{equation}
+			a(x)\odv{f}{x} + b(x)f = c(x)
+		\end{equation}
+		
+		Jossa, $a, b$ ja $c$ ovat mielivaltaisia derivoituvia funktioita, eli niiden ei tarvitse olla lineaarisia
+		
+		Vastaavasti yleinen toisen kertaluvun lineaarinen tavallinen differentiaaliyhtälö on muotoa:
+		
+		\begin{equation}
+			a(x)\odv{^2f}{x^2} + b(x)\odv{f}{x} + c(x)f = d(x)
+		\end{equation}
+		
+		Jossa $a, b, c$ ja $d$ ovat mielivaltaisia derivoituvia funktioita, eli niiden ei tarvitse olla lineaarisia.
+		
+		\item \textbf{Osittais-DY:t}:
+		
+		Yleinen ensimmäisen kertaluvun lineaarinen osittaisdifferentiaaliyhtälö kahden muuttujan funktiolle on muotoa:
+		
+		\begin{equation}
+			a(x, y)\pdv{u}{x} + b(x, y)\pdv{u}{y} + c(x, y)u = d(x, y)
+		\end{equation}
+		
+		Jossa $a, b, c$ ja $d$ ovat mielivaltaisia derivoituvia funktioita, eli niiden ei tarvitse olla lineaarisia.
+		
+		Vastaavasti yleinen toisen kertaluvun osittaisdifferentiaaliyhtälö kahden muuttujan funktiolle on muotoa:
+		
+		\begin{equation}
+			a(x,y)\pdv[order = 2]{u}{x} + b(x,y)\pdv[order = 2]{u}{y} + c(x, y)\pdv{u}{x,y} + d(x, y)\pdv{u}{y,x} + e(x,y)\pdv{u}{x} + f(x, y)\pdv{u}{y} + g(x,y)u = h(x,y)
+		\end{equation}
+		
+		Jossa $a, b, c, \dots h$ ovat mielivaltaisia derivoituvia funktioita, eli niiden ei tarvitse olla lineaarisia.
+		
+		Yhtälöt, jotka eivät toteuta lineaarisuuden vaatimuksia ovat epälineaarisia. Epälineaariset yhtälöt jaetaan kolmeen kategoriaan lisääntyvän epälineaarisuuden mukaan.
+	\end{itemize}
+	
+	\subsubsection{Semilineaariset differentiaaliyhtälöt}
+	
+	Semilineaarisiin differentiaaliyhtälöihin siirryttäessä vaatimus lineaarisuudesta pätee enää korkeimman kertaluvun derivaatoille eli funktio ja sen derivaatat korkeimman kertaluvun derivaattaa lukuunottamatta voivat esiintyä epälineaarisina termeinä.
+	
+	\begin{itemize}
+		\item \textbf{Tavalliset DY:t}:
+		
+		Yleinen ensimmäisen kertaluvun semilineaarinen tavallinen differentiaaliyhtälö on muotoa:
+		
+		\begin{equation}
+			a(x)\odv{f}{x} = g(f, x)
+		\end{equation}
+		
+		Jossa $a$ on mielivaltainen derivoituva funktio ja $g$ on sekä $f$:n että $x$:n funktio.
+		
+		Vastaavasti yleinen toisen kertaluvun semilineaarinen tavallinen differentiaaliyhtälö on muotoa:
+		
+		\begin{equation}
+			a(x)\odv{^2f}{x^2} =  g(f', f, x)
+		\end{equation}
+		
+		Jossa $a$ on mielivaltainen derivoituva funktio ja $g$ on sekä $f'$:n, $f$:n että $x$:n funktio.
+		
+		\item \textbf{Osittais-DY:t}:
+		
+		Yleinen ensimmäisen kertaluvun semilineaarinen osittaisdifferentiaaliyhtälö kahden muuttujan funktiolle on muotoa:
+		
+		\begin{equation}
+			a(x, y)\pdv{u}{x} + b(x, y)\pdv{u}{y} = f(u, x, y)
+		\end{equation}
+		
+		Jossa $a$ ja $b$ ovat mielivaltaisia derivoituvia funktioita ja $f$ on sekä $u$:n, $x$:n ja $y$:n funktio.
+		
+		Vastaavasti yleinen toisen kertaluvun semilineaarinen osittaisdifferentiaaliyhtälö kahden muuttujan funktiolle on muotoa:
+		
+		\begin{equation}
+			a(x,y)\pdv[order = 2]{u}{x} + b(x,y)\pdv[order = 2]{u}{y} + c(x, y)\pdv{u}{x,y} + d(x, y)\pdv{u}{y,x} = f(u_x, u_y, u, x, y)
+		\end{equation}
+		
+		Jossa $a$, $b$, $c$ ja $d$ ovat mielivaltaisia derivoituvia funktioita ja $f$ on sekä $u_x$:n, $u_y$:n, $u$:n, $x$:n ja $y$:n funktio.
+	\end{itemize}
+	
+	\subsubsection{Kvasilineaariset differentiaaliyhtälöt}
+	
+	Kvasilineaarisiin differentiaaliyhtälöihin siirryttäessä vaatimus lineaarisuudesta pätee edelleen korkeimman kertaluvun derivaatoille, mutta nyt niiden kerroinfunktiot voivat olla mielivaltaisia funktion ja sen alemman kertaluvun derivaatojen funktioita. 
+	
+	\begin{itemize}
+		\item \textbf{Tavalliset DY:t}:
+		
+		Yleinen ensimmäisen kertaluvun kvasilineaarinen tavallinen differentiaaliyhtälö on muotoa:
+		
+		\begin{equation}
+			a(f, x)\odv{f}{x} = g(f, x)
+		\end{equation}
+		
+		Jossa $a$ on mielivaltainen derivoituva funktio, joka riippuu nyt $x$:n lisäksi $f$:stä ja $g$ on sekä $f$:n että $x$:n funktio.
+		
+		Vastaavasti yleinen toisen kertaluvun kvasilineaarinen tavallinen differentiaaliyhtälö on muotoa:
+		
+		\begin{equation}
+			a(f, f', x)\odv{^2f}{x^2} =  g(f', f, x)
+		\end{equation}
+		
+		Jossa $a$ on mielivaltainen derivoituva funktio, joka riippuu nyt $x$:n lisäksi $f'$:sta ja $f$:stä ja $g$ on sekä $f'$:n, $f$:n että $x$:n funktio.
+		
+		\item \textbf{Osittais-DY:t}:
+		
+		Yleinen ensimmäisen kertaluvun kvasilineaarinen osittaisdifferentiaaliyhtälö kahden muuttujan funktiolle on muotoa:
+		
+		\begin{equation}
+			a(u, x, y)\pdv{u}{x} + b(u, x, y)\pdv{u}{y} = f(u, x, y)
+		\end{equation}
+		
+		Jossa $a$ ja $b$ ovat mielivaltaisia derivoituvia funktioita ja riippuvat nyt $x$:n ja $y$:n lisäksi $u$:sta ja $f$ on sekä $u$:n, $x$:n ja $y$:n funktio.
+		
+		Vastaavasti yleinen toisen kertaluvun kvasilineaarinen osittaisdifferentiaaliyhtälö kahden muuttujan funktiolle on muotoa:
+		
+		\begin{equation}
+			a(u_x, u_y, u, x,y)\pdv[order = 2]{u}{x} + b(u_x, u_y, u, x,y)\pdv[order = 2]{u}{y} + c(u_x, u_y, u, x, y)\pdv{u}{x,y} + d(u_x, u_y, u, x, y)\pdv{u}{y,x} = f(u_x, u_y, u, x, y)
+		\end{equation}
+		
+		Jossa $a$, $b$, $c$ ja $d$ ovat mielivaltaisia derivoituvia funktioita ja $f$ on sekä $u_x$:n, $u_y$:n, $u$:n, $x$:n ja $y$:n funktio.
+	\end{itemize}
+	
+	\subsubsection{Epälineaariset differentiaaliyhtälöt}
+	
+	Epälineaarisissa differentiaaliyhtälöissä vaatimus funktion tai sen derivaattojen esiintymisestä lineaarisina termeinä katoaa kokonaan, jolloin epälineaariset differentiaaliyhtälöt ovat suurin differentiaaliyhtälöiden kategoria ja samalla myös vaikein, sillä niillä ei ole yhtä tiettyä yhdistävää tekijää tai ominaisuutta toisin kuin aiempien kategorioiden yhtälöillä.
+	
+	\begin{itemize}
+		\item \textbf{Tavalliset DY:t}:
+		Yleinen ensimmäisen kertaluvun epälineaarinen tavallinen differentiaaliyhtälö on muotoa:
+		
+		\begin{equation}
+			g(f', f, x) = 0
+		\end{equation}
+		
+		Jossa $g$ on mielivaltainen funktio, joka riippuu nyt $x$:n ja $f$:n lisäksi $f'$:sta
+		
+		Vastaavasti yleinen toisen kertaluvun epälineaarinen tavallinen differentiaaliyhtälö on muotoa:
+		
+		\begin{equation}
+			g(f'', f', f', x) = 0
+		\end{equation}
+		
+		Jossa $g$ on mielivaltainen funktio, joka riippuu nyt $x$:n, $f'$:n ja $f$:n lisäksi $f''$:sta.
+		
+		\item \textbf{Osittais-DY:t}:
+		
+		Yleinen ensimmäisen kertaluvun epälineaarinen osittaisdifferentiaaliyhtälö kahden muuttujan funktiolle on muotoa:
+		
+		\begin{equation}
+			f(u_x, u_y, u, x, y) = 0
+		\end{equation}
+		
+		Jossa $f$ on mielivaltainen funktio, joka riippuu nyt $u$:n kaikista derivaatoista, $u$:sta ja $x$:stä sekä $y$:stä
+		
+		Vastaavasti yleinen toisen kertaluvun epälineaarinen osittaisdifferentiaaliyhtälö kahden muuttujan funktiolle on muotoa:
+		
+		\begin{equation}
+			f(u_{xx}, u_{yy}, u_{xy}, u_{yx}, u_{x}, u_{y}, u, x, y) = 0
+		\end{equation}
+		
+		Jossa $f$ on mielivaltainen funktio, joka riippuu nyt $u$:n kaikista derivaatoista, $u$:sta ja $x$:stä sekä $y$:stä
+	\end{itemize}
+	
+	Taulukoihin 5.1 ja 5.2 on koottu toisen kertaluvun differentiaaliyhtälötyypit kasvavan epälineaarisuuden mukaan:
+	
+	\begin{table}[h!]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{|c|c|}
+			\hline
+			Lineaarisuus & Tavallinen 2. kl:n DY  \\
+			\hline
+			Lineaarinen & $a(x)f'' + b(x)f' + c(x)f = d(x)$ \\
+			Semilineaarinen & $a(x)f'' =  g(f', f, x)$ \\
+			Kvasilineaarinen & $a(f, f', x)f'' =  g(f', f, x)$ \\
+			Epälineaarinen & $g(f'', f', f', x) = 0$ \\
+			\hline
+		\end{tabular}
+		\caption{Tavalliset 2. kl:n DY:t kasvavan epälineaarisuuden mukaan}
+	\end{table}
+	
+	\begin{table}[h!]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{|c|c|}
+			\hline
+			Lineaarisuus & 2. kl:n osittais-DY  \\
+			\hline
+			Lineaarinen & $a(x,y)u_{xx} + b(x,y)u_{yy} + c(x, y)u_{xy} + d(x, y)u_{yx} + e(x,y)u_x + f(x, y)u_y + g(x,y)u = h(x,y)$ \\
+			Semilineaarinen & $a(x,y)u_{xx} + b(x,y)u_{yy} + c(x, y)u_{xy} + d(x, y)u_{yx} = f(u_x, u_y, u, x, y)$ \\
+			Kvasilineaarinen & $a(u_x, u_y, u, x,y)u_{xx} + b(u_x, u_y, u, x,y)u_{yy} + c(u_x, u_y, u, x, y)u_{xy} + d(u_x, u_y, u, x, y)u_{yx}$ \\
+			& $= f(u_x, u_y, u, x, y)$ \\
+			Epälineaarinen & $f(u_{xx}, u_{yy}, u_{xy}, u_{yx}, u_x, u_y, u, x, y) = 0$ \\
+			\hline
+		\end{tabular}
+		\caption{2. kl:n osittais-DY:t kasvavan epälineaarisuuden mukaan}
+	\end{table}
+
+	\subsection{Parabolisuus, elliptisyys ja hyperbolisuus}
+	
+	\subsection{Erikoispisteet}
+	
+	Tarkastellaan yleistä 2. kertaluvun tavallista homogeenista differentiaaliyhtälöä:
+	
+	\begin{equation}
+		\label{general_2ord}
+		\boxed{\odv{^2f}{z^2} + P(z)\odv{f}{z} + Q(z)f = 0, \ \ \ \ z \in D \in \mathbb{C}}
+	\end{equation}
+	
+	\subsubsection{Tavallinen/säännöllinen piste (ordinary point)}
+	
+	Piste $z_0 \in D$ on yhtälön (\ref{general_2ord}) tavallinen/säännöllinen piste, jos $z_0$:n ympäristö $D_\varepsilon = \{z \in \mathbb{C} \mid |z - z_0| < \varepsilon\}$ siten, että $P$ ja $Q$ ovat analyyttisiä
+	
+	\subsubsection{Heikko erikoispiste (regular/inessential singularity)}
+	
+	Piste $z_0 \in D$ on yhtälön (\ref{general_2ord}) heikko erikoispiste, jos $P$:llä on korkeintaan 1. kertaluvun napa $z_0$:ssa ja $Q$:lla on korkeintaan 2. kertaluvun napa $z_0$:ssa
+	
+	\subsubsection{Vahva erikoispiste (irregurlar/essential singularity)}
+	
+	Piste $z_0 \in D$ on yhtälön ({\ref{general_2ord}}) vahva erikoispiste, jos tavallisen pisteen tai heikon erikoispisteen ehdot eivät täyty.
+	
+	\subsubsection{Piste äärettömydessä}
+	
+	Yhtälön käyttäytymistä äärettömyydessä, eli kun $z_0 \to \infty$ voidaan tarkastella muuttujanvaihdoksella $t = \frac{1}{z}$, joka lähestyy nollaa ku $z$ lähestyy ääretöntä. Muuttujanvaihdoksesta seuraa seuraavat ehdot:
+	
+	\begin{itemize}
+		\item Piste $z_0 = \infty$ on yhtälön (\ref{general_2ord}) tavallinen/säännöllinen piste, jos $\frac{2}{t} - \frac{P(1/t)}{t^2}$ ja $\frac{Q(1/t)}{t^4}$ ovat säännöllisiä pisteessä $t = 0$
+		\item Piste $z_0 = \infty$ on yhtälön (\ref{general_2ord}) heikko erikoispiste, jos $t = 0$ on korkeinntaan 1. kertaluvun napa lausekkeelle $\frac{2}{t} - \frac{P(1/t)}{t^2}$ ja korkeintaan 2. kertaluvun napa lausekkeelle $\frac{Q(1/t)}{t^4}$.
+		\item Muutoin $z_0 = \infty$ on vahva erikoispiste
+	\end{itemize} 
+	
+	\subsection{Reunaehdot ja alkuarvot}
+	
+	\subsubsection{Neumann-reunaehdot}
+	
+	\subsubsection{Dirichlet-reunaehdot}
+	
+	\subsection{Differentiaalioperaattoreita}
+	
+	\begin{table}
+		\renewcommand{\arraystretch}{1.5}
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Operaattorin nimi & Merkintäesimerkkejä & Määritelmä & Lisätietoja \\
+			\hline
+			Erotusoperaattori & $\Delta f$ & $f(x + h) - f(x)$ & \\
+			\hline
+			Erotusosamäärä & $\adv{f}{x}$ & $\frac{f(x + h) - f(x)}{h}$& \\
+			\hline
+			Differentiaali & $\odif{f}$ & & \\
+			\hline
+			2. differentiaali & $\odif[order=2]{f}$ & & \\
+			\hline
+			Derivaatta & $Df, \ \ D_xf, \ \ \odv{f}{x}, \ \ f', \ \ \dot{f}$ & $\lim\limits_{h \to 0}\frac{f(x + h) - f(x)}{h}$ & \\
+			\hline
+			2. derivaatta & $D^2f, \ \ D_x^2f, \ \ \odv{^2f}{x^2}, \ \ f'', \ \ \ddot{f}$ & $\lim\limits_{h \to 0}\frac{f(x + h) - 2f(x) + f(x - h)}{h^2}$& \\
+			\hline
+			N:s derivaatta & $D^nf, \ \ D_x^nf, \ \ \odv{^nf}{x^n}, \ \ f^{(n)}$ & $\lim\limits_{h \to 0}\frac{f^{(n-1)}(x + h) - f^{(n-1)}(x)}{h}$& \\
+			\hline
+			Yleinen lineaarinen & $Df$ & $\sum\limits_{i = 1}^{n}a_kD^kf$ & \\
+			\hline
+			Homogeenisyys & $\Theta f$ & $x\odv{f}{x}$ & \\
+			\hline
+			Cauchyn\textendash Eulerin & ? & $p(x)\odv{f}{x}$ & \\ 
+			\hline
+			Sturmin\textendash Liouville'n & $Lf, \ \ \mathcal{L}f$ & $\odv{}{x}\left(p(x)\odv{f}{x}\right) - q(x)f$ & \\
+			\hline
+			Osittaisdifferentiaali & $\partial f$ & & \\
+			\hline
+			2. osittaisdifferentiaali & $\partial^2f$ & & \\
+			\hline
+			Osittaisderivaatta & $\partial_xf, \ \ \pdv{f}{x}, \ \ f_x$ & & \\
+			\hline
+			2. osittaisderivaatta & $\partial_x^2f, \partial_x\partial_yf, \partial_{xy}f, \pdv{^2f}{x^2}, \pdv{f}{x,y}, f_{xx}, f_{xy}$ & & \\
+			\hline
+			N:s osittaisderivaatta & $\partial_x^nf, \partial_x^k\partial_y^lf, \partial_{ab\dots z}f, \pdv[order = n]{f}{x}, \pdv[order = {a,b,c}]{f}{x,y,z}, f_{ab\dots z}$ & & \\
+			\hline
+			Gradientti & $\nabla f, \ \ \vec{\nabla}f, \ \ \mathrm{grad}f, \ \ \boldsymbol{\nabla}f$ & & \\
+			\hline
+			Suunnattu derivaatta & $\nabla_{\vtr{v}}f, \ \ \vtr{v}\cdot\nabla f$ & & \\
+			\hline
+			Divergenssi & $\divop \mathbf{F}, \ \ \vec{\nabla}\cdot \mathbf{F}, \ \ \mathrm{div}\mathbf{F}$ & & \\
+			\hline
+			Roottori & $\curlop \mathbf{F}, \ \ \vec{\nabla}\times \mathbf{F}, \ \ \mathrm{curl}\mathbf{F}$ & & \\
+			\hline
+			Laplacen & $\nabla^2f, \ \ \divop\nabla f, \ \ \Delta f$ & & \\
+			\hline
+			D'Alembertin & $\square^2f, \ \ \square f, \ \ \Delta_Mf$ & & \\
+			\hline
+			Materiaaliderivaatta & $\mdv{f}{t}$ & $\pdv{f}{t} + \nabla_{\vtr{v}}f$ & \\
+			\hline
+			funktionaalidifferentiaali & $\fdif{f}$ & & \\
+			tai 1. variaatio & & & \\
+			\hline
+			2. funktionaalidifferentiaali & $\fdif[order=2]{f}$ & &  \\
+			tai 2. variaatio & & & \\
+			\hline
+			Funktionaaliderivaatta & $\fdv{f}{x}$ & & \\
+			\hline
+			Diracin operaattori & $Df$ & $D^2f = \nabla^2f$ & \\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{document}

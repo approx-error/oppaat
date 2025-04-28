@@ -1,0 +1,127 @@
+\documentclass[]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{derivative}
+\usepackage{cancel}
+\usepackage{bigints}
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage[finnish]{babel}%
+
+% Stuff to make lmodern and bigints compatible
+\DeclareFontFamily{OMX}{lmex}{}
+\DeclareFontShape{OMX}{lmex}{m}{n}{<-> lmex10}{}
+
+\numberwithin{equation}{section}
+
+%opening
+\title{Satulapisteapproksimaatiosta}
+\author{Juuso Kaarela}
+
+\begin{document}
+
+\maketitle
+
+\section{Laplacen menetelmä}
+
+Satulapisteapproksimaation erikoistapaus reaaliselle integraalille on nk. Laplacen menetelmä, jossa approksimoidaan muotoa
+
+\begin{equation}
+	I(x) = \int_{a}^{b}f(t)e^{xg(t)}\odif{t}, \ \ x \to \infty
+\end{equation}
+
+olevien integraalien asymptoottista käytöstä ($x \to \infty$). Integraalissa $I(x)$ funktiolla $g(t)$ on maksimikohta $t_0$ välillä $[a, b]$. Approksimaatio perustuu ideaan, että integraalin suurin kontribuutio tulee $g(t)$:n maksimikohdassa $t = t_0$, sillä tällöin eksponenttitermi on suurimmillaan. Tällöin koko integraalia voidaan approksimoida tarkastelemalla ainoastaan integroitavan funktion arvoa mielivaltaisen lähellä pistettä $t = t_0$.
+
+\subsection{Maksimi välin päätepisteessä}
+
+Jos maksimikohta $t_0$ on välin alkupisteessä, eli pätee $t_0 = a$, on $g(t)$:n oltava vähenevä funktio pisteessä $t_0$. Pätee siis $g'(t_0) < 0$. Jos maksimikohta $t_0$ puolestaan on välin loppupisteessä $t_0 = b$, on $g(t)$:n oltava kasvava pisteessä $t_0$, jolloin pätee $g'(t_0) > 0$. $g'(t_0)$ ei siis ole kummassakaan tapauksessa nolla, jolloin $g(t)$:tä voidaan approksimoida pisteen $t_0$ ympäristössä ensimmäisen asteen taylorin polynomilla:
+
+\begin{equation}
+	g(t) \approx g(t_0) + (t - t_0)g'(t_0)
+\end{equation}
+
+Tarkastellaan ensin tilannetta, jossa $t_0 = a$. Integraalin suurin kontribuutio tulee tällöin pisteen $a$ ympäristöstä, eli väliltä $[a, a + \varepsilon]$, jossa $\varepsilon > 0$ on jokin mielivaltaisen lähellä pistettä $a$ oleva luku. Sijoittamalla nämä integroimisrajat sekä $g(t)$:n approksimaatio (1.2) integraaliin (1.1), saadaan integraalille approksimaatio:
+
+\begin{align}
+	I(x) &\sim \int_{a}^{a + \varepsilon}f(a)e^{x\big(g(a) + (t - a)g'(a)\big)}\odif{t} \\
+	I(x) &\sim \int_{a}^{a + \varepsilon}f(a)e^{xg(a)}e^{x(t - a)g'(a)}\odif{t} \\
+	\intertext{Otetaan integraalin suhteen vakiot $f(a)$ sekä $e^{xg(a)}$ ulos integraalista:}
+	I(x) &\sim f(a)e^{xg(a)}\int_{a}^{a + \varepsilon}e^{x(t - a)g'(a)}\odif{t} \\
+	\intertext{Määritetään integraali. $\odv{}{t}\left(e^{x(t - a)g'(a)}\right) = xg'(a)e^{x(t - a)g'(a)}$, jolloin saadaan:}
+	I(x) &\sim f(a)e^{xg(a)}\left[\frac{1}{xg'(a)}\int_{a}^{a + \varepsilon}xg'(a)e^{x(t - a)g'(a)}\odif{t}\right] \\
+	I(x) &\sim \frac{f(a)e^{xg(a)}}{xg'(a)}\left[e^{x(t - a)g'(a)}\right]_{a}^{a + \varepsilon} \\
+	I(x) &\sim \frac{f(a)e^{xg(a)}}{xg'(a)}\left[e^{x(a + \varepsilon - a)g'(a)} - e^{x(a - a)g'(a)}\right] \\
+	I(x) &\sim \frac{f(a)e^{xg(a)}}{xg'(a)}\left[e^{x\varepsilon g'(a)} - 1\right] \\
+	\intertext{Kun $x \to \infty$, pienenee termi $e^{x\varepsilon g'(a)}$ eksponentiaalisesti, sillä $g'(a) < 0$. Saadaan:}
+	I(x) &\sim \frac{f(a)e^{xg(a)}}{xg'(a)}\left[0 - 1\right]
+\end{align}
+
+\begin{equation}
+	\boxed{I(x) \sim -\frac{f(a)e^{xg(a)}}{xg'(a)}}
+\end{equation}
+
+
+Tarkastellaan seuraavaksi tilannetta, jossa $t_0 = b$. Integraalin suurin kontribuutio tulee tällöin pisteen $b$ ympäristöstä, eli väliltä $[b - \varepsilon, b]$, jossa jälleen $\varepsilon > 0$ on mielivaltaisen lähellä $b$:tä. Vastaavasti kuin aiemmin integraalille saadaan approksimaatio:
+
+\begin{align}
+	I(x) &\sim \int_{b - \varepsilon}^{b}f(b)e^{x\big(g(b) + (t - b)g'(b)\big)}\odif{t} \\
+	I(x) &\sim \int_{b - \varepsilon}^{b}f(b)e^{xg(b)}e^{x(t - b)g'(b)}\odif{t} \\
+	\intertext{Otetaan integraalin suhteen vakiot $f(b)$ sekä $e^{xg(b)}$ ulos integraalista:}
+	I(x) &\sim f(b)e^{xg(b)}\int_{b - \varepsilon}^{b}e^{x(t - b)g'(b)}\odif{t} \\
+	\intertext{Määritetään integraali. $\odv{}{t}\left(e^{x(t - b)g'(b)}\right) = xg'(b)e^{x(t - b)g'(b)}$, jolloin saadaan:}
+	I(x) &\sim f(b)e^{xg(b)}\left[\frac{1}{xg'(b)}\int_{b - \varepsilon}^{b}xg'(b)e^{x(t - b)g'(b)}\odif{t}\right] \\
+	I(x) &\sim \frac{f(b)e^{xg(b)}}{xg'(b)}\left[e^{x(t - b)g'(b)}\right]_{b - \varepsilon}^{b} \\
+	I(x) &\sim \frac{f(b)e^{xg(b)}}{xg'(b)}\left[e^{x(b - b)g'(b)} - e^{x(b - \varepsilon - b)g'(b)}\right] \\
+	I(x) &\sim \frac{f(b)e^{xg(b)}}{xg'(b)}\left[1 - e^{-x\varepsilon g'(b)}\right] \\
+	\intertext{Kun $x \to \infty$, pienenee termi $e^{-x\varepsilon g'(b)}$ eksponentiaalisesti, sillä $g'(b) > 0$. Saadaan:}
+	I(x) &\sim \frac{f(b)e^{xg(b)}}{xg'(b)}\left[1 - 0\right]
+\end{align}
+
+\begin{equation}
+	\boxed{I(x) \sim \frac{f(b)e^{xg(b)}}{xg'(b)}}
+\end{equation}
+
+\subsection{Maksimi välin keskellä}
+
+Jos maksimikohta $t_0$ on välin keskellä, pätee $g'(t_0) = 0$. Vastaavasti toiselle derivaatalle pätee maksimikohdassa $g''(t_0) < 0$. Tällöin $g(t)$:tä approksimoitaessa Taylorin polynomilla, on mentävä toisen asteen termiin asti, jotta approksimaatio olisi riittävän tarkka:
+
+\begin{align}
+	g(t) &\approx g(t_0) + \cancel{(t - t_0)g'(t_0)} + \frac{1}{2}(t - t_0)^2g''(t_0) \\
+	g(t) &\approx g(t_0) + \frac{1}{2}(t - t_0)^2g''(t_0)
+\end{align}
+
+Koska maksimikohta $t_0$ on välin $[a, b]$ keskellä, tulee integraalin suurin kontribuutio pisteen $t_0$ ympäristöstä, eli väliltä $[t_0 - \varepsilon, t_0 + \varepsilon]$, jossa $\varepsilon > 0$ on mielivaltaisen lähellä muuttujaa $t_0$. Sijoitetaan integroimisrajat ja $g(t)$:n approksimaatio (1.22) integraaliin (1.1), jolloin integraalille saadaan approksimaatio:
+
+\begin{align}
+	I(x) &\sim \int_{t_0 - \varepsilon}^{t_0 + \varepsilon}f(t_0)e^{x\left(g(t_0) + \frac{1}{2}(t - t_0)^2g''(t_0)\right)}\odif{t} \\
+	I(x) &\sim \int_{t_0 - \varepsilon}^{t_0 + \varepsilon}f(t_0)e^{xg(t_0)}e^{x\frac{1}{2}(t - t_0)^2g''(t_0)}\odif{t} \\
+	\intertext{Otetaan integraalin suhteen vakiot $f(t_0)$ sekä $e^{xg(t_0)}$ ulos integraalista:}
+	I(x) &\sim f(t_0)e^{xg(t_0)}\int_{t_0 - \varepsilon}^{t_0 + \varepsilon}e^{x\frac{1}{2}(t - t_0)^2g''(t_0)}\odif{t} \\
+	\intertext{Tehdään muuttujanvaihdos $-s^2 = x\frac{1}{2}(t - t_0)^2g''(t_0) \iff s = \sqrt{-x\frac{1}{2}(t - t_0)^2g''(t_0)} = (t - t_0)\sqrt{-\frac{xg''(t_0)}{2}}$. Tällöin $\odif{s} = \sqrt{-\frac{xg''(t_0)}{2}}\odif{t} \iff \odif{t} = \frac{1}{\sqrt{-\frac{xg''(t_0)}{2}}}\odif{s} = \sqrt{-\frac{2}{xg''(t_0)}}\odif{s}$. Uudet integroimisrajat: Kun $t = t_0 - \varepsilon$, pätee $s = ((t_0 - \varepsilon) - t_0)\sqrt{-\frac{xg''(t_0)}{2}} = -\varepsilon\sqrt{-\frac{xg''(t_0)}{2}}$. Ja vastaavasti kun $t = t_0 + \varepsilon$, pätee $s = ((t_0 + \varepsilon) - t_0)\sqrt{-\frac{xg''(t_0)}{2}} = \varepsilon\sqrt{-\frac{xg''(t_0)}{2}}$. Integraali saadaan nyt siis muotoon:}
+	I(x) &\sim f(t_0)e^{xg(t_0)}\bigintss\limits_{-\varepsilon\sqrt{-xg''(t_0)/2}}^{\varepsilon\sqrt{-xg''(t_0)/2}}e^{-s^2}\sqrt{-\frac{2}{xg''(t_0)}}\odif{s} \\
+	\intertext{Otetaan vakio $\sqrt{-\frac{2}{xg''(t_0)}}$ integraalin ulkopuolelle:}
+	I(x) &\sim f(t_0)e^{xg(t_0)}\sqrt{-\frac{2}{xg''(t_0)}}\bigintss\limits_{-\varepsilon\sqrt{-xg''(t_0)/2}}^{\varepsilon\sqrt{-xg''(t_0)/2}}e^{-s^2}\odif{s} \\
+	\intertext{Integroimisrajat voidaan viedä äärettömyyteen, sillä funktio $e^{-s^2}$ lähestyy eksponentiaalisesti nollaa kun $s\to\infty$, jolloin rajojen muuttaminen tuo integraaliin eksponentiaalisen pienen virheen:}
+	I(x) &\sim \frac{\sqrt{2}f(t_0)e^{xg(t_0)}}{\sqrt{-xg''(t_0)}}\int_{-\infty}^{\infty}e^{-s^2}\odif{s} \\
+	\intertext{Funktio $e^{-s^2}$ on parillinen, jolloin integroimisrajat voidaan muuttaa $[0, \infty[$ kertomalla koko integraali kahdella:}
+	I(x) &\sim \frac{\sqrt{2}f(t_0)e^{xg(t_0)}}{\sqrt{-xg''(t_0)}}2\int_{0}^{\infty}e^{-s^2}\odif{s} \\
+	\intertext{Tehdään muuttujanvaihdos $u = s^2 \iff s = \sqrt{u}$, jolloin $\odif{u} = 2s\odif{s} \iff \odif{s} = \frac{1}{2s}\odif{u} = \frac{1}{2\sqrt{u}}\odif{u} = \frac{1}{2}u^{-1/2}\odif{u}$. Integroimisrajat eivät muutu, sillä kyseessä on epäoleellinen integraali, jolloin $s$:n mennessä äärettömyyteen, menee $u = s^2$ myös äärettömyyteen:}
+	I(x) &\sim \frac{\sqrt{2}f(t_0)e^{xg(t_0)}}{\sqrt{-xg''(t_0)}}2\int_{0}^{\infty}\frac{1}{2}u^{-1/2}e^{-u}\odif{u} \\
+	I(x) &\sim \frac{\sqrt{2}f(t_0)e^{xg(t_0)}}{\sqrt{-xg''(t_0)}}\int_{0}^{\infty}u^{1/2 - 1}e^{-u}\odif{u} \\
+	\intertext{Tunnistetaan Eulerin gammafunktion määritelmän nojalla, että $\int_{0}^{\infty}u^{1/2 - 1}e^{-u}\odif{u} = \Gamma(\frac{1}{2}) = \sqrt{\pi}$. Lopulliseksi approksimaatioksi saadaan siis:}
+	I(x) &\sim \frac{\sqrt{2\pi}f(t_0)e^{xg(t_0)}}{\sqrt{-xg''(t_0)}}
+\end{align}
+
+\begin{equation}
+	\boxed{I(x) \sim f(t_0)e^{xg(t_0)}{\sqrt{\frac{2\pi}{-xg''(t_0)}}}}
+\end{equation}
+
+\section{Satulapisteapproksimaatio}
+
+Satulapisteapproksimaatiolla approksimoitava integraali voi yleisessä tapauksessa olla kompleksinen, jolloin 
+
+\end{document}

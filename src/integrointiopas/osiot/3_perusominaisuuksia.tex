@@ -1,0 +1,95 @@
+\documentclass[../integrointiopas.tex]{subfiles}
+\graphicspath{{\subfix{../kuvat/}}}
+
+\begin{document}
+	Ennen varsinaisten integroimistekniikoiden harjoittelua, on hyvä kerrata yleisiä integraalien ominaisuuksia, joihin tullaan oppaan aikana vetoamaan useaan kertaan. Kaikki tässä osiossa esitellyt tulokset eivät välttämättä ole suoraan lukijalle tuttuja, jolloin tämän osion täydellinen ymmärtäminen ensimmäisellä kerralla ei ole tarpeellista. Kaikki tässä osiossa listatut tulokset tulevat kuitenkin oppaan myötä tutuksi itse kullekin. Aloitetaan integraalien perusominaisuuksien tarkastelu määräämättömistä integraaleista:
+	
+	\subsection{Määräämättömien integraalien ominaisuudet}
+	
+	Tässä oppaassa eniten hyödynnetty integraalin ominaisuus on sen lineaarisuus, josta seuraa seuraavat kaksi tulosta (3.1) ja (3.2):
+	
+	\begin{equation}
+		\boxed{\int\big(f(x) + g(x) + \dots + h(x)\big)\odif{x} = \int f(x)\odif{x} + \int g(x)\odif{x} + \dots + \int h(x)\odif{x}}
+	\end{equation}
+	
+	Tulos (3.1) sanoo, että integraali summasta funktioita $f(x) + g(x) + \dots + h(x)$ voidaan määrittää ottamalla integraalit kustakin funktiosta erikseen ja summaamalla integraalit yhteen. Tämä on valtavan voimakas tulos, sillä sen avulla voidaan yksinkertaistaa useita integraaleja jakamalla ne pienempiin (ja usein helpommin laskettaviin) osiin.
+	
+	\begin{equation}
+		\boxed{\int \big(a\cdot f(x)\big)\odif{x} = a\int f(x)\odif{x}, \ \ a\in\mathbb{R}(\mathbb{C})}
+	\end{equation}
+	
+	Tulos (3.2) puolestaan sanoo, että mikäli integrandia $f(x)$ kertoo jokin reaalinen (kompleksinen) vakio $a$, voidaan vakio ottaa integraalin ulkopuolelle kertoimeksi.
+	
+	Toinen tärkeä seikka muistaa integraalista on sen suhde derivaattaan: integraali on integroimisvakiota $C$ vaille derivaatan käänteisoperaatio. Olettaen, että $f(x)$ on hyvin käyttäytyvä (jatkuva, derivoituva ja integroituva) funktio, voidaan siis kirjoittaa:
+	
+	\begin{equation}
+		\boxed{\int \odv{}{x}f(x)\odif{x} = f(x) + C}
+	\end{equation}
+	
+	Ja vastaavasti:
+	
+	\begin{equation}
+		\boxed{\odv{}{x}\int f(x)\odif{x} = f(x)}
+	\end{equation}
+	
+	On huomattavaa, että yleisessä tapauksessa tulosten (3.3) ja (3.4) välillä siirtyminen ei ole mahdollista, sillä integroinnin ja derivoinnin järjestyksen muuttaminen tuottaa erilaisen lopputuloksen, mutta hyvin käyttäytyville funktioille, joita oppaassa pitkälti käsitellään, järjestyksen vaihtaminen on sallittua.
+	
+	Monen muuttujan funktioiden integraaleja laskettaessa hyvin käyttäytyville funktioille pätee:
+	
+	\begin{equation}
+		\boxed{\iiint f(x,y,z)\odif{x,y,z} = \int\left(\int\left(\int f(x)\odif{x}\right)\odif{y}\right)\odif{z} = \int\odif{z}\int\odif{y}\int\odif{x}f(x,y,z)}
+	\end{equation}
+	
+	Kaksois- ja kolmoisintegraaleja voidaan siis määrittää iteroituina integraaleina, joissa integrointi suoritetaan yhden muuttujan suhteen kerrallaan. Tämäkään tulos ei ole yleisesti voimassa vaan vaatii, kuten aikaisemmin todettiin, hyvin käyttäytyvää funktiota. (Ks. Fubinin lause)
+	
+	\subsection{Määrättyjen integraalien ominaisuudet}
+	
+	Määrättyjen integraalien rajoihin liittyy paljon sääntöjä, joista tässä muutamia:
+	
+	\begin{equation}
+		\boxed{\int_{a}^{c}f(x)\odif{x} = \int_{a}^{b}f(x)\odif{x} + \int_{b}^{c}f(x)\odif{x}}
+	\end{equation}
+	
+	Tulos (3.6) sanoo, että mikäli integroimisväli $[a, c]$ jetaan kahteen osaan $[a, b]$ ja $[b, c]$, voidaan alkuperäinen integraali määrittää kahden uuden osavälin integraalien summana. Osaväli voidaan myös jakaa useampaan osaan ja sama tulos pätee edelleen. Samankaltainen tulos pätee myös polkuintegraaleille, jossa integroimispolku $\gamma$ voidaan jakaa esim. kahteen osapolkuun $\gamma = \alpha + \beta$, jolloin saadaan:
+	
+	\begin{equation}
+		\boxed{\int_{\gamma}f(\vtr{r})\odif{s} = \int_{\alpha}f(\vtr{r})\odif{s} + \int_{\beta}f(\vtr{r})\odif{s}}
+	\end{equation}
+	
+	Tulos (3.8) sanoo, että mikäli integroimisvälin pituus on nolla, tuottaa integrointi tulokseksi funktiosta riippumatta nollan: 
+	\begin{equation}
+		\boxed{\int_{a}^{a}f(x)\odif{x} = 0}
+	\end{equation}
+	
+	Tulos (3.9) sanoo, että integroimisrajojen vaihtaminen päittäin vaihtaa integraalin etumerkin:
+	
+	\begin{equation}
+		\boxed{\int_{a}^{b}f(x)\odif{x} = -\int_{b}^{a}f(x)\odif{x}}
+	\end{equation}
+	
+	Samankaltainen tulos on myös voimassa vektorikenttien polkuintegraaleille, jossa polun suunnan muuttaminen vaihtaa integraalin etumerkkiä:
+	
+	\begin{equation}
+		\boxed{\int_{C}\vtr{F}(\vtr{r})\cdot\odif{\vtr{r}} = -\int_{-C}\vtr{F}(\vtr{r})\cdot\odif{\vtr{r}}}
+	\end{equation}
+	
+	Ja vastaavasti suljetuille poluille:
+	
+	\begin{equation}
+		\boxed{\ointclockwise_{C}\vtr{F}(\vtr{r})\cdot\odif{\vtr{r}} = -\ointctrclockwise_{C}\vtr{F}(\vtr{r})\cdot\odif{\vtr{r}}}
+	\end{equation}
+	
+	Viimeisenä mainittakoon kaksi yleispätevää tulosta parillisten ja parittomien funktioiden integraaleista symmetrisen välin $[-a, a]$ yli. Mikäli $f(x)$ on parillinen (eli $f(-x) = f(x)$, mm. $\cos(x)$ ja $x^2$), pätee:
+	
+	\begin{equation}
+		\boxed{\int_{-a}^{a}f(x)\odif{x} = 2\int_{0}^{a}f(x)\odif{x}}
+	\end{equation}
+	
+	Integraali symmetrisen välin $[-a, a]$ yli voidaan siis muuttaa parillisen funktion tapauskessa integraaliksi välin $[0, a]$ yli. Parittomille funktioille $f(x)$ (eli $f(-x) = -f(x)$, mm. $\sin(x)$ ja $x^3$) puolestaan pätee:
+	
+	\begin{equation}
+		\boxed{\int_{-a}^{a}f(x)\odif{x} = 0}
+	\end{equation}
+	
+	Integraali symmetrisen välin $[-a, a]$ yli tuottaa siis parittoman funktion tapauksessa nollan.
+\end{document}

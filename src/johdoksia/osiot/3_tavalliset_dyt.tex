@@ -1,0 +1,2020 @@
+\documentclass[../johdoksia.tex]{subfiles}
+\graphicspath{{\subfix{../kuvat/}}}
+
+\begin{document}
+	\subsection{1. kl:n tavalliset differentiaaliyhtälöt}
+	
+	Tähän osioon on koottu ensimmäisen kertaluokan differentiaaliyhtälöiden ratkaisuja
+	
+	\subsubsection{Derivaattaoperaattorin ominaisarvohtälö:}
+	
+	\begin{equation}
+		\label{d_eigen}
+		Df = \odv{f}{x} = \lambda f
+	\end{equation}
+	
+	Kyseessä on suoraan separoituva yhtälö:
+	
+	\begin{align*}
+		\frac{1}{f}\odif{f} &= \lambda\odif{x} \\
+		\int\frac{1}{f}\odif{f} &= \lambda\int\odif{x} \\
+		\ln f &= \lambda x + C \\
+		f(x) &= e^{\lambda x + C} \\
+		f(x) &= e^{\lambda x}e^{C} \\
+		\intertext{Nimetään uudelleen $e^C \to C$:}
+		f(x) &= Ce^{\lambda x} 
+	\end{align*}
+	
+	Yhtälön \ref{d_eigen} ja samalla tavallisen derivaattaoperaattorin $D$ ominaisfunktiot $f_i$ ominaisarvoilla $\lambda_i$ ovat siis muotoa:
+	
+	\begin{equation}
+		\boxed{f_i(x) = Ce^{\lambda_ix}}
+	\end{equation}
+	
+	\subsubsection{Homogeenosyysoperaattorin ominaisarvoyhtälö:}
+	
+	\begin{equation}
+		\label{theta_eigen}
+		\Theta f = x\odv{f}{x} = \lambda f
+	\end{equation}
+	
+	Kyseessä on suoraan separoituva yhtälö:
+	
+	\begin{align*}
+		\frac{1}{f}\odif{f} &= \frac{\lambda}{x}\odif{x} \\
+		\int\frac{1}{f}\odif{f} &= \lambda\int\frac{1}{x}\odif{x} \\
+		\ln f &= \lambda\ln x + C \\
+		f(x) &= e^{\lambda\ln x + C} \\
+		f(x) &= e^{(\ln x)^\lambda}e^{C} \\
+		\intertext{Nimetään uudelleen $e^C \to C$:}
+		f(x) &= Cx^{\lambda}
+	\end{align*}
+	
+	Yhtälön \ref{theta_eigen} ja samalla homogeenisyysoperaattorin $\Theta$ ominaisfunktiot $f_i$ ominaisarvoilla $\lambda_i$ ovat siis muotoa:
+	
+	\begin{equation}
+		\boxed{f_i(x) = Cx^{\lambda_i}}
+	\end{equation}
+	
+	\subsubsection{Lineaarinen vakiokertoiminen homogeeninen:}
+	
+	\begin{equation}
+		\label{lin_vak_hom}
+		a\odv{f}{x} + bf = 0
+	\end{equation}
+	
+	Suoraan separoituva yhtälö:
+	
+	\begin{align*}
+		\frac{1}{f}\odif{f} &= -\frac{b}{a}\odif{x} \\
+		\int\frac{1}{f}\odif{f} &= -\frac{b}{a}\int\odif{x} \\
+		\ln f &= -\frac{b}{a}x + C \\
+		f(x) &= e^{-\frac{b}{a}x + C} \\
+		f(x) &= e^{-\frac{b}{a}x}e^C \\
+		\intertext{Nimetään uudelleen $e^C \to C$:}
+		f(x) &= Ce^{-\frac{b}{a}x}
+	\end{align*}
+	
+	Yhtälön \ref{lin_vak_hom} yleinen ratkaisu on siis:
+	
+	\begin{equation}
+		\boxed{f(x) = Ce^{-\frac{b}{a}x}}
+	\end{equation}
+	
+	
+	\subsubsection{Lineaarinen vakiokertoiminen epähomogeeninen:}
+	
+	\begin{equation}
+		\label{lin_vak_ep}
+		a\odv{f}{x} + bf = c(x)
+	\end{equation}
+	
+	Yhtälön yleinen ratkaisu $f(x)$ on homogeenisen yhtälön \ref{lin_vak_hom} ratkaisun $f_h(x)$ ja täydellisen yhtälön \ref{lin_vak_ep} yksittäisratkaisun $f_y(x)$ summa:
+	
+	\begin{equation*}
+		f(x) = f_{h}(x) + f_{y}(x)
+	\end{equation*}
+	
+	Homogeenisen yhtälön ratkaisu on muotoa $f_h(x) = Ce^{-\frac{b}{a}x}$. Määritetään täydellisen yhtälön yksittäisratkaisu vakion varioinnilla, eli sijoitetaan yrite $f_y(x) = C(x)e^{-\frac{b}{a}x}$, jossa integroimisvakio on korotettu funktioksi, täydelliseen yhtälöön:
+	
+	\begin{align*}
+		a\odv{}{x}\left(C(x)e^{-\frac{b}{a}x}\right) + b\left(C(x)e^{-\frac{b}{a}x}\right) &= c(x) \\
+		-a\frac{b}{a}C(x)e^{-\frac{b}{a}x} + aC'(x)e^{-\frac{b}{a}x} + bC(x)e^{-\frac{b}{a}x} &= c(x) \\
+		\cancel{-bC(x)e^{-\frac{b}{a}x}} + aC'(x)e^{-\frac{b}{a}x} + \cancel{bC(x)e^{-\frac{b}{a}x}} &= c(x) \\
+		aC'(x)e^{-\frac{b}{a}x} &= c(x) \\
+		\intertext{Nyt $C(x)$ voidaan määrittää:}
+		C'(x) &= \frac{c(x)}{a}e^{\frac{b}{a}x} \\
+		C(x) &= \frac{1}{a}\int c(x)e^{\frac{b}{a}x}\odif{x}
+	\end{align*}
+	
+	Yksittäisratkaisuksi saadaan siis: $f_y(x) = C(x)e^{-\frac{b}{a}x} = \left(\frac{1}{a}\int c(x)e^{\frac{b}{a}x}\odif{x}\right)e^{-\frac{b}{a}x}$. Ja yleinen ratkaisu on muotoa:
+	
+	\begin{equation*}
+		f(x) = f_h(x) + f_y(x) = Ce^{-\frac{b}{a}x} + \left(\frac{1}{a}\int c(x)e^{\frac{b}{a}x}\odif{x}\right)e^{-\frac{b}{a}x}
+	\end{equation*}
+	
+	\begin{equation}
+		\boxed{f(x) = e^{-\frac{b}{a}}\left(C + \frac{1}{a}\int c(x)e^{\frac{b}{a}x}\odif{x}\right)}
+	\end{equation}
+	
+	\subsubsection{Lineaarinen homogeeninen:}
+	
+	\begin{equation}
+		\label{lin_hom}
+		a(x)\odv{f}{x} + b(x)f = 0
+	\end{equation}
+	
+	Suoraan separoituva yhtälö:
+	
+	\begin{align*}
+		\frac{1}{f}\odif{f} &= -\frac{b(x)}{a(x)}\odif{x} \\
+		\int\frac{1}{f}\odif{f} &= -\int\frac{b(x)}{a(x)}\odif{x} \\
+		\ln f &= -\int\frac{b(x)}{a(x)}\odif{x} + C \\
+		f(x) &= e^{-\int\frac{b(x)}{a(x)}\odif{x} + C} \\
+		f(x) &= e^{-\int\frac{b(x)}{a(x)}\odif{x}}e^C \\
+		\intertext{Nimetään uudelleen $e^C \to C$:}
+		f(x) &= Ce^{-\int\frac{b(x)}{a(x)}\odif{x}}
+	\end{align*}
+	
+	Yhtälön \ref{lin_hom} yleinen ratkaisu on siis:
+	
+	\begin{equation}
+		\boxed{f(x) = Ce^{-\int\frac{b(x)}{a(x)}\odif{x}}}
+	\end{equation}
+	
+	\subsubsection{Lineaarinen epähomogeeninen:}
+	
+	\begin{equation}
+		\label{lin_ep}
+		a(x)\odv{f}{x} + b(x)f = c(x)
+	\end{equation}
+	
+	Yhtälön yleinen ratkaisu $f(x)$ on homogeenisen yhtälön \ref{lin_hom} ratkaisun $f_h(x)$ ja täydellisen yhtälön \ref{lin_ep} yksittäisratkaisun $f_y(x)$ summa:
+	
+	\begin{equation*}
+		f(x) = f_{h}(x) + f_{y}(x)
+	\end{equation*}
+	
+	Homogeenisen yhtälön ratkaisu on muotoa $f_h(x) = Ce^{-\int\frac{b(x)}{a(x)}\odif{x}}$. Määritetään täydellisen yhtälön yksittäisratkaisu vakion varioinnilla, eli sijoitetaan yrite $f_y(x) = C(x)e^{-\int\frac{b(x)}{a(x)}\odif{x}}$, jossa integroimisvakio on korotettu funktioksi, täydelliseen yhtälöön:
+	
+	\begin{align*}
+		a(x)\odv{}{x}\left(C(x)e^{-\int\frac{b(x)}{a(x)}\odif{x}}\right) + b(x)\left(C(x)e^{-\int\frac{b(x)}{a(x)}\odif{x}}\right) &= c(x) \\
+		-a(x)\frac{b(x)}{a(x)}C(x)e^{-\int\frac{b(x)}{a(x)}\odif{x}} + a(x)C'(x)e^{-\int\frac{b(x)}{a(x)}\odif{x}} + b(x)C(x)e^{-\int\frac{b(x)}{a(x)}\odif{x}} &= c(x) \\
+		\cancel{-b(x)C(x)e^{-\int\frac{b(x)}{a(x)}\odif{x}}} + a(x)C'(x)e^{-\int\frac{b(x)}{a(x)}\odif{x}} + \cancel{b(x)C(x)e^{-\int\frac{b(x)}{a(x)}\odif{x}}} &= c(x) \\
+		a(x)C'(x)e^{-\int\frac{b(x)}{a(x)}\odif{x}} &= c(x) \\
+		\intertext{Nyt $C(x)$ voidaan määrittää:}
+		C'(x) &= \frac{c(x)}{a(x)}e^{\int\frac{b(x)}{a(x)}\odif{x}} \\
+		C(x) &= \int \frac{c(x)}{a(x)}e^{\int\frac{b(x)}{a(x)}\odif{x}}\odif{x}
+	\end{align*}
+	
+	Yksittäisratkaisuksi saadaan siis: $f_y(x) = C(x)e^{-\int\frac{b(x)}{a(x)}\odif{x}} = \left(\int \frac{c(x)}{a(x)}e^{\int\frac{b(x)}{a(x)}\odif{x}}\odif{x}\right)e^{-\int\frac{b(x)}{a(x)}\odif{x}}$. Ja yleinen ratkaisu on muotoa:
+	
+	\begin{equation*}
+		f(x) = f_h(x) + f_y(x) = Ce^{-\int\frac{b(x)}{a(x)}\odif{x}} + \left(\int \frac{c(x)}{a(x)}e^{\int\frac{b(x)}{a(x)}\odif{x}}\odif{x}\right)e^{-\int\frac{b(x)}{a(x)}\odif{x}}
+	\end{equation*}
+	
+	\begin{equation}
+		\boxed{f(x) = e^{-\int\frac{b(x)}{a(x)}\odif{x}}\left(C + \int \frac{c(x)}{a(x)}e^{\int\frac{b(x)}{a(x)}\odif{x}}\odif{x}\right)}
+	\end{equation}
+	
+	\subsection{Notaationvaihdos:}
+	
+	Käytännössä aina derivaatan edessä oleva kerroinfunktio $a(x)$ voidaan jakaa pois, jollon lineaarinen ensimmäisen kertaluvun differentiaaliyhtälö saadaan muotoon:
+	
+	\begin{equation*}
+		\odv{f}{x} + \frac{b(x)}{a(x)}f = \frac{c(x)}{a(x)}
+	\end{equation*}
+	
+	Kun osamäärät $\frac{b(x)}{a(x)}$ ja $\frac{c(x)}{a(x)}$ nimetään uudelleen funktioiksi $p(x)$ ja $q(x)$, saadaan yhtälö muotoon:
+	
+	\begin{equation}
+		\odv{f}{x} + p(x)f = q(x)
+	\end{equation}
+	
+	Nyt yleinen ratkaisut voidaan ilmaista $p$:n ja $q$:n avulla:
+	
+	\begin{equation}
+		\boxed{f(x) = e^{-\int p(x)\odif{x}}\left(C + \int q(x)e^{\int p(x)\odif{x}}\odif{x}\right)}
+	\end{equation}
+	
+	\subsection{2. kl:n tavalliset differentiaaliyhtälöt}
+	
+	Tähän osioon on koottu useiden toisen kertaluvun differentiaaliyhtälöiden ratkaisuja.
+	
+	\subsubsection{Harmoninen yhtälö (toisen kertaluvun derivaatan ominaisarvoyhtälö)}
+	
+	\begin{equation}
+		\odv{^2f}{x^2} = -\lambda f
+	\end{equation}
+
+	Siirretään termit samalle puolelle:
+	
+	\begin{align*}
+		\odv{^2f}{x^2} + \lambda f &= 0 \\
+		\intertext{Muunnetaan separoituvaksi yhtälöksi kertomalla puolittain $2\odv{f}{x}$:lla:}
+		2\odv{f}{x}\odv{^2f}{x^2} + 2\lambda\odv{f}{x} f &= 0 \\
+		\intertext{Nyt voidaan tunnistaa tulon derivaatta:}
+		\odv{}{x}\left(\left[\odv{f}{x}\right]^2 + \lambda f^2\right) &= 0 \\
+		\intertext{Integroidaan puolittain $x$:n suhteen:}
+		\left[\odv{f}{x}\right]^2 + \lambda f^2 &= C_1 \\
+		\intertext{Separoidaan:}
+		\left[\odv{f}{x}\right]^2 &= C_1 - \lambda f^2 \\
+		\odv{f}{x} &= \sqrt{C_1 - \lambda f^2} \\
+		\frac{1}{\sqrt{C_1 - \lambda f^2}}\odif{f} &= \odif{x} \\
+		\intertext{Integroidaan puolittain:}
+		\int\frac{1}{\sqrt{C_1 - \lambda f^2}}\odif{f} &= \int\odif{x} \\
+		\int\frac{1}{\sqrt{C_1 - \lambda f^2}}\odif{f} &= x + C_2 \\
+		\intertext{Otetaan $\lambda$ yhteiseksi tekijäksi neliöjuuressä ja sitä kautta $\sqrt{\lambda}$ ulos integraalista:}
+		\frac{1}{\sqrt{\lambda}}\int\frac{1}{\sqrt{\frac{C_1}{\lambda} - f^2}}\odif{f} &= x + C_2 \\
+		\intertext{Merkitään $\frac{C_1}{\lambda} \to c^2$}
+		\frac{1}{\sqrt{\lambda}}\int\frac{1}{\sqrt{c^2 - f^2}}\odif{f} &= x + C_2 \\
+		\intertext{Tehdään muuttujanvaihdos $f = c\sin\theta$. Tällöin $\odif{f} = c\cos\theta\odif{\theta}$:}
+		\frac{1}{\sqrt{\lambda}}\int\frac{1}{\sqrt{c^2 - c^2\sin^2\theta}}c\cos\theta\odif{\theta} &= x + C_2 \\
+		\frac{1}{\sqrt{\lambda}}\int\frac{\cancel{c}\cos\theta}{\cancel{c}\sqrt{1 - \sin^2\theta}}\odif{\theta} &= x + C_2 \\
+		\intertext{Tiedetään: $1 - \sin^2\theta = \cos^2\theta$:}
+		\frac{1}{\sqrt{\lambda}}\int\frac{\cos\theta}{\sqrt{\cos^2\theta}}\odif{\theta} &= x + C_2 \\
+		\frac{1}{\sqrt{\lambda}}\int\frac{\cancel{\cos\theta}}{\cancel{\cos\theta}}\odif{\theta} &= x + C_2 \\
+		\frac{1}{\sqrt{\lambda}}\int\odif{\theta} &= x + C_2 \\
+		\frac{1}{\sqrt{\lambda}}\theta &= x + C_2 \\
+		\intertext{Sijoitetaan $\theta = \arcsin\left(\frac{f}{c}\right)$:}
+		\frac{1}{\sqrt{\lambda}}\arcsin\left(\frac{f}{c}\right) &= x + C_2 \\
+		\arcsin\left(\frac{f}{c}\right) &= \sqrt{\lambda}x + \sqrt{\lambda}C_2 \\
+		\intertext{Merkitään $\sqrt{\lambda}C_2 \to C_2$:}
+		\frac{f}{c} &= \sin(\sqrt{\lambda}x + C_2) \\
+		f &= c\sin(\sqrt{\lambda}x + C_2) \\
+		\intertext{Nimetään $c \to C_1$:}
+		f(x) &= C_1\sin(\sqrt{\lambda}x + C_2)
+	\end{align*}
+	
+	On saatu yksi lineaarisesti riippumaton ratkaisu, joka voidaan muuntaa kehden lineaarisesti riippumattoman ratkaisun summaksi sinin summakaavalla $\sin(A + B) = \sin A\cos B + \cos A\sin B$:
+	
+	\begin{align*}
+		f(x) &= C_1\left[\sin(\sqrt{\lambda}x)\cos C_2 + \cos(\sqrt{\lambda}x)\sin C_2\right] \\
+		f(x) &= C_1\cos C_2\sin(\sqrt{\lambda}x) + C_1\sin C_2\cos(\sqrt{\lambda}x) \\
+		\intertext{Nimetään uudelleen $C_1\cos C_2 \to C_1$ ja $C_1\sin C_2 \to C_2$:}
+		f(x) &= C_1\sin(\sqrt{\lambda}x) + C_2\cos(\sqrt{\lambda}x)
+	\end{align*}
+
+	On saatu harmonisen yhtälön yleinen ratkaisu:
+	
+	\begin{equation}
+		\boxed{f(x) = C_1\sin(\sqrt{\lambda}x) + C_2\cos(\sqrt{\lambda}x), \ \ \ \ \lambda > 0}
+	\end{equation}
+
+	Sarjaratkaisumenetelmällä olisi löydetty potenssisarjaesitykset sinille ja kosinille:
+	
+	\begin{equation}
+		\boxed{
+		\begin{aligned}
+			\sin x &= \sum_{k = 0}^{\infty}\frac{(-1)^k}{(2k + 1)!}x^{2k + 1} \\
+			\cos x &= \sum_{k = 0}^{\infty}\frac{(-1)^k}{(2k)!}x^{2k}
+		\end{aligned}
+		}
+	\end{equation}
+	
+	\subsubsection{Lineaarinen vakiokertoiminen homogeeninen}
+	
+	\begin{equation}
+		a\odv{^2f}{x^2} + b\odv{f}{x} + cf = 0
+	\end{equation}
+
+	Mikäli termi $cf$ siirrettäisiin toiselle puolelle, olisi yhtälö muotoa $af'' + bf' = -cf$, mikä osoittaisi, että funktiot $f$ derivaatat ovat suoraan verrannollisia funktioon $f$ itse. Tiedetään, että eksponenttifunktiolla $e^{rx}$ on tämä ominaisuus, sillä tavallisen derivaattaoperaattorin ominaisfunktiot olivat juuri yleisiä eksponenttifunktioita $Ce^{\lambda_i x}$. Sijoitetaan siis yrite $f(x) = e^{rx}$ yhtälöön:
+	
+	\begin{align*}
+		a\odv{^2}{x^2}(e^{rx}) + b\odv{}{x}(e^{rx}) + c(e^{rx}) &= 0 \\
+		ar^2e^{rx} + bre^{rx} + ce^{rx} &= 0 \\
+		\intertext{Eksponenttifunktio on puhtaasti positiivinen, jolloin yhtälö voidaan jakaa puolittain sillä:}
+		ar^2 + br + c &= 0 \\
+		\intertext{Kyseessä on toisen asteen yhtälö $r$:n suhteen, jonka ratkaisu määrittää $r$:n arvon suhteessa alkuperäisen yhtälön kertoimiin:}
+		r_{\pm} &= \frac{-b\pm\sqrt{b^2 - 4ac}}{2a}
+	\end{align*}
+
+	Nyt riippuen siitä, onko yhtälöllä kaksi erillistä juurta vai yksi kaksoisjuuri, näyttää ratkaisu hieman erilaiselta. Mikäli juuria on kaksi, on lopullinen ratkaisu lineaarikombinaatio eksponenttifunktioista $e^{r_+x}$ sekä $e^{r_-x}$:
+	
+	\begin{equation*}
+		f(x) = C_1e^{r_+x} + C_2e^{r_-x}
+	\end{equation*}
+
+	Jos taas $b^2 = 4ac$, jolloin $r_+ = r_- = r$, on lopullinen ratkaisu lineaarikombinaatio eksponenttifunktioista $e^{rx}$ sekä $xe^{rx}$:
+	
+	\begin{equation*}
+		f(x) = C_1e^{rx} + C_2xe^{rx}
+	\end{equation*}
+
+	On siis ratkaistu yleinen toisen kertaluvun homogeeninen vakiokertoiminen yhtälö:
+	
+	\begin{equation}
+		\boxed{
+		\begin{aligned}
+			f(x) = C_1e^{r_+x} + C_2e^{r_-x} = C_1e^{\frac{-b+\sqrt{b^2 - 4ac}}{2a}x} + C_2e^{\frac{-b-\sqrt{b^2 - 4ac}}{2a}x}, \ \ \ \ b^2 \neq 4ac \\
+			f(x) = C_1e^{rx} + C_2xe^{rx} = C_1e^{\frac{-b}{2a}x} + C_2xe^{\frac{-b}{2a}x}, \ \ \ \ b^2 = 4ac
+		\end{aligned}
+		}
+	\end{equation}
+
+	Lisäksi on hyödyllistä tarkastella erikseen tapausta, jossa $b^2 < 4ac$, sillä tällöin juuret $r_{\pm}$ ovat kompleksisia ja ratkaisu voidaan ilmaista hieman erilaisessa muodossa. Kompleksiset juuret ovat toistensa liittolukuja, jolloin merkitään $r_{\pm} = \alpha\pm\beta i$. Nyt yleiseksi ratkaisuksi saadaan:
+	
+	\begin{align*}
+		f(x) &= C_1e^{r_+x} + C_2e^{r_-x} \\
+		&= C_1e^{\alpha x + i\beta x} + C_2e^{\alpha x - i\beta x} \\
+		&= C_1e^{\alpha x + i\beta x} + C_2e^{\alpha x - i\beta x} \\
+		&= C_1e^{\alpha x}e^{i\beta x} + C_2e^{\alpha x}e^{- i\beta x} \\
+		&= e^{\alpha x}\left(C_1e^{i\beta x} + C_2e^{- i\beta x}\right) \\
+		\intertext{Ilmaistaan kompleksieksponentiaalit trigonometristen funktioiden avulla:}
+		&= e^{\alpha x}\left(C_1\cos(\beta x) + C_1i\sin(\beta x) + C_2\cos(-\beta x) + C_2i\sin(-\beta x)\right) \\
+		\intertext{Kosinin parillisuuden nojalla $\cos(-\beta x) = \cos(\beta x)$ ja sinin parittomuuden nojalla $\sin(-\beta x) = -\sin(\beta x)$:}
+		&= e^{\alpha x}\left(C_1\cos(\beta x) + C_1i\sin(\beta x) + C_2\cos(\beta x) - C_2i\sin(\beta x)\right) \\
+		&= e^{\alpha x}\left([C_1 + C_2]\cos(\beta x) + i[C_1 - C_2]\sin(\beta x)\right) \\
+		\intertext{Merkitään $A = C_1 + C_2$ ja $B = i[C_1 - C_2]$, jolloin saadaan:}
+		f(x) &= e^{\alpha x}\left(A\cos(\beta x) + B\sin(\beta x)\right)
+	\end{align*}
+	
+	Kompleksisten juurten tapauksessa ratkaisu voidaan siis myös ilmaista eksponenttifunktion ja trigonometristen funktioiden tulona:
+	
+	\begin{equation}
+		\boxed{f(x) = e^{\alpha x}\left(A\cos(\beta x) + B\sin(\beta x)\right), \ \ \ \ r_{\pm} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} = \alpha \pm \beta i, \ \ b^2 < 4ac}
+	\end{equation}
+	\subsubsection{Heiluriyhtälö:}
+	
+	\begin{equation}
+		\odv{^2\theta}{t^2} + \frac{g}{L}\sin\theta = 0
+	\end{equation}
+	
+	\subsubsection{Cauchyn\textendash Eulerin 2. kertaluvun yhtälö}
+	
+	\begin{equation}
+		x^2\odv{^2f}{x^2} + ax\odv{f}{x} + bf = 0
+	\end{equation}
+
+	Ratkaistaan muuttujanvaihdoksella $x = e^t \iff t = \ln x$. Määritetään lausekkeet derivaatoille:
+	
+	\begin{itemize}
+		\item \underline{$\odv{f}{x}$:}
+		
+		\begin{align*}
+			\odv{f}{x} &= \odv{f}{t}\odv{t}{x} \\
+			&= \odv{f}{t}\odv{}{x}(\ln x) \\
+			\odv{f}{x} &= \frac{1}{x}\odv{f}{t}
+		\end{align*}
+		
+		\item \underline{$\odv{^2f}{t^2}$:}
+		
+		\begin{align*}
+			\odv{^2f}{x^2} &= \odv{}{x}\left(\odv{f}{x}\right) \\
+			&= \odv{}{x}\left(\frac{1}{x}\odv{f}{t}\right) \\
+			&= \frac{1}{x}\odv{}{x}\left(\odv{f}{t}\right) + \odv{f}{t}\odv{}{x}\left(\frac{1}{x}\right) \\
+			&= \frac{1}{x}\frac{1}{x}\odv{^2f}{t^2} + \odv{f}{t}\left(-\frac{1}{x^2}\right) \\
+			&= \frac{1}{x^2}\odv{^2f}{t^2} - \frac{1}{x^2}\odv{f}{t} \\
+			\odv{^2f}{x^2} &= \frac{1}{x^2}\left(\odv{^2f}{t^2} - \odv{f}{t}\right)
+		\end{align*}
+	\end{itemize}
+
+	Sijoitetaan derivaatat yhtälöön:
+	
+	\begin{align*}
+		\cancel{x^2}\frac{1}{\cancel{x^2}}\left(\odv{^2f}{t^2} - \odv{f}{t}\right) + a\cancel{x}\frac{1}{\cancel{x}}\odv{f}{t} + bf &= 0 \\
+		\odv{^2f}{t^2} - \odv{f}{t} + a\odv{f}{t} + bf &= 0 \\
+		\odv{^2f}{t^2} + (a - 1)\odv{f}{t} + bf &= 0
+	\end{align*}
+
+	\noindent Saatu yhtälö on vakiokertoiminen, jolloin se voidaan ratkaista suoraan karakteristisen polynomin avulla:
+	
+	\begin{align*}
+		\lambda^2 + (a - 1)\lambda + b &= 0 \\
+		\lambda_{1,2} &= \frac{-(a - 1)\pm\sqrt{(a - 1)^2 - 4(1)(b)}}{2(1)} \\
+		\lambda_{1,2} &= \frac{1 - a\pm\sqrt{(a - 1)^2 - 4b}}{2} \\
+		\intertext{Mikäli $(a - 1)^2 = 4b$, pätee $\lambda_1 = \lambda_2$. Tällöin yhtälön yleinen ratkaisu on muotoa $C_1e^{\lambda_1t} + C_2te^{\lambda_1t}$. Mikäli taas $(a - 1)^2 \neq 4b$, pätee $\lambda_1 \neq \lambda_2$. Tällöin yhtälön yleinen ratkaisu on muotoa $C_1e^{\lambda_1t} + C_2e^{\lambda_2t}$. Tarkastellaan kumpaakin tapausta samanaikaisesti:}
+		f(t) = C_1e^{\lambda_1t} + C_2te^{\lambda_1t} \ \ &\lor \ \ f(t) = C_1e^{\lambda_1t} + C_2e^{\lambda_2t} \\
+		\intertext{Sijoitetaan takaisin $t = \ln x$:}
+		f(x) = C_1e^{\lambda_1\ln x} + C_2\ln(x)e^{\lambda_1\ln x} \ \ &\lor \ \ f(x) = C_1e^{\lambda_1\ln x} + C_2e^{\lambda_2\ln x} \\
+		f(x) = C_1e^{\ln x^{\lambda_1}} + C_2\ln(x)e^{\ln x^{\lambda_1}} \ \ &\lor \ \ f(x) = C_1e^{\ln x^{\lambda_1}} + C_2e^{\ln x^{\lambda_2}} \\
+		f(x) = C_1x^{\lambda_1} + C_2\ln(x)x^{\lambda_1} \ \ &\lor \ \ f(x) = C_1x^{\lambda_1} + C_2x^{\lambda_2} \\
+	\end{align*}
+
+	Ollaan siis löydetty kaksi ratkaisuvaihtoehtoa, jotka kumpikin koostuvat kahdesta lineaarisesti riippumattomasta funktiosta:
+	
+	\begin{equation}
+		\boxed{f(x) = C_1x^{\lambda_1} + C_2\ln(x)x^{\lambda_1}, \ \ \ \ \lambda_1 = \frac{1 - a}{2}, \ \ \ \ (a - 1)^2 = 4b}
+	\end{equation}
+
+	\begin{equation}
+		\boxed{f(x) = C_1x^{\lambda_1} + C_2x^{\lambda_2}, \ \ \ \ \lambda_{1,2} = \frac{1 - a\pm\sqrt{(a - 1)^2 - 4b^2}}{2}, \ \ \ \ (a - 1)^2 \neq 4b}
+	\end{equation}
+
+	\subsubsection{Besselin yhtälö}
+	
+	\begin{equation}
+		x^2\odv{^2f}{x^2} + x\odv{f}{x} + (x^2 - \alpha^2)f = 0, \ \ \ \ \alpha\in\mathbb{C}
+	\end{equation}
+	
+	Ratkaistaan potenssisarjayritteellä $f(x) = \sum_{k = 0}^{\infty}f_kx^{k + r}, \ \ f_0 \neq 0$. Pätee:
+	
+	\begin{align*}
+		\odv{f}{x} &= \odv{}{x}\sum_{k = 0}^{\infty}f_kx^{k + r} \\
+		\odv{f}{x} &= \sum_{k = 0}^{\infty}f_k\odv{}{x}\left(x^{k + r}\right) \\
+		\odv{f}{x} &= \sum_{k = 0}^{\infty}f_k(k + r)x^{k + r - 1}
+	\end{align*}
+	
+	\begin{align*}
+		\odv{^2f}{x^2} &= \odv{}{x}\left(\odv{f}{x}\right) \\
+		\odv{^2f}{x^2} &= \odv{}{x}\sum_{k = 0}^{\infty}f_k(k + r)x^{k + r - 1} \\
+		\odv{^2f}{x^2} &= \sum_{k = 0}^{\infty}f_k(k + r)\odv{}{x}\left(x^{k + r - 1}\right) \\
+		\odv{^2f}{x^2} &= \sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 2}
+	\end{align*}
+	
+	Sijoitetaan Besselin yhtälöön:
+	
+	\begin{align*}
+		x^2\sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 2} + x\sum_{k = 0}^{\infty}f_k(k + r)x^{k + r - 1} + (x^2 - \alpha^2)\sum_{k = 0}^{\infty}f_kx^{k + r} &= 0 \\
+		\intertext{Kerrotaan summien edessä olevat kertoimet summien sisään:}
+		\sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r} + \sum_{k = 0}^{\infty}f_k(k + r)x^{k + r} + \sum_{k = 0}^{\infty}f_k\left[x^{k + r + 2} - \alpha^2x^{k + r}\right] &= 0 \\
+		\intertext{Erotellaan viimeinen summa kahdeksi summaksi lineaarisuuden nojalla:}
+		\sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r} + \sum_{k = 0}^{\infty}f_k(k + r)x^{k + r} + \sum_{k = 0}^{\infty}f_kx^{k + r + 2} - \sum_{k = 0}^{\infty}\alpha^2x^{k + r} &= 0 \\
+		\intertext{Yhdistetään kaikki summat, joissa $x$:n potenssit ovat samat:}
+		\sum_{k = 0}^{\infty}\left[(k + r)(k + r - 1) + (k + r) - \alpha^2\right]f_kx^{k + r} + \sum_{k = 0}^{\infty}f_kx^{k + r + 2} &= 0 \\
+		\sum_{k = 0}^{\infty}\left[(k + r)[k + r \cancel{- 1 + 1}] - \alpha^2\right]f_kx^{k + r} + \sum_{k = 0}^{\infty}f_kx^{k + r + 2} &= 0 \\
+		\sum_{k = 0}^{\infty}\left[(k + r)^2 - \alpha^2\right]f_kx^{k + r} + \sum_{k = 0}^{\infty}f_kx^{k + r + 2} &= 0 \\
+		\intertext{Otetaan kaksi ensimmäistä termiä ulos ensimmäisestä summasta:}
+		\left[(0 + r)^2 - \alpha^2\right]f_0x^{0 + r} + \left[(1 + r)^2 - \alpha^2\right]f_1x^{1 + r} + \sum_{k = 2}^{\infty}\left[(k + r)^2 - \alpha^2\right]f_kx^{k + r} + \sum_{k = 0}^{\infty}f_kx^{k + r + 2} &= 0 \\
+		\left[r^2 - \alpha^2\right]f_0x^{r} + \left[(1 + r)^2 - \alpha^2\right]f_1x^{1 + r} + \sum_{k = 2}^{\infty}\left[(k + r)^2 - \alpha^2\right]f_kx^{k + r} + \sum_{k = 0}^{\infty}f_kx^{k + r + 2} &= 0 \\
+		\intertext{Nimetään ensimmäisessä summassa indeksi $k$ uudelleen siten, että summaus alkaa jälleen nollasta asettamalla $k = j + 2$, sillä tällöin $k = 2 \iff j + 2 = 2 \iff j = 0$. Vastaavasti toisessa summassa indeksi $k$ voidaan nimetä indeksiksi $j$ yleispätevyyttä menettämättä:}
+		\left[r^2 - \alpha^2\right]f_0x^{r} + \left[(1 + r)^2 - \alpha^2\right]f_1x^{1 + r} + \sum_{j = 0}^{\infty}\left[(j + r + 2)^2 - \alpha^2\right]f_{j + 2}x^{j + r + 2} + \sum_{j = 0}^{\infty}f_jx^{j + r + 2} &= 0 \\
+		\intertext{Nyt summat voidaan yhdistää yhdeksi summaksi, sillä $x$:n potenssit ovat samat:}
+		\left[r^2 - \alpha^2\right]f_0x^{r} + \left[(1 + r)^2 - \alpha^2\right]f_1x^{1 + r} + \sum_{j = 0}^{\infty}\left\{\left[(j + r + 2)^2 - \alpha^2\right]f_{j + 2} + f_j\right\}x^{j + r + 2} &= 0 \\
+		\intertext{Kun yhtälön vasen puoli samaistetaan yhtälön oikealla puolella olevan nollasarjan kanssa, tulee jokaisen yksittäisen termin mennä nollaan, eli saadaan kolme ehtoa:}
+		\left[r^2 - \alpha^2\right]f_0 = 0 \ \ \land \ \ \left[(1 + r)^2 - \alpha^2\right]f_1 \ \ \land \ \ \left[(j + r + 2)^2 - \alpha^2\right]f_{j + 2} + f_j = 0
+	\end{align*}
+	
+	\noindent Koska $f_0 \neq 0$, tuottaa ensimmäinen ehto indeksiyhtälön $r^2 - \alpha^2 = 0 \iff r_{\pm} = \pm\alpha$. Sen sijaan $f_1$ voi olla nolla, jolloin voidaan asettaa $f_1 = 0$, jolloin toinen ehto toteutuu. Tarkastellaan seuraavaksi kolmatta ehtoa:
+	
+	\begin{align*}
+		\left[(j + r + 2)^2 - \alpha^2\right]f_{j + 2} + f_j &= 0 \\
+		\intertext{Ratkaistaan $f_{j + 2}$:}
+		f_{j + 2} &= -\frac{1}{(j + r + 2)^2 - \alpha^2}f_j \\
+		\intertext{Koska $f_1$ asetettiin nollaan, katoavat kaikki parittoman indeksin omaavat kertoimet, sillä esim. $f_3 = -\frac{1}{(1 + r + 2)^2 - \alpha^2}f_1 = -\frac{1}{(j + r + 2)^2 - \alpha^2}\cdot0 = 0$, jolloin $f_5$:lle käy samoin ja niin edelleen. Voidaan siis todeta yleispätevyyttä menettämättä, että $j + 2 = 2n \iff j = 2n - 2 = 2(n - 1)$, jossa $n\in\mathbb{N}$. Saadaan:}
+		f_{2n} &= -\frac{1}{(2n \cancel{- 2} + r \cancel{+ 2})^2 - \alpha^2}f_{2(n - 1)} \\
+		f_{2n} &= -\frac{1}{(2n + r)^2 - \alpha^2}f_{2(n - 1)} \\
+		\intertext{Avataan sulut:}
+		f_{2n} &= -\frac{1}{4n^2 + 4nr + r^2 - \alpha^2}f_{2(n - 1)} \\
+		\intertext{Sijoitetaan indeksiyhtälön ratkaisu $r_{\pm} = \pm\alpha$:}
+		f_{2n} &= -\frac{1}{4n^2 \pm 4n\alpha + \cancel{(\pm\alpha)^2 - \alpha^2}}f_{2(n - 1)} \\
+		\intertext{Otetaan $4n$ yhteiseksi tekijäksi:}
+		f_{2n} &= -\frac{1}{4n(n \pm \alpha)}f_{2(n - 1)} \\
+		\intertext{Ilmaistaan $f_{2(n - 1)}$ rekursiorelaation avulla $f_{2(n - 2)}$:n suhteen:}
+		f_{2n} &= -\frac{1}{4n(n \pm \alpha)}\left(-\frac{1}{4(n - 1)(n - 1 \pm \alpha)}\right)f_{2(n - 2)} \\
+	\end{align*}
+	
+	\noindent Kun rekursiorelaatiota sovelletaan $f_2$:een asti saadaan:
+	
+	\begin{align*}
+		f_{2n} &= -\frac{1}{4n(n \pm \alpha)}\left(-\frac{1}{4(n - 1)(n - 1 \pm \alpha)}\right)\left(-\frac{1}{4(n - 2)(n - 2 \pm \alpha)}\right)\dots\left(-\frac{1}{4(1)(1\pm\alpha)}\right)f_0 \\
+		\intertext{Tulossa on $n$ termiä, jolloin pätee:}
+		f_{2n} &= \frac{(-1)^n}{4^nn!(n \pm \alpha)\fallingfact{n}}f_0
+	\end{align*}
+	
+	\noindent Edellisellä rivillä $(n \pm \alpha)\fallingfact{n}$ tarkoittaa laskevaa kertomaa (tai Pochhammerin symbolia), eli esim. $x\fallingfact{n} = x(x - 1)(x - 2)\dots(x - (n - 1))$. Ilmaistaan $4^n$ muodossa $2^{2n}$, jotta se olisi yhtenevä $f_{2n}$:n kanssa. Lisäksi laskeva kertoma $\frac{1}{(n \pm \alpha)\fallingfact{n}}$ voidaan ilmaista kertomien osamääränä $\frac{(\pm\alpha)!}{(n \pm\alpha)!}$. Kertoma $(n\pm\alpha)!$ sisältää kaikki kertoman $(\pm\alpha)!$ termit, jolloin jäljelle jää vain laskevan kertoman termit. Koska $\alpha$ voi olla mikä tahansa reaaliluku, ei kertomaa voida aina määrittää, jolloin korvataan kertomat gammafunktiolla, joka hyväksyy reaalilukuargumentin ja jolle pätee: $\Gamma(n + 1) = n!$, kun $n \in \mathbb{N}$. Tällöin laskeva kertoma on muotoa: $\frac{\Gamma(\pm\alpha + 1)}{\Gamma(n\pm\alpha + 1)}$. Saadaan:
+	
+	\begin{align*}
+		f_{2n} &= \frac{(-1)^n\Gamma(\pm\alpha + 1)}{2^{2n}n!\Gamma(n\pm\alpha + 1)}f_0 \\
+		\intertext{Kerätään kaikki $n$-riippumattomat termit etukertoimeksi ja järjestellään termejä hieman:}
+		f_{2n} &= f_0\Gamma(\pm\alpha + 1)\frac{(-1)^n}{n!\Gamma(n\pm\alpha + 1)}\frac{1}{2^{2n}}
+	\end{align*}
+	
+	Sijoitetaan nyt $f_{2n}$ potenssisarjayritteeseen asettamalla $k = 2n$ ja muistamalla, että $r_\pm = \pm\alpha$:
+	
+	\begin{align*}
+		f(x) &= \sum_{n = 0}^{\infty}f_{2n}x^{2n \pm \alpha} \\
+		f(x) &= \sum_{n = 0}^{\infty}f_0\Gamma(\pm\alpha + 1)\frac{(-1)^n}{n!\Gamma(n\pm\alpha + 1)}\frac{1}{2^{2n}}x^{2n \pm \alpha} \\
+		\intertext{Otetaan kaikki $n$-riippumattomat termit summan ulkopuolelle:}
+		f(x) &= f_0\Gamma(\pm\alpha + 1)\sum_{n = 0}^{\infty}\frac{(-1)^n}{n!\Gamma(n\pm\alpha + 1)}\frac{x^{2n \pm \alpha}}{2^{2n}} \\
+		\intertext{$f_0$ voidaan valita miksi $n$-riippumattomaksi vakioksi tahansa yleispätevyyttä menettämättä. Valitaan $f_0$ siten, että $\Gamma(\pm\alpha + 1)$ supistuu pois ja että $\frac{x^{2n \pm \alpha}}{2^{2n}}$ voidaan saattaa muotoon $\left(\frac{x}{2}\right)^{2n\pm\alpha}$. Asetetaan siis $f_0 = \frac{1}{\Gamma(\pm\alpha + 1)2^{\pm\alpha}}$:}
+		f(x) &= \frac{1}{\cancel{\Gamma(\pm\alpha + 1)}2^{\pm\alpha}}\cancel{\Gamma(\pm\alpha + 1)}\sum_{n = 0}^{\infty}\frac{(-1)^n}{n!\Gamma(n\pm\alpha + 1)}\frac{x^{2n \pm \alpha}}{2^{2n}} \\
+		f(x) &= \sum_{n = 0}^{\infty}\frac{(-1)^n}{n!\Gamma(n\pm\alpha + 1)}\left(\frac{x}{2}\right)^{2n\pm\alpha}
+	\end{align*}
+	
+	Ollaan siis ratkaistu Besselin yhtälö. On huomattavaa, että ratkaisu $f(x)$ riippuu alkuperäisen yhtälön vapaasta parametrista $\alpha$, jolloin ratkaisuja voidaan merkitä nk. ensimmäisen lajin Besselin funktioilla $J_{\pm\alpha}(x)$:
+	
+	\begin{equation}
+		\boxed{J_{\pm\alpha}(x) = \sum_{n = 0}^{\infty}\frac{(-1)^n}{n!\Gamma(n\pm\alpha + 1)}\left(\frac{x}{2}\right)^{2n\pm\alpha}}
+	\end{equation}
+	
+	Kun $\alpha \notin \mathbb{Z}$, on Besselin yhtälön yleinen ratkaisu lineaarikombinaatio funktioista $J_{\alpha}(x)$ ja $J_{-\alpha}(x)$:
+	
+	\begin{equation}
+		\boxed{f(x) = C_1J_{\alpha}(x) + C_2J_{-\alpha}(x), \ \ \ \ \alpha \notin \mathbb{Z}}
+	\end{equation}
+	
+	Jos taas $\alpha \in \mathbb{Z}$, eivät $J_{\alpha}(x)$ ja $J_{-\alpha}(x)$ ole enää lineaarisesti riippumattomia, sillä pätee relaatio $(-1)^\alpha J_{\alpha}(x) = J_{-\alpha}(x)$. Tällöin voidaan johtaa uusi lineaarisesti riippumaton ratkaisu, nk. toisen lajin Besselin funktio $Y_{\alpha}(x)$, käyttäen sarjayritemenetelmän (Frobeniuksen metodin) teoriaa. Toisen lajin Besselin funktiolle pätee seuraavat representaatiot:
+	
+	\begin{equation}
+		\boxed{Y_{\alpha}(x) = \frac{\cos(\alpha \pi)J_{\alpha}(x) - J_{-\alpha}(x)}{\sin(\alpha\pi)}, \ \ \ \ \alpha\notin\mathbb{Z}}
+	\end{equation}
+	
+	Kun $\alpha$ on kokonaisluku $n$, saadaan toisen lajin Besselin funktio raja-arvosta $\alpha \to n$:
+	
+	\begin{equation}
+		\boxed{Y_{n}(x) = \lim\limits_{\alpha\to n}Y_{\alpha}(x), \ \ \ \ \alpha\in\mathbb{Z}}
+	\end{equation}
+	
+	Toisen lajin Besselin funktioiden avulla ilmaistuna yhtälön ratkaisu on lineaarikombinaatio:
+	
+	\begin{equation}
+		\boxed{f(x) = C_1J_{\alpha}(x) + C_2Y_{\alpha}(x), \ \ \ \ \alpha \notin \mathbb{Z}}
+	\end{equation}
+	
+	Lineaarisesti riippumattomat ratkaisut voidaan ilmaista myös nk. kolmannen lajin Besselin funktioiden (Hankelin funktioiden) $H^{(1)}_{\alpha}(x)$ ja $H^{(2)}_{\alpha}(x)$ avulla. Ne määritellään seuraavasti:
+	
+	\begin{equation}
+		\boxed{
+			\begin{aligned}
+				H^{(1)}_{\alpha}(x) &= J_{\alpha}(x) + iY_{\alpha}(x) = \frac{J_{-\alpha}(x) - e^{-a\pi i}J_{\alpha}(x)}{i\sin(\alpha\pi)}, \ \ \ \ \alpha\notin\mathbb{Z} \\
+				H^{(2)}_{\alpha}(x) &= J_{\alpha}(x) - iY_{\alpha}(x) = \frac{J_{-\alpha}(x) - e^{a\pi i}J_{\alpha}(x)}{-i\sin(\alpha\pi)}, \ \ \ \ \alpha\notin\mathbb{Z} \\
+		\end{aligned}}
+	\end{equation}
+	
+	Jälleen kun $\alpha\in\mathbb{Z}$, pitää funktiot määrittää raja-arvolla. Nyt Besselin yhtälön ratkaisu voidaan ilmaista muodossa:
+	
+	\begin{equation}
+		\boxed{f(x) = C_1H^{(1)}_{\alpha}(x) + C_2H^{(2)}_{\alpha}(x)}
+	\end{equation}
+	
+	\subsubsection{Muokattu Besselin yhtälö}
+	
+	\begin{equation}
+		x^2\odv{^2f}{x^2} + x\odv{f}{x} - (x^2 + \alpha^2)f = 0, \ \ \ \ \alpha\in\mathbb{C}
+	\end{equation}
+	
+	Yhtälö saadaan tekemällä muuttujanvaihdos $x \to ix \iff \odif{x} \to i\odif{x}$ alkuperäiseen Besselin yhtälöön. Yhtälön ratkaisut ovat ensimmäisen ja toisen lajin muokattuja Besselin funktioita $I_{\alpha}(x)$ ja $K_{\alpha}(x)$. Ne määritellään seuraavasti:
+	
+	\begin{equation}
+		\boxed{I_{\pm\alpha}(x) = i^{-(\pm\alpha)}J_{\pm\alpha}(ix) = \sum_{n = 0}^{\infty}\frac{1}{n!\Gamma(n \pm \alpha + 1)}\left(\frac{x}{2}\right)^{2n \pm \alpha}}
+	\end{equation}
+	
+	\begin{equation}
+		\boxed{K_{\alpha}(x) = \frac{\pi}{2}\frac{I_{-\alpha}(x) - I_{\alpha}(x)}{\sin(\alpha\pi)}, \ \ \ \ \alpha\notin\mathbb{Z}}
+	\end{equation}
+	
+	Jälleen kun $\alpha\in\mathbb{Z}$, pitää $K_{\alpha}(x)$ määrittää raja-arvolla. Muokatun Besselin yhtälön ratkaisu on muotoa:
+	
+	\begin{equation}
+		\boxed{f(x) = C_1I_{\alpha}(x) + C_2I_{-\alpha}(x), \ \ \ \ \alpha\notin\mathbb{Z}}
+	\end{equation}
+	
+	\begin{equation}
+		\boxed{f(x) = C_1I_{\alpha}(x) + C_2K_{\alpha}(x), \ \ \ \ \alpha\in\mathbb{Z}}
+	\end{equation}
+
+	\subsubsection{Besselin pallofunktiot}
+	
+	\begin{equation}
+		x^2\odv{^2f}{x^2} + 2x\odv{f}{x} + [k^2x^2 - l(l + 1)]f = 0, \ \ \ \ l \in \mathbb{Z}
+	\end{equation}
+
+	Yhtälö muistuttaa tavallista Besselin yhtälöä ja voidaankin muuntaa sellaiseksi merkitsemällä ensin $f(x) = \frac{1}{\sqrt{x}}g(x)$. $f$:n derivaatoiksi saadaan:
+	
+	\begin{align*}
+		\odv{f}{x} &= \odv{}{x}\left(\frac{1}{\sqrt{x}}g(x)\right) \\
+		&= \frac{1}{\sqrt{x}}g'(x) + \odv{}{x}\left(\frac{1}{\sqrt{x}}\right)g(x) \\
+		&= \frac{1}{\sqrt{x}}g'(x) - \frac{1}{2x\sqrt{x}}g(x) \\
+		\odv{f}{x} &= \frac{1}{\sqrt{x}}\left(g'(x) - \frac{1}{2x}g(x)\right)
+	\end{align*}
+
+	\begin{align*}
+		\odv{^2f}{x^2} &= \odv{}{x}\left(\frac{1}{\sqrt{x}}\left(g'(x) - \frac{1}{2x}g(x)\right)\right) \\
+		&= \frac{1}{\sqrt{x}}\odv{}{x}\left(g'(x) - \frac{1}{2x}g(x)\right) + \odv{}{x}\left(\frac{1}{\sqrt{x}}\right)\left(g'(x) - \frac{1}{2x}g(x)\right) \\
+		&= \frac{1}{\sqrt{x}}\left(g''(x) - \frac{1}{2x}g'(x) + \frac{1}{2x^2}g(x)\right) - \frac{1}{2x\sqrt{x}}\left(g'(x) - \frac{1}{2x}g(x)\right) \\
+		&= \frac{1}{\sqrt{x}}\left(g''(x) - \frac{1}{2x}g'(x) - \frac{1}{2x}g'(x) + \frac{1}{2x^2}g(x) + \frac{1}{4x^2}g(x)\right) \\
+		&= \frac{1}{\sqrt{x}}\left(g''(x) - \frac{2}{2x}g'(x) + \frac{2 + 1}{4x^2}g(x)\right) \\
+		\odv{^2f}{x^2} &= \frac{1}{\sqrt{x}}\left(g''(x) - \frac{1}{x}g'(x) + \frac{3}{4x^2}g(x)\right)
+	\end{align*}
+
+	Sijoitetaan Besselin palloyhtälöön:
+	
+	\begin{align*}
+		0 &= x^2\left[\frac{1}{\sqrt{x}}\left(g''(x) - \frac{1}{x}g'(x) + \frac{3}{4x^2}g(x)\right)\right] + 2x\left[\frac{1}{\sqrt{x}}\left(g'(x) - \frac{1}{2x}g(x)\right)\right] \\
+		&\quad + [k^2x^2 - l(l + 1)]\left[\frac{1}{\sqrt{x}}g(x)\right] \\
+		0 &= x\sqrt{x}\left(g''(x) - \frac{1}{x}g'(x) + \frac{3}{4x^2}g(x)\right) + 2\sqrt{x}\left(g'(x) - \frac{1}{2x}g(x)\right) \\
+		&\quad + [k^2x^2 - l(l + 1)]\frac{1}{\sqrt{x}}g(x) \\
+		0 &= x\sqrt{x}g''(x) - \frac{\cancel{x}\sqrt{x}}{\cancel{x}}g'(x) + \frac{3\cancel{x}\sqrt{x}}{4x^{\cancel{2}}}g(x) + 2\sqrt{x}g'(x) - \frac{\cancel{2}\sqrt{x}}{\cancel{2}x}g(x) \\
+		&\quad + [k^2x^2 - l(l + 1)]\frac{1}{\sqrt{x}}g(x) \\
+		0 &= x\sqrt{x}g''(x) - \sqrt{x}g'(x) + \frac{3\sqrt{x}}{4x}g(x) + 2\sqrt{x}g'(x) - \frac{\sqrt{x}}{x}g(x) \\
+		&\quad + [k^2x^2 - l(l + 1)]\frac{1}{\sqrt{x}}g(x) \\
+		0 &= x\sqrt{x}g''(x) - \sqrt{x}g'(x) + \frac{3}{4\sqrt{x}}g(x) + 2\sqrt{x}g'(x) - \frac{1}{\sqrt{x}}g(x) \\
+		&\quad + [k^2x^2 - l(l + 1)]\frac{1}{\sqrt{x}}g(x) \\
+		\intertext{Ryhmitellään derivaatan kertaluvun mukaan:}
+		0 &= x\sqrt{x}g''(x) + (2\sqrt{x} - \sqrt{x})g'(x) + \left[k^2x^2 - l(l + 1) + \frac{3}{4} - 1\right]\frac{1}{\sqrt{x}}g(x) \\
+		0 &= x\sqrt{x}g''(x) + \sqrt{x}g'(x) + \left[k^2x^2 - l(l + 1) - \frac{1}{4}\right]\frac{1}{\sqrt{x}}g(x) \\
+		\intertext{Kerrotaan puolittain $\sqrt{x}$:llä:}
+		0 &= x\sqrt{x}\sqrt{x}g''(x) + \sqrt{x}\sqrt{x}g'(x) + \left[k^2x^2 - l(l + 1) - \frac{1}{4}\right]\frac{\cancel{\sqrt{x}}}{\cancel{\sqrt{x}}}g(x) \\
+		0 &= x^2g''(x) + xg'(x) + \left[k^2x^2 - l(l + 1) - \frac{1}{4}\right]g(x) \\
+		\intertext{Kerrotaan $l(l + 1)$ auki:}
+		0 &= x^2g''(x) + xg'(x) + \left[k^2x^2 - l^2 - l - \frac{1}{4}\right]g(x) \\
+		\intertext{Otetaan $-1$ yhteiseksi tekijäksi:}
+		0 &= x^2g''(x) + xg'(x) + \left[k^2x^2 - \left(l^2 + l + \frac{1}{4}\right)\right]g(x) \\
+		\intertext{Tunnistetaan binomin neliö $l^2 + l + \frac{1}{4} = \left(l + \frac{1}{2}\right)^2$:}
+		0 &= x^2g''(x) + xg'(x) + \left[k^2x^2 - \left(l + \frac{1}{2}\right)^2\right]g(x) \\
+		0 &= x^2\odv{^2g}{x^2} + x\odv{g}{x} + \left[k^2x^2 - \left(l + \frac{1}{2}\right)^2\right]g
+	\end{align*}
+	
+	Tehdään muuttujanvaihdos $z = kx \iff x = \frac{z}{k}$. Nyt $g$:n derivaatoiksi saadaan:
+	
+	\begin{align*}
+		\odv{g}{x} &= \odv{g}{z}\odv{z}{x} \\
+		\odv{g}{x} &= \odv{g}{z}\odv{}{x}(kx) \\
+		\odv{g}{x} &= k\odv{g}{z}
+	\end{align*} 
+
+	\begin{align}
+		\odv{^2g}{x^2} &= \odv{}{x}\left(\odv{g}{x}\right) \\
+		&= \odv{}{x}(k\odv{g}{z}) \\
+		&= k\odv{}{x}\left(\odv{g}{z}\right) \\
+		&= k\odv{}{z}\left(\odv{g}{z}\right)\odv{z}{x} \\
+		&= k\odv{^2g}{z^2}\odv{}{x}(kx) \\
+		\odv{^2g}{x^2} &= k^2\odv{^2g}{z^2}
+	\end{align}
+
+	Sijoitetaan Besselin palloyhtälöön:
+	
+	\begin{align*}
+		x^2k^2\odv{^2g}{z^2} + xk\odv{g}{z} + \left[k^2x^2 - \left(l + \frac{1}{2}\right)^2\right]g &= 0 \\
+		\intertext{Tunnistetaan $kx = z$ ja $k^2x^2 = z^2$:}
+		z^2\odv{^2g}{z^2} + z\odv{g}{z} + \left[z^2 - \left(l + \frac{1}{2}\right)^2\right]g &= 0
+	\end{align*}
+
+	Saatu yhtälö on tavallinen Besselin yhtälö parametrin $\alpha^2$ arvolla $\left(l + \frac{1}{2}\right)^2$. Tällöin sen yleinen ratkaisu on muotoa:
+	
+	\begin{equation*}
+		g(z) = C_1J_{l + \frac{1}{2}}(z) + C_2Y_{l + \frac{1}{2}}(z)
+	\end{equation*}
+
+	Kun muistetaan, että $g(z) = \sqrt{z}f(z)$, saadaan:
+	
+	\begin{align*}
+		\sqrt{z}f(z) &= C_1J_{l + \frac{1}{2}}(z) + C_2Y_{l + \frac{1}{2}}(z) \\
+		f(z) &= \frac{1}{\sqrt{z}}\left(C_1J_{l + \frac{1}{2}}(z) + C_2Y_{l + \frac{1}{2}}(z)\right) \\
+		\intertext{Nimetään uudelleen $z \to x$:}
+		f(x) &= \frac{1}{\sqrt{x}}\left(C_1J_{l + \frac{1}{2}}(x) + C_2Y_{l + \frac{1}{2}}(x)\right)
+	\end{align*}
+
+	Yleisessä ratkaisussa esiintyvät funktiot $\frac{1}{\sqrt{x}}J_{l + \frac{1}{2}}(x)$ ja $\frac{1}{\sqrt{x}}Y_{l \frac{1}{2}}(x)$ ovat normalisointikerrointa $\sqrt{\frac{\pi}{2}}$ vaille nk. ensimmäisen ja toisen lajin Besselin pallofunktioita:
+	
+	\begin{equation}
+		\boxed{j_l(x) = \sqrt{\frac{\pi}{2x}}J_{l + \frac{1}{2}}(x)}
+	\end{equation}
+
+	\begin{equation}
+		\boxed{y_l(x) = \sqrt{\frac{\pi}{2x}}Y_{l + \frac{1}{2}}(x) = (-1)^{l + 1}\sqrt{\frac{\pi}{2x}}J_{-l-\frac{1}{2}}(x)}
+	\end{equation}
+
+	Suhteessa näihin yhtälön yleinen ratkaisu on siis muotoa:
+	
+	\begin{equation}
+		\boxed{f(x) = C_1j_l(x) + C_2y_l(x)}
+	\end{equation}
+
+	Yleisesti $l$:s Besselin pallofunktio saadaan Rayleigh:in kaavojen avulla:
+	
+	\begin{equation}
+		\boxed{j_l(x) = (-x)^n\left(\frac{1}{x}\odv{}{x}\right)^{l}\frac{\sin x}{x}}
+	\end{equation}
+
+	\begin{equation}
+		\boxed{y_l(x) = -(-x)^n\left(\frac{1}{x}\odv{}{x}\right)^{l}\frac{\cos x}{x}}
+	\end{equation}
+
+	Vastaavasti kuin tavallisille Besselin funktioille, on olemassa kolmannen lajin Besselin pallofunktioita nk. Hankelin pallofunktioita. Ne ovat lineaarisesti riippumattomia tavallisten Besselin pallofunktioiden kanssa:
+	
+	\begin{equation}
+		\boxed{
+		\begin{aligned}
+			h_l^{(1)}(x) &= j_l(x) + iy_l(x) \\
+			h_l^{(2)}(x) &= j_l(x) - iy_l(x) \\
+		\end{aligned}
+		}
+	\end{equation}
+
+	Hnkelin pallofunktioiden avulla ilmaistuna Besselin palloyhtälön yleinen ratkaisu on muotoa:
+	
+	\begin{equation}
+		\boxed{f(x) = C_1h_l^{(1)}(x) + C_2h_l^{(2)}(x)}
+	\end{equation}
+	
+	\subsubsection{Legendren yhtälö}
+	
+	\begin{equation}
+		(1 - x^2)\odv{^2f}{x^2} - 2x\odv{f}{x} + l(l + 1)f = 0
+	\end{equation}
+
+	Tarkastellaan Legendren yhtälön erikoispisteitä. Jaetaan se siis $(1 - x^2)$:lla:
+	
+	\begin{align*}
+		\odv{^2f}{x^2} - \frac{2x}{1 - x^2}\odv{f}{x} + \frac{l(l + 1)}{1 - x^2}f &= 0 \\
+		\odv{^2f}{x^2} - \frac{2x}{(1 - x)(1 + x)}\odv{f}{x} + \frac{l(l + 1)}{(1 - x)(1 + x)}f &= 0 \\
+	\end{align*}
+
+	Nyt $P(x) = -\frac{2x}{(1 - x)(1 + x)}$ ja $P(x) = \frac{l(l + 1)}{(1 - x)(1 + x)}$. Havaitaan, että $x = \pm 1$ ovat yhtälön heikkoja erikoispisteitä, sillä näissä kohdissa $P$:llä ja $Q$:lla on ensimmäisen kertaluvun navat. Tarkastellaan pistettä äärettömyydessä:
+	
+	\begin{align*}
+		\lim_{t \to 0}\left(\frac{2}{t} - \frac{P(1 / t)}{t^2}\right) &= \lim_{t\to 0}\left(\frac{2}{t} - \frac{-\frac{2(1 / t)}{(1 - 1/t^2)}}{t^2}\right) \\
+		&= \lim_{t\to 0}\left(\frac{2}{t} - \frac{-\frac{2}{t(1 - 1/t^2)}}{t^2}\right) \\
+		&= \lim_{t\to 0}\left(\frac{2}{t} - \frac{-\frac{2}{(t - 1/t)}}{t^2}\right) \\
+		&= \lim_{t\to 0}\left(\frac{2}{t} + \frac{2}{t^2(t - 1/t)}\right) \\
+		&= \lim_{t\to 0}\left(\frac{2}{t} + \frac{2}{t^3 - t}\right) \\
+		&= \lim_{t\to 0}\left(\frac{2}{t} + \frac{2}{t(t^2 - 1)}\right) \\
+		&= \lim_{t\to 0}\left(\frac{2(t^2 - 1)}{t(t^2 - 1)} + \frac{2}{t(t^2 - 1)}\right) \\
+		&= \lim_{t\to 0}\left(\frac{2(t^2 - 1) + 2}{t(t^2 - 1)}\right) \\
+		&= \lim_{t\to 0}\left(\frac{2t^2}{t(t^2 - 1)}\right) \\
+		&= \lim_{t\to 0}\left(\frac{2}{t^2 - 1}\right) \\
+		&= \frac{2}{0^2 - 1} \\
+		\lim_{t \to 0}\left(\frac{2}{t} - \frac{P(1 / t)}{t^2}\right) &= -2
+	\end{align*}
+
+	\begin{align*}
+		\lim_{t\to0}\left(\frac{Q(1/t)}{t^4}\right) &= \lim_{t\to0}\left(\frac{\frac{l(l + 1)}{1 - 1/t^2}}{t^4}\right) \\
+		&= \lim_{t\to0}\left(\frac{l(l + 1)}{t^4(1 - 1/t^2)}\right) \\
+		&= \lim_{t\to0}\left(\frac{l(l + 1)}{t^4 - t^2}\right) \\
+		&= \lim_{t\to0}\left(\frac{l(l + 1)}{t^2(t^2 - 1)}\right) \\
+		&= \lim_{t\to0}\left(\frac{l(l + 1)}{t^2(t^2 - 1)}\right) \\
+		&= \frac{l(l + 1)}{0^2(0^2 - 1)} \\
+		&= \frac{l(l + 1)}{0} \\
+		\lim_{t\to0}\left(\frac{Q(1/t)}{t^4}\right) &\to \infty
+	\end{align*}
+
+	Havaitaan siis, että piste äärettömyydessä on yhtälön heikko erikoispiste, sillä $Q$:lla on siellä kaksinkertainen napa. Legendren yhtälöllä on siis kolme heikkoa erikoispistettä $-1$, $1$ ja $\infty$. Yhtälö voidaan siis ratkaista potenssisarjayritteellä $f(x) = \sum_{k = 0}^{\infty}f_kx^{k + r}, \ \ f_0 \neq 0$  minkä tahansa pisteen ympäristössä. Derivaatat löytyvät Besselin yhtälön ratkaisusta. Saadaan:
+	
+	\begin{equation*}
+		(1 - x^2)\sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 2} - 2x\sum_{k = 0}^{\infty}f_k(k + r)x^{k + r - 1} + l(l + 1)\sum_{k = 0}^{\infty}f_kx^{k + r} = 0
+	\end{equation*}
+
+	\noindent Kerrotaan summien edessä olevat kertoimet summien sisään. Erotellaan suoraan ensimmäinen summa kahdeksi erilliseksi summaksi:
+	
+	\begin{equation*}
+		\sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 2} - \sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r} - \sum_{k = 0}^{\infty}2f_k(k + r)x^{k + r} + \sum_{k = 0}^{\infty}l(l + 1)f_kx^{k + r} = 0
+	\end{equation*}
+
+	\noindent Yhdistetään summat, joissa $x$:n potenssi on sama:
+	
+	\begin{equation*}
+		\sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 2} + \sum_{k = 0}^{\infty}\Big[l(l + 1) - 2(k + r) - (k + r)(k + r - 1)\Big]f_kx^{k + r} = 0
+	\end{equation*}
+
+	\noindent Otetaan ensimmäisestä summasta kaksi ensimmäistä termiä ulos. Ne ovat muotoa: $f_0(0 + r)(0 + r - 1)x^{0 + r - 2} = f_0r(r - 1)x^{r - 2}$ ja $f_1(1 + r)(\cancel{1} + r \cancel{- 1})x^{1 + r - 2} = f_1r(r + 1)x^{r - 1}$. Saadaan:
+
+	\begin{equation*}
+		f_0r(r - 1)x^{r - 2} + f_1r(r + 1)x^{r - 1} + \sum_{k = 2}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 2} + \sum_{k = 0}^{\infty}\Big[l(l + 1) - (k + r)(2 + k + r - 1)\Big]f_kx^{k + r} = 0
+	\end{equation*}
+
+	\noindent Nimetään ensimmäisessä summassa indeksi $k$ uudelleen siten, että summaus alkaa jälleen nollasta asettamalla $k = j + 2$, sillä tällöin $k = 2 \iff j + 2 = 2 \iff j = 0$. Vastaavasti toisessa summassa indeksi $k$ voidaan nimetä indeksiksi $j$ yleispätevyyttä menettämättä:
+	
+	\begin{equation*}
+		f_0r(r - 1)x^{r - 2} + f_1r(r + 1)x^{r - 1} + \sum_{j = 0}^{\infty}f_{j + 2}(j + r + 2)(j + r + 1)x^{j + r} + \sum_{j = 0}^{\infty}\Big[l(l + 1) - (j + r)(j + r + 1)\Big]f_{j}x^{j + r} = 0
+	\end{equation*}
+	
+	\noindent Nyt summat voidaan yhdistää yhdeksi summaksi, sillä $x$:n potenssit ovat samat:
+	
+	\begin{align*}
+		f_0r(r - 1)x^{r - 2} + f_1r(r + 1)x^{r - 1} + \sum_{j = 0}^{\infty}\left((j + r + 2)(j + r + 1)f_{j + 2} + \Big[l(l + 1) - (j + r)(j + r + 1)\Big]f_{j}\right)x^{j + r} &= 0 \\
+		\intertext{Kun yhtälön vasen puoli samaistetaan yhtälön oikealla puolella olevan nollasarjan kanssa, tulee jokaisen yksittäisen termin mennä nollaan, eli saadaan kolme ehtoa:}
+		f_0r(r - 1) = 0 \ \ \land \ \ f_1r(r + 1) = 0 \ \ \land \ \ (j + r + 2)(j + r + 1)f_{j + 2} + \Big[l(l + 1) - (j + r)(j + r + 1)\Big]f_{j} = 0
+	\end{align*}
+	
+	\noindent Muodostetaan ensimmäisestä ja toisesta ehdosta yhtälöpari:
+	
+	\begin{equation*}
+		\begin{cases}
+			f_0r(r - 1) = 0 \\
+			f_1r(r + 1) = 0
+		\end{cases}
+	\end{equation*}
+
+	Mikäli valitaan $r = 1$, saadaan:
+	
+	\begin{equation*}
+		f_0\cdot(1)\cdot(1 - 1) = 0 \iff 0 = 0 \ \ \ \ \text{ja} \ \ \ \ f_1(1)(1 + 1) = 0 \iff 2f_1 = 0 \iff f_1 = 0
+	\end{equation*} 
+
+	Jos taas valitaan $r = -1$, saadaan: 
+	
+	\begin{equation*}
+		f_0(-1)(-1-1) = 0 \iff 2f_0 = 0 \iff f_0 = 0 \ \ \ \ \text{ja} \ \ \ \ f_1(-1)(-1 + 1) = 0 \iff 0 = 0
+	\end{equation*}
+	
+	Jos taas valitaan $r = 0$, saadaan:
+	
+	\begin{equation*}
+		f_0(0)(0 - 1) = 0 \iff 0 = 0 \ \ \ \ \text{ja} \ \ \ \ f_1(0)(0 + 1) = 0 \iff 0 = 0
+	\end{equation*}
+
+	Näistä valinnoista $r = 0$ antaa suurimman vapauden $f_0$:n ja $f_1$:n arvoille, ja ne voidaan myös asettaa nollaan, jolloin valinnat $r = \pm 1$ ovat ikään kuin leivottu sisään valintaan $r = 0$. Valitaan siis $r = 0$ ja tarkastellaan kolmatta ehtoa: 
+	
+	\begin{equation*}
+		(j + r + 2)(j + r + 1)f_{j + 2} + \Big[l(l + 1) - (j + r)(j + r + 1)\Big]f_{j} = 0
+	\end{equation*}
+
+	Ratkaistaan $f_{j + 2}$:n suhteen:
+	
+	\begin{equation*}
+		f_{j + 2} = \frac{(j + r)(j + r + 1) - l(l + 1)}{(j + r + 2)(j + r + 1)}f_j
+	\end{equation*}
+	
+	\begin{comment}
+	Kun $r = 0$, kertoo $f_k$ $x^k$:ta. Koska $f_1 = 0$ menevät parittoman asteen termit nollaan. Kun taas $r = 1$, kertoo $f_k$ $x^{k + 1}$:tä. Koska $f_1 = 0$ menevät parillisen asteen termit nollaan, sillä esim. $f_1 = 0$ kertoo $x^{1 + 1} = x^2$:ta, $f_3 = 0$ kertoo $x^{3 + 1} = x^4$:ää ja niin edelleen. Rekursiorelaatio pysyy siis samana riippumatta siitä, onko $r = 0$ vai $1$. Se mikä muuttuu on se $x$:n potenssi jota kukin kerroin $f_k$ kertoo (Tarkempi todistus FyMM2a L5T3). Valitaan siis $r = 0$ ja jatketaan:
+	\end{comment}
+	
+	\noindent Sijoitetaan $r = 0$:
+	
+	\begin{align*}
+		f_{j + 2} &= \frac{(j + 0)(j + 0 + 1) - l(l + 1)}{(j + 0 + 2)(j + 0 + 1)}f_j \\
+		f_{j + 2} &= \frac{j(j + 1) - l(l + 1)}{(j + 2)(j + 1)}f_j \\
+		\intertext{Koska rekursiorelaatio antaa yhteyden kertoimen $f_j$ ja $f_{j + 2}$ välille, ovat parilliset ja parittomat kertoimet täysin toisistaan riippumattomia, jolloin vaikka esim. parilliset kertoimet päättyisivät, voivat parittomat jatkua loputtomiin ja toisinpäin. On huomattavaa, että mikäli $j(j + 1) = l(l + 1)$, menee kerroin $f_{j + 2}$ nollaan, jolloin sarja päättyy näiden termien osalta. Tämä toki tapahtuu vain, mikäli $l(l + 1)$ on kokonaisluku, sillä $j(j + 1)$ on kokonaisluku. Sarjoissa parilliset ja parittomat kertoimet ovat kuitenkin toisistaan riippumattomia, jolloin jos $l(l + 1)$ on parillinen, päättyy parillinen sarja, mutta pariton sarja jatkuu loputtomiin ja toisinpäin. Siispä voidaan todeta, että Legendren yhtälön toisen ratkaisun sarja päättyy, mikäli $l(l + 1)$ on kokonaisluku (Tällöin ratkaisuja kutsutaan Legendren polynomeiksi) ja jatkuu loputtomiin, mikäli $l(l + 1)$ ei ole kokonaisluku (Tällöin ratkaisuja kutsutaan Legendren funktioiksi). Jatketaan tarkastelua olettamalla, että $l(l + 1)$ on kokonaisluku, sillä tämä on usein fysiikassa haluttu vaatimus:}
+		f_{j + 2} &= \frac{j^2 + j - l^2 - l}{(j + 2)(j + 1)}f_j \\
+		\intertext{$j^2 - l^2$ on neliöiden erotus, jolloin se voidaan ilmaista muodossa $(j - l)(j + l)$:}
+		f_{j + 2} &= \frac{(j - l)(j + l) + j - l}{(j + 2)(j + 1)}f_j \\
+		\intertext{Otetaan $(j - l)$ yhteiseksi tekijäksi:}
+		f_{j + 2} &= \frac{(j - l)(j + l + 1)}{(j + 2)(j + 1)}f_j \\
+		\intertext{Otetaan vielä $(-1)$ termin eteen:}
+		f_{j + 2} &= (-1)\frac{(l - j)(j + l + 1)}{(j + 2)(j + 1)}f_j
+	\end{align*}
+
+	Koska $l$:n oletetaan olevan kokonaisluku, päättyy rekursiorelaatio, mikäli $j = l$, sillä tällöin $l - j = 0$. Jotta $j$ voisi koskaan olla $l$, tulee $j$:n ja $l$:n pariteetin olla samat, sillä $j$ kasvaa aina kahdella, jolloin jos $l$ on parillinen, $j$ saavuttaa sen vain mikäli rekursiorelaatio on alkanut $f_0$:sta (eli $j$ on parillinen) ja vastaaavasti jos $l$ on pariton, $j$ saavuttaa sen mikäli rekursiorelaatio on alkanut $f_1$:stä (eli $j$ on pariton). Koska $l$:n ja $j$:n pariteetit ovat samat, pätee niiden erotukselle $l - j$ seuraavaa:
+	
+	\begin{itemize}
+		\item \underline{$l$ ja $j$ parillisia:}
+		
+		\begin{align*}
+			l - j &= 2n - 2m \\
+			l - j &= 2(n - m) \\
+			l - j &= 2k
+		\end{align*}
+	
+		Erotus on siis parillinen.
+		
+		\item \underline{$l$ ja $j$ parittomia:}
+		
+		\begin{align*}
+			l - j &= 2n + 1 - (2m + 1) \\
+			l - j &= 2n + 1 - 2m - 1 \\
+			l - j &= 2n - 2m \\
+			l - j &= 2(n - m) \\
+		\end{align*}
+	
+		Erotus on siis jälleen parillinen.
+	\end{itemize}
+
+	Huomataan siis, että erotus $l - j$ on aina parillinen, jolloin tehdään korvaus $l - j = 2k \iff j = l - 2k$. Saadaan:
+	
+	\begin{align*}
+		f_{l - 2k + 2} &= (-1)\frac{2k(l - 2k + l + 1)}{(l - 2k + 2)(l - 2k + 1)}f_{l - 2k} \\
+		f_{l - 2(k - 1)} &= (-1)\frac{2k(2l - 2k + 1)}{(l - 2k + 1)(l - 2k + 2)}f_{l - 2k} \\
+		\intertext{Nyt jos rekursiorelaatiota sovellettaisiin ketjun loppuun asti, ei tiedettäisi, kuinka monta termiä tulossa on. Ratkaistaan sen sijaan rekursiorelaatio $f_{l - 2k}$:n suhteen:}
+		f_{l - 2k} &= (-1)\frac{(l - 2k + 1)(l - 2k + 2)}{2k(2l - 2k + 1)}f_{l - 2(k - 1)}
+	\end{align*}
+
+	\noindent Nyt siis vasemman puolen indeksissä $f_{l - 2k}$ $l$:stä vähennetään suurempi luku kuin oikean puolen indeksissä $f_{l - 2(k - 1)}$ ($2(k - 1) < 2k$), jolloin oikean puolen indeksi on suurempi ja rekursiorelaatio tuottaa aina seuraavasta indeksistä edellisen indeksin, mikäli siis rekursiorelaatiota sovellettaisiin tasan $k$ kertaa, tulisi oikean puolen indeksiksi $l - 2(k - k) = l$, eli olisi johdettu sarjan mielivaltaisen kertoimen $f_{l - 2k}$ lauseke suhteessa sarjan viimeiseen kertoimeen $f_l$. Tehdään siis juuri näin soveltamalla rekursiorelaatiota $k$ kertaa. Nyt sii $2k$ pienenee jokaisella iteraatiolla, sillä $2k = l - j$ ja $j$ kasvaa kun lähestytään $l$:ää. Samalla logiikalla $l - 2k$ kasvaa jokaisella iteraatiolla, sillä $l - 2k = j$ ja $j$ kasvaa kun lähestytään $l$:ää. Saadaan:
+	
+	\begin{equation*}
+		f_{l - 2k} = (-1)\frac{(l - 2k + 1)(l - 2k + 2)}{2k(2l - 2k + 1)}(-1)\frac{(l - 2k + 1 + 2)(l - 2k + 2 + 2)}{(2k - 2)(2l - 2k + 1 - 2)}\dots(-1)\frac{(l - 1)l}{2(2l - 1)}f_{l - 2(k - k)}
+	\end{equation*}
+
+	\noindent siistitään lauseketta:
+	
+	\begin{equation*}
+		f_{l - 2k} = (-1)^k\frac{(l - 2k + 1)(l - 2k + 2)(l - 2k + 3)\dots(l - 1)l}{(2k)(2k - 2)(2k - 4)\dots(2)(2l - 2k + 1)(2l - 2k + 3)(2l - 2k + 5)\dots(2l - 3)(2l - 1)}f_l
+	\end{equation*}
+
+	\noindent Tulossa $(2k)(2k - 2)(2k - 4)\dots(2) = (2k)(2[k - 1])(2[k - 2])\dots(2[1])$ jokaisessa termissä on tekijänä $2$, jolloin koko tulosta voidaan ottaa yhteinen tekijä $2^k$ ja tulo tulee muotoon: $k(k - 1)(k - 2)\dots (1) = k!$. Saadaan:
+	
+	\begin{equation*}
+		f_{l - 2k} = \frac{(-1)^k}{2^k k!}\frac{(l - 2k + 1)(l - 2k + 2)(l - 2k + 3)\dots(l - 1)l}{(2l - 2k + 1)(2l - 2k + 3)(2l - 2k + 5)\dots(2l - 3)(2l - 1)}f_l
+	\end{equation*}
+
+	\noindent Ilmaistaan osoittajan ja nimittäjän tulot nousevan Pochhammerin symbolin avulla. On huomattavaa, että nimittäjässä termit kasvavat kahdella, jolloin käytetään nk. yleistettyä Pochammerin symbolia $\alpha\risingfact{k,2}$, jossa $2$ tarkoittaa että termit kasvavat kahdella. Osoittajan tulossa on $2k$ termiä, sillä jokainen rekursiorelaation iterointi tuotti kaksi uutta termiä osoittajaan ja relaatiota iteroitiin $k$ kertaa. Vastaavasti nimittäjän tulossa termejä on $k$ kappaletta. Saadaan:
+	
+	\begin{equation*}
+		f_{l - 2k} = \frac{(-1)^k}{2^k k!}\frac{(l - 2k + 1)\risingfact{2k}}{(2l - 2k + 1)\risingfact{k,2}}f_l
+	\end{equation*}
+
+	\noindent Yleistetyille Pochhammer-symboleille pätee: $\alpha\risingfact{a,b} = b^a\left(\frac{\alpha}{b}\right)\risingfact{a}$ (Helppo todistaa käyttäen yleistetyn Pochammer-symbolin määritelmää). Eritysesti nyt, kun $a = k$ ja $b = 2$ saadaan: $\alpha\fallingfact{k,2} = 2^k\left(\frac{\alpha}{2}\right)\fallingfact{k}$. Käytetään tulosta nimittäjän Pochhammer-symboliin:
+	
+	\begin{align*}
+		f_{l - 2k} &= \frac{(-1)^k}{2^k k!}\frac{(l - 2k + 1)\risingfact{2k}}{2^k\left(\frac{2l - 2k + 1}{2}\right)\risingfact{k}}f_l \\
+		f_{l - 2k} &= \frac{(-1)^k}{2^{2k} k!}\frac{(l - 2k + 1)\risingfact{2k}}{\left(\frac{2(l - k) + 1}{2}\right)\risingfact{k}}f_l \\
+		\intertext{Puolilukujen, kuten $\frac{2(l - k) + 1}{2}$ nousevat Pochammer symbolit voidaan ilmaista kaksoiskertoman avulla seuraavasti: $\left(\frac{2m + 1}{2}\right)\risingfact{n} = \frac{(2(m + n) - 1)!!}{2^{n}(2m - 1)!!}$. Kaksoiskertoma on kertoma, jossa tulontekijät ovat aina kahden päässä toisistaan. Esimerkiksi $7!! = 7\cdot5\cdot3\cdot1$ ja $8!! = 8\cdot6\cdot4\cdot2$. Saadaan:}
+		f_{l - 2k} &= \frac{(-1)^k}{2^{\cancel{2}k} k!}\frac{(l - 2k + 1)\risingfact{2k}}{\frac{(2(l - \cancel{k + k}) - 1)!!}{\cancel{2^{k}}(2(l - k) - 1)!!}}f_l \\
+		f_{l - 2k} &= \frac{(-1)^k}{2^{k} k!}\frac{(l - 2k + 1)\risingfact{2k}(2(l - k) - 1)!!}{(2l - 1)!!}f_l
+	\end{align*}
+
+	Nyt on löydetty tapa ilmaista mielivaltainen kerroin $f_{l - 2k}$ viimeisen kertoimen $f_l$ avulla. Sarjaratkaisu saadaan siis seuraavaan muotoon:
+	
+	\begin{align*}
+		f_l(x) &= \sum_{l - 2k = l}^{l - 2k = 0}f_{l - 2k}x^{l - 2k + r} \\
+		\intertext{Merkinnällä $f_l(x)$ korostetaan sitä, että jokaiselle $l$:n arvolle on oma ratkaisunsa $f(x)$. Summausrajat seuraavat siitä, että $l - 2k = l$ implikoi että $k = 0$, sillä tällöin lukujen $l$ ja $2k$ etäisyys on $l$ eli ollaan summan alussa. Vastaavasti $l - 2k = l$ implikoi, että $k = \frac{l}{2}$, sillä tällöin lukujen $l$ ja $2k$ etäisyys on $0$ eli ollaan summan lopussa. On huomattavaa, että mikäli $l$ on pariton, ei $\frac{l}{2}$ ole kokonaisluku, jolloin otetaan osamäärästä $\frac{l}{2}$ lattiafunktio, $\lfloor\frac{l}{2}\rfloor$. Lisäksi muistetaan, että $r = 0$, jolloin saadaan:}
+		f_(x) &= \sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}f_{l - 2k}x^{l - 2k} \\
+	\end{align*}
+
+	\noindent Sijoitetaan $f_{l - 2k}$:n lauseke:
+	
+	\begin{equation*}
+		f_l(x) = \sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}\left(\frac{(-1)^k}{2^{k} k!}\frac{(l - 2k + 1)\risingfact{2k}(2(l - k) - 1)!!}{(2l - 1)!!}f_l\right)x^{l - 2k}
+	\end{equation*}
+
+	\noindent Tässä kohtaa asetetaan $f_l  = \frac{\binom{2l}{l}}{2^l} = \frac{(2l)!}{2^l(l!)^2} = \frac{(2l - 1)!!}{l!}$. Valinta tulee siitä, että se normalisoi ratkaisut $f_l(x)$ siten, että $f_l(1) = 1$ [TÄHÄN EHKÄ JOKIN SYVÄLLISEMPI PERUSTELU]. Saadaan:
+	
+	\begin{equation*}
+		f_l(x) = \sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}\left(\frac{(-1)^k}{2^{k} k!}\frac{(l - 2k + 1)\risingfact{2k}(2(l - k) - 1)!!}{\cancel{(2l - 1)!!}}\frac{\cancel{(2l - 1)!!}}{l!}\right)x^{l - 2k}
+	\end{equation*}
+		
+	\begin{equation*}
+		f_l(x) = \sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}\left(\frac{(-1)^k}{2^{k} k!l!}(l - 2k + 1)\risingfact{2k}(2(l - k) - 1)!!\right)x^{l - 2k}
+	\end{equation*}
+
+	\noindent Parittoman luvun, jota $2(l - k) - 1$ on, kaksoiskertoma voidaan kirjoittaa muodossa $(2m - 1)!! = \frac{(2m)!}{2^mm!}$. Saadaan:
+
+	\begin{align*}
+		f_l(x) &= \sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}\left(\frac{(-1)^k}{2^{k} k!l!}(l - 2k + 1)\risingfact{2k}\frac{(2(l - k))!}{2^{l - k}(l - k)!}\right)x^{l - 2k} \\
+		f_l(x) &= \sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}\left(\frac{(-1)^k(2l - 2k)!}{2^{k + l - k} k!l!(l - k)!}(l - 2k + 1)\risingfact{2k}\right)x^{l - 2k} \\
+		f_l(x) &= \sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}\left(\frac{(-1)^k(2l - 2k)!}{2^{l} k!l!(l - k)!}(l - 2k + 1)\risingfact{2k}\right)x^{l - 2k} \\
+		\intertext{Muistetaan, että tulo $(l - 2k + 1)\risingfact{2k}$ näytti tältä: $(l - 2k + 1)(l - 2k + 2)\dots(l - 1)l$. Tällöin se voidaan siis ilmaista laskevan Pochammer-symbolin avulla muodossa $l\fallingfact{2k}$. Saadaan:}
+		f_l(x) &= \sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}\left(\frac{(-1)^k(2l - 2k)!}{2^{l} k!l!(l - k)!}l\fallingfact{2k}\right)x^{l - 2k} \\
+		\intertext{Kertoma $l!$ sisältää termejä $l(l - 1)(l - 2)\dots2\cdot1$. Termit siis vastaavat tiettyyn pisteeseen asti laskevaa Pochammer-symbolia $l\fallingfact{2k} = l(l - 1)(l - 2)\dots(l - 2k + 2)(l - 2k + 1)$. Kertomasta $l!$ jää siis jäljelle vain kaikki termiä $(l - 2k + 1)$ pienemmät termit, eli se on muotoa $(l - 2k)(l - 2k -1)\dots2\cdot1$ pätee siis: $\frac{l\fallingfact{2k}}{l!} = \frac{1}{(l - 2k)!}$. Saadaan:}
+		f_l(x) &= \sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}\left(\frac{(-1)^k(2l - 2k)!}{2^{l} k!(l - k)!(l - 2k)!}\right)x^{l - 2k} \\
+		\intertext{Kirjoitetaan sarja vielä hieman selkeämmin ottamalla esim. vakiokerroin $\frac{1}{2^l}$ sarjan ulkopuolelle:}
+		f_l(x) &= \frac{1}{2^l}\sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}(-1)^k\frac{(2l - 2k)!}{k!(l - k)!(l - 2k)!}x^{l - 2k} \\
+		\intertext{Soveltamalla binomikerrointen määritelmää $\binom{a}{b} = \frac{a!}{b!(a - b)!}$ voidaan huomata, että $\frac{1}{k!(l - k)!} = \frac{\binom{l}{k}}{l!}$ ja että $\frac{(2l - 2k)!}{(l - 2k)!} = l!\binom{2l - 2k}{l}$. Saadaan:}
+		f_l(x) &= \frac{1}{2^l}\sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}(-1)^k\frac{\binom{l}{k}}{\cancel{l!}}\cancel{l!}\binom{2l - 2k}{l}x^{l - 2k} \\
+		f_l(x) &= \frac{1}{2^l}\sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}(-1)^k\binom{l}{k}\binom{2l - 2k}{l}x^{l - 2k} \\
+	\end{align*}
+
+	Nyt ollaan saatu yksi lineaarisesti riippumaton ratkaisu Legendren yhtälölle. Näitä päättyviä sarjaratkaisuja kutsutaan legendren polynomeiksi $P_l(x)$. Legendren polynomeille voidaan johtaa useita muitakin esitysmuotoa ja tässä niistä muutama mukaan lukien yllä olevat muodot:
+	
+	\begin{equation}
+		\boxed{
+		\begin{aligned}
+			P_l(x) &= \frac{1}{2^l}\sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}(-1)^k\binom{l}{k}\binom{2l - 2k}{l}x^{l - 2k} = \frac{1}{2^l}\sum_{k = 0}^{\lfloor\frac{l}{2}\rfloor}(-1)^k\frac{(2l - 2k)!}{k!(l - k)!(l - 2k)!}x^{l - 2k} \\[1em]
+			P_l(x) &= \sum_{k = 0}^{l}\binom{n}{k}\binom{n + k}{k}\left(\frac{x - 1}{2}\right)^k = \sum_{k = 0}^{l}\frac{(n + k)!}{(k!)^2(n - k)!}\left(\frac{x - 1}{2}\right)^k \\[1em]
+			P_l(x) &= 2^l\sum_{k = 0}^{l}\binom{l}{k}\binom{\frac{l + k - 1}{2}}{l}x^k = 2^l\sum_{k = 0}^{l}\frac{1}{k!(l - k)!}\left(\frac{l + k - 1}{2}\right)\fallingfact{l}x^k
+		\end{aligned}
+		}
+	\end{equation}
+
+	Vaihtoehtoisesti mikäli tunnetaan kaksi edellistä toisen Legendren funktiota, voidaan seuraava määrittää rekursiorelaatiolla:
+	
+	\begin{equation}
+		\boxed{P_l(x) = \frac{2l - 1}{l}xP_{l - 1}(x) - \frac{l - 1}{l}P_{l - 2}(x)}
+	\end{equation}
+
+	Toinen lineaarisesti riippumaton ratkaisu $g_l(x)$ voidaan määrittää Wronskin determinantin avulla. Teoriasta seuraa, että $g_l(x)$ on muotoa:
+	
+	\begin{equation*}
+		g_l(x) = f_l(x)\int_{x_0}^{x}\frac{\exp\left(-\int_{x_0}^{x'}P(x'')\odif{x''}\right)}{f_l^2(x')}\odif{x'}
+	\end{equation*}
+
+	Nyt $P(x'')$ on Legendren yhtälön ensimmäisen kertaluvun derivaatan etukerroin $-\frac{2x''}{1 - x''^2}$ ja $f_l$ on Legendren polynomi $P_l$. Saadaan:
+	
+	\begin{align*}
+		g_l(x) &= P_l(x)\int_{x_0}^{x}\frac{\exp\left(-\int_{x_0}^{x'}-\frac{2x''}{1 - x''^2}\odif{x''}\right)}{P_l^2(x')}\odif{x'} \\
+		g_l(x) &= P_l(x)\int_{x_0}^{x}\frac{\exp\left(\int_{x_0}^{x'}\frac{2x''}{1 - x''^2}\odif{x''}\right)}{P_l^2(x')}\odif{x'} \\
+		\intertext{Tehdään osamurtohajotelma $\frac{2x''}{1 - x''^2}$:lle:}
+		g_l(x) &= P_l(x)\int_{x_0}^{x}\frac{\exp\left(\int_{x_0}^{x'}\frac{-1}{x'' - 1}\odif{x''} + \int_{x_0}^{x'}\frac{-1}{x'' + 1}\odif{x''}\right)}{P_l^2(x')}\odif{x'} \\
+		g_l(x) &= P_l(x)\int_{x_0}^{x}\frac{\exp\left(-\ln(x' - 1) + \ln(x_0 - 1) - \ln(x' + 1) + \ln(x_0 + 1)\right)}{P_l^2(x')}\odif{x'} \\
+		g_l(x) &= P_l(x)\int_{x_0}^{x}\frac{\exp\left(\ln\left[\frac{1}{x' - 1}\right] + \ln(x_0 - 1) + \ln\left[\frac{1}{x' + 1}\right] + \ln(x_0 + 1)\right)}{P_l^2(x')}\odif{x'} \\
+		g_l(x) &= P_l(x)\int_{x_0}^{x}\frac{\exp\left(\ln\left[\frac{(x_0 - 1)(x_0 + 1)}{(x' - 1)(x' + 1)}\right]\right)}{P_l^2(x')}\odif{x'} \\
+		g_l(x) &= P_l(x)\int_{x_0}^{x}\frac{\frac{(x_0 - 1)(x_0 + 1)}{(x' - 1)(x' + 1)}}{P_l^2(x')}\odif{x'} \\
+		g_l(x) &= P_l(x)\int_{x_0}^{x}\frac{(x_0 - 1)(x_0 + 1)}{P_l^2(x')(x' - 1)(x' + 1)}\odif{x'} \\
+		\intertext{Tulo $(x_0 - 1)(x_0 + 1)$ on vain jokin mielivaltainen vakio $C$, joka voidaan ottaa integraalin eteen:}
+		g_l(x) &= CP_l(x)\int_{x_0}^{x}\frac{1}{P_l^2(x')(x' - 1)(x' + 1)}\odif{x'}
+	\end{align*}
+
+	Nyt voidaan määrittää $g_l(x)$ kunhan tunnetaan $P_l(x)$. Tiedetään, että $P_0(x) = 1$ ja $P_1(x) = x$. Määritetään $g_0(x)$ ja $g_1(x)$:
+	
+	\begin{itemize}
+		\item \underline{$g_0(x)$:}
+			
+		\begin{align*}
+			g_0(x) &= CP_0(x)\int_{x_0}^{x}\frac{1}{P_0^2(x')(x' - 1)(x' + 1)}\odif{x'} \\
+			g_0(x) &= C\int_{x_0}^{x}\frac{1}{(x' - 1)(x' + 1)}\odif{x'} \\
+			\intertext{Otetaan $-1$ yhteiseksi tekijäksi ja vakion $C$ sisään:}
+			g_0(x) &= C\int_{x_0}^{x}\frac{1}{(1 - x')(1 + x')}\odif{x'} \\
+			\intertext{Tehdään osamurtohajotelma:}
+			g_0(x) &= C\left(\int_{x_0}^{x}\frac{1}{2(1 + x')}\odif{x'} + \int_{x_0}^{x}\frac{1}{2(1 - x')}\odif{x'}\right) \\
+			g_0(x) &= \frac{1}{2}C\left(\int_{x_0}^{x}\frac{1}{1 + x'}\odif{x'} + \int_{x_0}^{x}\frac{1}{1 - x'}\odif{x'}\right) \\
+			g_0(x) &= \frac{1}{2}C\Big(\ln(1 + x) - \ln(1 + x_0) - \ln(1 - x) + \ln(1 - x_0)\Big) \\
+			g_0(x) &= \frac{1}{2}C\left(\ln(1 + x) - \ln\left[\frac{1}{1 + x_0}\right] + \ln\left[\frac{1}{1 - x}\right] + \ln(1 - x_0)\right) \\
+			g_0(x) &= \frac{1}{2}C\left(\ln\left[\frac{1 + x}{1 - x}\right] + \ln\left[\frac{1 - x_0}{1 + x_0}\right]\right) \\
+			\intertext{Jälleen $\ln\left[\frac{1 - x_0}{1 + x_0}\right]$ on mielivaltainen vakio $D$:}
+			g_0(x) &= \frac{1}{2}C\ln\left[\frac{1 + x}{1 - x}\right] + \frac{1}{2}CD
+		\end{align*}
+	
+		\noindent Kun asetetaan $C = 1$ ja $D = 0$ saadaan toisen lajin Legendren funktio $Q_0(x)$:
+		
+		\begin{equation*}
+			Q_0(x) = \frac{1}{2}\ln\left(\frac{1 + x}{1 - x}\right)	
+		\end{equation*}
+		
+		\item \underline{$g_1(x)$:}
+		
+		\begin{align*}
+			g_1(x) &= CP_1(x)\int_{x_0}^{x}\frac{1}{P_1^2(x')(x' - 1)(x' + 1)}\odif{x'} \\
+			g_1(x) &= Cx\int_{x_0}^{x}\frac{1}{x'^2(x' - 1)(x' + 1)}\odif{x'} \\
+			\intertext{Otetaan $-1$ yhteiseksi tekijäksi ja vakion $C$ sisään:}
+			g_1(x) &= Cx\int_{x_0}^{x}\frac{1}{x'^2(1 - x')(1 + x')}\odif{x'} \\
+			\intertext{Tehdään osamurtohajotelma:}
+			g_1(x) &= Cx\left(\int_{x_0}^{x}\frac{1}{2(1 + x')}\odif{x'} + \int_{x_0}^{x}\frac{1}{2(1 - x')}\odif{x'} + \int_{x_0}^{x}\frac{1}{x'^2}\odif{x'}\right) \\
+			g_1(x) &= Cx\left(\frac{1}{2}\int_{x_0}^{x}\frac{1}{1 + x'}\odif{x'} + \frac{1}{2}\int_{x_0}^{x}\frac{1}{1 - x'}\odif{x'} + \int_{x_0}^{x}\frac{1}{x'^2}\odif{x'}\right) \\
+			g_1(x) &= Cx\left(\frac{1}{2}\Big[\ln(1 + x) - \ln(1 + x_0)\Big] + \frac{1}{2}\Big[-\ln(1 - x) + \ln(1 - x_0)\Big] - \frac{1}{x} + \frac{1}{x_0}\right) \\
+			g_1(x) &= Cx\left(\frac{1}{2}\ln\left(\frac{1 + x}{1 - x}\right) + \frac{1}{2}\ln\left(\frac{1 - x_0}{1 + x_0}\right) - \frac{1}{x} + \frac{1}{x_0}\right) \\
+			\intertext{Jälleen $\ln\left(\frac{1 - x_0}{1 + x_0}\right)$ ja $\frac{1}{x_0}$ ovat mielivaltaisia vakioita $D$ ja $E$:}
+			g_1(x) &= Cx\left(\frac{1}{2}\ln\left(\frac{1 + x}{1 - x}\right) + \frac{1}{2}D - \frac{1}{x} + E\right) \\
+			g_1(x) &= \frac{1}{2}xC\ln\left(\frac{1 + x}{1 - x}\right) + \frac{1}{2}xCD - \frac{Cx}{x} + CEx \\
+			g_1(x) &= \frac{1}{2}xC\ln\left(\frac{1 + x}{1 - x}\right) - C + \frac{1}{2}xCD + CEx
+		\end{align*}
+	
+		\noindent Kun asetetaan $C = 1$, $D = 0$ ja $E = 0$ saadaan toisen lajin Legendren funktio $Q_1(x)$:
+		
+		\begin{equation*}
+			Q_1(x) = \frac{1}{2}x\ln\left(\frac{1 + x}{1 - x}\right) - 1
+		\end{equation*}
+	\end{itemize}
+
+	Ooittautuu, että yleisesti toisen lajin legendren funktio voidaan ilmaista muodossa:
+	
+	\begin{equation}
+		\boxed{Q_l(x) = \frac{1}{2}P_l(x)\ln\left(\frac{1 + x}{1 - x}\right) - \sum_{k = 1}^{l}\frac{1}{k}P_{k - 1}(x)P_{l - k}(x)} 
+	\end{equation}
+
+	Jossa $\sum_{k = 1}^{l}\frac{1}{k}P_{k - 1}(x)P_{l - k}(x) = W_{l - 1}(x)$ on $l - 1$-asteen polynomi. Vaihtoehtoisesti mikäli tunnetaan kaksi edellistä toisen lajin legendren funktiota, voidaan seuraava määrittää samalla rekursiorelaatiolla kuin aiemminkin:
+	
+	\begin{equation}
+		\boxed{Q_l(x) = \frac{2l - 1}{l}xQ_{l - 1}(x) - \frac{l - 1}{l}Q_{l - 2}(x)}
+	\end{equation}
+
+	Ollaan siis ratkaistu Legendren yhtälö, kun $l \in \mathbb{Z}$. Yhtälön yleinen ratkaisu on lineaarikombinaatio ensimmäisen ja toisen lajin Legendren funktioista:
+	
+	\begin{equation}
+		\boxed{f_l(x) = C_1P_l(x) + C_2Q_l(x), \ \ \ \ l\in\mathbb{Z}}
+	\end{equation}
+
+	\begin{comment}
+	\noindent Kun rekursiorelaatiota sovelletaan $f_2$:een asti saadaan:
+	
+	\begin{equation*}
+		f_{j + 2} = \frac{(j - l)(j + l + 1)}{(j + 2)(j + 1)}\frac{(j - l - 2)(j + l - 1)}{j(j - 1)}\frac{(j - l - 4)(j + l - 3)}{(j - 2)(j - 3)}\dots\frac{(-l)(1 + l)}{2\cdot1}f_0
+	\end{equation*}
+
+	\noindent Nimittäjässä oleva tulo on yksinkertaisesti $(j + 2)!$. Osoittajassa on kaksi tuloa: $(j - l)(j - l - 2)\dots (-l)$ ja $(j + l + 1)(j + l - 1)\dots(1 + l)$. Kussakin tulossa termit kavavat kahdella mikäli tulo luetaan lopusta alkuun ja kussakin tulossa on $j$ termiä. Molemmat tulot voidaan siis ilmaista yleistetyn Pochhammerin symbolin $x\risingfact{j,2}$ avulla, jossa $2$ tarkoittaa että tulon termit eroavat aina kahdella toisistaan. Saadaan:
+	
+	\begin{align*}
+		f_{j + 2} &= \frac{(-l)\risingfact{j,2}(l + 1)\risingfact{j,2}}{(j + 2)!}f_{0} \\
+		\intertext{Yleistetyille Pochhammer-symboleille pätee: $\alpha\fallingfact{n,k} = k^n\left(\frac{\alpha}{k}\right)\fallingfact{n}$ (Helppo todistaa käyttäen yleistetyn Pochammer-symbolin määritelmää). Eritysesti nyt, kun $n = j$ ja $k = 2$ saadaan: $\alpha\fallingfact{j,2} = 2^j\left(\frac{\alpha}{2}\right)\fallingfact{j}$. Käytetään tulosta jälkimmäiseen Pochammer-symboliin:}
+		f_{j + 2} &= \frac{(j - l)\fallingfact{j,2}}{(j + 2)!}2^{j}\left(\frac{j + l + 1}{2}\right)\fallingfact{j}f_{0} \\
+		\intertext{SELITYS}
+		f_{j + 2} &= \frac{(j - l)\fallingfact{j,2}}{(j + 2)!}2^{j}\left(\frac{j + l + 1}{2}\right)\fallingfact{l}\left(\frac{j + l + 1}{2} - l\right)\fallingfact{j - l}f_{0} \\
+		f_{j + 2} &= \frac{(j - l)\fallingfact{j,2}}{(j + 2)!}2^{j}\left(\frac{j + l + 1}{2}\right)\fallingfact{l}\left(\frac{j - l + 1}{2}\right)\fallingfact{j - l}f_{0} \\
+		\intertext{SELITYS}
+		f_{j + 2} &= \frac{(j - l)\fallingfact{j,2}}{(j + 2)!}2^{j}\frac{\left(\frac{j - l + 1}{2}\right)\fallingfact{j}}{\left(\frac{j - l + 1}{2} - (j - l)\right)\fallingfact{l}}\left(\frac{j + l + 1}{2}\right)\fallingfact{l}f_{0} \\
+		f_{j + 2} &= \frac{(j - l)\fallingfact{j,2}}{(j + 2)!}\frac{2^{j}\left(\frac{j - l + 1}{2}\right)\fallingfact{j}}{\left(\frac{j - l + 1}{2} - \frac{2j - 2l}{2}\right)\fallingfact{l}}\left(\frac{j + l + 1}{2}\right)\fallingfact{l}f_{0} \\
+		f_{j + 2} &= \frac{(j - l)\fallingfact{j,2}}{(j + 2)!}\frac{(j - l + 1)\fallingfact{j,2}}{\left(\frac{l - j + 1}{2}\right)\fallingfact{l}}\left(\frac{j + l + 1}{2}\right)\fallingfact{l}f_{0} \\
+		f_{j + 2} &= \frac{(j - l + 1)\fallingfact{2j}}{(j + 2)!\left(\frac{l - j + 1}{2}\right)\fallingfact{l}}\left(\frac{j + l + 1}{2}\right)\fallingfact{l}f_{0} \\
+		f_{j + 2} &= \frac{\binom{j - l + 1}{2j}(2j)!\left(\frac{l - j + 1}{2} - l\right)!}{(j + 2)!\left(\frac{l - j + 1}{2}\right)!}\left(\frac{j + l + 1}{2}\right)\fallingfact{l}f_{0} \\
+		f_{j + 2} &= \frac{(j - l + 1)!\left(\frac{1 - l - j}{2}\right)!}{(j + 2)!(1 - l - j)!\left(\frac{l - j + 1}{2}\right)!}\left(\frac{j + l + 1}{2}\right)\fallingfact{l}f_{0} \\
+		\intertext{Sijoitetaan $j + 2 = k \iff j = k - 2$:}
+		f_{k} &= \frac{(k - l - 1)!\left(\frac{3 - l - k}{2}\right)!}{k!(3 - l - k)!\left(\frac{l - k + 3}{2}\right)!}\left(\frac{k + l - 1}{2}\right)\fallingfact{l}f_{0} \\
+		f_{k} &= \frac{(k - l - 1)!\frac{(3 - l - k)!}{2^{\frac{3 - l - k}{2}}}}{k!(3 - l - k)!\frac{(l - k + 3)!}{2^{\frac{l - k + 3}{3}}}}\left(\frac{k + l - 1}{2}\right)\fallingfact{l}f_{0} \\
+		f_{k} &= \frac{(k - l - 1)!2^{\frac{l - k + 3}{2}}}{k!(l - k + 3)!2^{\frac{3 - l - k}{2}}}\left(\frac{k + l - 1}{2}\right)\fallingfact{l}f_{0} \\
+		f_{k} &= \frac{(k - l - 1)!2^{\frac{l - k + 3 - 3 + l + k}{2}}}{k!(l - k + 3)!}\left(\frac{k + l - 1}{2}\right)\fallingfact{l}f_{0} \\
+		f_{k} &= \frac{(k - l - 1)!2^{\frac{2l}{2}}}{k!(l - k + 3)!}\left(\frac{k + l - 1}{2}\right)\fallingfact{l}f_{0} \\
+		f_{k} &= 2^l\frac{(k - l - 1)!}{k!(l - k + 3)!}\left(\frac{k + l - 1}{2}\right)\fallingfact{l}f_{0} \\
+	\end{align*}
+	
+		\intertext{Pochammerin symbolien ja binomikertoimien väillä on yhteys: $\alpha\fallingfact{n} = \binom{\alpha}{n}n!$:}
+		f_{j + 2} &= \frac{2^{2j}}{(j + 2)!}\binom{\frac{j - l}{2}}{j}j!\binom{\frac{j + l + 1}{2}}{j}j!f_{0} \\
+		\intertext{Sijoitetaan $j + 2 = n \iff j = n-2$:}
+		f_{n} &= \frac{2^{2(n - 2)}}{n!}\binom{\frac{n - l - 2}{2}}{n - 2}(n - 2)!\binom{\frac{n + l - 1}{2}}{n - 2}(n - 2)!f_{0} \\
+	\end{comment}
+
+	\subsubsection{Legendren liittoyhtälö}
+	
+	\begin{equation}
+		(1 - x^2)\odv{^2f}{x^2} - 2x\odv{f}{x} + \left(l(l + 1) - \frac{m^2}{1 - x^2}\right)f = 0
+	\end{equation}
+	
+	Legendren littoyhtälö on Legendren yhtälön yleisempi muoto, joka redusoituu tavalliseksi Legendren yhtälöksi, kun $m = 0$. Yhtälö voidaan johtaa derivoimalla tavallista legendren yhtälöä $m$ kertaa. Legenden yhtälö on muotoa:
+	
+	\begin{equation*}
+		(1 - x^2)\odv{^2f}{x^2} - 2x\odv{f}{x} + l(l + 1)f = 0
+	\end{equation*}
+
+	Koska kahdessa ensimmäisessä termissä esiintyy tulo, määritetään niiden $m$:s derivaatta käyttämällä Leibnizin yleistä tulon derivointisääntöä:
+	
+	\begin{equation*}
+		(fg)^{(n)} = \sum_{k = 0}^{n}\binom{n}{k}f^{(n - k)}g^{k}
+	\end{equation*}
+
+	\begin{itemize}
+		\item \underline{$\odv{^m}{x^m}\left[(1 - x^2)\odv{^2f}{x^2}\right]$:}
+		
+		\begin{align*}
+			\odv{^m}{x^m}\left[(1 - x^2)\odv{^2f}{x^2}\right] &= \sum_{k = 0}^{m}\binom{m}{k}\odv{^{m - k}}{x^{m - k}}(1 - x^2)\odv{^k}{x^k}\left(\odv{^2f}{x^2}\right) \\
+			\intertext{Koska $1 - x^2$ on toisen asteen polynomi, voidaan sitä derivoida korkeintaan kahdesti ennen kuin se katoaa. Siispä kaikki termit, joissa $m - k > 2$ menevät nollaan, sillä tällöin derivaatta $\odv{^{m - k}}{x^{m - k}}(1 - x^2)$ katoaa. Jäljelle jää siis vain kolme viimeistä termiä, joissa $k = m - 2$, $k = m - 1$ ja $k = m$. Saadaan:}
+			&= \binom{m}{m - 2}\odv{^{m - (m - 2)}}{x^{m - (m - 2)}}(1 - x^2)\odv{^{m - 2}}{x^{m - 2}}\left(\odv{^2f}{x^2}\right) \\
+			&\quad + \binom{m}{m - 1}\odv{^{m - (m - 1)}}{x^{m - (m - 1)}}(1 - x^2)\odv{^{m - 1}}{x^{m - 1}}\left(\odv{^2f}{x^2}\right) \\
+			&\quad + \binom{m}{m}\odv{^{m - m}}{x^{m - m}}(1 - x^2)\odv{^m}{x^m}\left(\odv{^2f}{x^2}\right) \\
+			&= \frac{m!}{(m - 2)!(m - (m - 2))!}\odv{^2}{x^2}(1 - x^2)\odv{^{m - 2 + 2}f}{x^{m - 2 + 2}} \\
+			&\quad + \frac{m!}{(m - 1)!(m - (m - 1))!}\odv{}{x}(1 - x^2)\odv{^{m - 1 + 2}f}{x^{m - 1 + 2}} \\
+			&\quad + \frac{m!}{m!(m - m)!}\odv{^0}{x^0}(1 - x^2)\odv{^{m + 2}f}{x^{m + 2}} \\
+			\intertext{Nollas derivaatta $\odv{^0}{x^0}$ tarkoittaa, että derivaattaa ei oteta. Saadaan:}
+			&= \frac{m!}{(m - 2)!2!}(-2)\odv{^{m}f}{x^{m}} + \frac{m!}{(m - 1)!1!}(-2x)\odv{^{m + 1}f}{x^{m + 1}} + \frac{1}{0!}(1 - x^2)\odv{^{m + 2}f}{x^{m + 2}} \\
+			&= -\frac{m!}{(m - 2)!}\odv{^{m}f}{x^{m}} - \frac{m!}{(m - 1)!}2x\odv{^{m + 1}f}{x^{m + 1}} + (1 - x^2)\odv{^{m + 2}f}{x^{m + 2}} \\
+			&= -m(m - 1)\odv{^{m}f}{x^{m}} - 2mx\odv{^{m + 1}f}{x^{m + 1}} + (1 - x^2)\odv{^{m + 2}f}{x^{m + 2}} \\
+			&= -m(m - 1)\odv{^{m}f}{x^{m}} - 2mx\odv{^{m + 1}f}{x^{m + 1}} + (1 - x^2)\odv{^{m + 2}f}{x^{m + 2}} \\
+			\odv{^m}{x^m}\left[(1 - x^2)\odv{^2f}{x^2}\right] &= (1 - x^2)\odv{^{m + 2}f}{x^{m + 2}} - 2mx\odv{^{m + 1}f}{x^{m + 1}} - m(m - 1)\odv{^{m}f}{x^{m}}
+		\end{align*}
+		
+		\item \underline{$\odv{^m}{x^m}\left[x\odv{f}{x}\right]$:}
+	
+		\begin{align*}
+			\odv{^m}{x^m}\left[x\odv{f}{x}\right] &= \sum_{k = 0}^{m}\binom{m}{k}\odv{^{m - k}}{x^{m - k}}(x)\odv{^k}{x^k}\left(\odv{f}{x}\right) \\
+			\intertext{Koska $x$ on ensimmäisen asteen polynomi, voidaan sitä derivoida korkeintaan kerran ennen kuin se katoaa. Siispä kaikki termit, joissa $m - k > 1$ menevät nollaan, sillä tällöin derivaatta $\odv{^{m - k}}{x^{m - k}}(x)$ katoaa. Jäljelle jää siis vain kaksi viimeistä termiä, joissa $k = m - 1$ ja $k = m$. Saadaan:}
+			&= \binom{m}{m - 1}\odv{^{m - (m - 1)}}{x^{m - (m - 1)}}(x)\odv{^{m - 1}}{x^{m - 1}}\left(\odv{f}{x}\right) + \binom{m}{m}\odv{^{m - m}}{x^{m - m}}(x)\odv{^m}{x^m}\left(\odv{f}{x}\right) \\
+			&= \frac{m!}{(m - 1)!(m - (m - 1))!}\odv{}{x}(x)\odv{^{m - 1 + 1}f}{x^{m - 1 + 1}} + \frac{m!}{m!(m - m)!}\odv{^0}{x^0}(x)\odv{^{m + 1}f}{x^{m + 1}} \\
+			\intertext{Nollas derivaatta $\odv{^0}{x^0}$ tarkoittaa, että derivaattaa ei oteta. Saadaan:}
+			&= \frac{m!}{(m - 1)!1!}(1)\odv{^{m}f}{x^{m}} + \frac{1}{0!}(x)\odv{^{m + 1}f}{x^{m + 1}} \\
+			&= \frac{m!}{(m - 1)!}\odv{^{m}f}{x^{m}} + x\odv{^{m + 1}f}{x^{m + 1}} \\
+			&= m\odv{^{m}f}{x^{m}} + x\odv{^{m + 1}f}{x^{m + 1}} \\
+			\odv{^m}{x^m}\left[x\odv{f}{x}\right] &= x\odv{^{m + 1}f}{x^{m + 1}} + m\odv{^{m}f}{x^{m}}
+		\end{align*}
+		
+	\end{itemize}
+
+	Sijoitetaan tulokset Legendren yhtälöön ja derivoidaan samalla viimeistä termiä $l(l + 1)f$:
+	
+	\begin{equation*}
+		(1 - x^2)\odv{^{m + 2}f}{x^{m + 2}} - 2mx\odv{^{m + 1}f}{x^{m + 1}} - m(m - 1)\odv{^{m}f}{x^{m}} - 2x\odv{^{m + 1}f}{x^{m + 1}} - 2m\odv{^{m}f}{x^{m}} + l(l + 1)\odv{^mf}{x^m} = 0
+	\end{equation*}
+
+	\begin{align*}
+		(1 - x^2)\odv{^{m + 2}f}{x^{m + 2}} - 2(m + 1)x\odv{^{m + 1}f}{x^{m + 1}} + \Big[l(l + 1) - m(m - 1) - 2m\Big]\odv{^mf}{x^m} &= 0 \\
+		(1 - x^2)\odv{^{m + 2}f}{x^{m + 2}} - 2(m + 1)x\odv{^{m + 1}f}{x^{m + 1}} + \Big[l(l + 1) - m(m - 1 + 2)\Big]\odv{^mf}{x^m} &= 0 \\
+		(1 - x^2)\odv{^{m + 2}f}{x^{m + 2}} - 2(m + 1)x\odv{^{m + 1}f}{x^{m + 1}} + \Big[l(l + 1) - m(m + 1)\Big]\odv{^mf}{x^m} &= 0 \\
+		\intertext{Merkitään $\odv{^mf}{x^m} = g(x)$. Saadaan:}
+		(1 - x^2)g''(x) - 2(m + 1)xg'(x) + \Big[l(l + 1) - m(m + 1)\Big]g(x) &= 0 \\
+		(1 - x^2)g''(x) - 2(m + 1)xg'(x) + \Big[l^2 + l - m^2 - m\Big]g(x) &= 0 \\
+		\intertext{$l^2 - m^2$ on neliöiden erotus:}
+		(1 - x^2)g''(x) - 2(m + 1)xg'(x) + \Big[(l - m)(l + m) + l - m\Big]g(x) &= 0 \\
+		(1 - x^2)g''(x) - 2(m + 1)xg'(x) + (l - m)(l + m + 1)g(x) &= 0 \\
+	\end{align*}
+
+	\noindent Määritellään uusi funktio $h(x) = (1 - x^2)^{m/2}g(x) \iff g(x) = (1 - x^2)^{-m/2}h(x)$. Määritetään $g'(x)$ ja $g''(x)$:
+	
+	\begin{itemize}
+		\item \underline{$g'(x)$:}
+		
+		\begin{align*}
+			g'(x) &= \odv{}{x}\left[(1 - x^2)^{-m/2}h(x)\right] \\
+			&= (1 - x^2)^{-m/2}h'(x) + h(x)\left(-\frac{m}{2}\right)(1 - x^2)^{-m/2 - 1}(-2x) \\
+			&= (1 - x^2)^{-m/2}h'(x) + mxh(x)(1 - x^2)^{-m/2 - 1} \\
+			&= (1 - x^2)^{-m/2}\left(h'(x) + mxh(x)(1 - x^2)^{-1}\right) \\
+			g'(x) &= (1 - x^2)^{-m/2}\left(h'(x) + \frac{mx}{1 - x^2}h(x)\right)
+		\end{align*}
+		
+		\item \underline{$g''(x)$:}
+		
+		\begin{align*}
+			g''(x) &= \odv{}{x}\left[(1 - x^2)^{-m/2}\left(h'(x) + \frac{mx}{1 - x^2}h(x)\right)\right] \\
+			&= (1 - x^2)^{-m/2}\odv{}{x}\left(h'(x) + \frac{mx}{1 - x^2}h(x)\right) + \odv{}{x}\left[(1 - x^2)^{-m/2}\right]\left(h'(x) + \frac{mx}{1 - x^2}h(x)\right) \\
+			&= (1 - x^2)^{-m/2}\left(h''(x) + \odv{}{x}\left[\frac{mx}{1 - x^2}h(x)\right]\right) + \left(-\frac{m}{2}\right)(1 - x^2)^{-m/2 - 1}(-2x)\left(h'(x) + \frac{mx}{1 - x^2}h(x)\right) \\
+			&= (1 - x^2)^{-m/2}\left(h''(x) + mxh(x)\odv{}{x}\left[\frac{1}{1 - x^2}\right] + \odv{}{x}[mxh(x)]\frac{1}{1 - x^2}\right) \\
+			&\quad + mx(1 - x^2)^{-m/2 - 1}\left(h'(x) + \frac{mx}{1 - x^2}h(x)\right) \\
+			&= (1 - x^2)^{-m/2}\left(h''(x) + mxh(x)(-1)\frac{1}{(1 - x^2)^2}(-2x) + \frac{mxh'(x) + mh(x)}{1 - x^2}\right) \\
+			&\quad + (1 - x^2)^{-m/2}\left(\frac{mx}{1 - x^2}h'(x) + \frac{m^2x^2}{(1 - x^2)^2}h(x)\right) \\
+			&= (1 - x^2)^{-m/2}\bigg(h''(x) + \frac{2mx^2}{(1 - x^2)^2}h(x) + \frac{mx}{1 - x^2}h'(x) + \frac{m}{1 - x^2}h(x) \\
+			&\quad + \frac{mx}{1 - x^2}h'(x) + \frac{m^2x^2}{(1 - x^2)^2}h(x)\bigg) \\
+			&= (1 - x^2)^{-m/2}\left(h''(x) + \frac{2mx}{1 - x^2}h'(x) + \frac{m}{1 - x^2}h(x) + \frac{2mx^2 + m^2x^2}{(1 - x^2)^2}h(x)\right) \\
+			g''(x) &= (1 - x^2)^{-m/2}\left(h''(x) + \frac{2mx}{1 - x^2}h'(x) + \frac{m}{1 - x^2}h(x) + \frac{m(m + 2)x^2}{(1 - x^2)^2}h(x)\right) \\
+		\end{align*}
+	\end{itemize}
+
+	Sijoitetaan $g$ ja sen derivaatat differentiaaliyhtälöön:
+	
+	\begin{align*}
+		0 &= (1 - x^2)(1 - x^2)^{-m/2}\left(h''(x) + \frac{2mx}{1 - x^2}h'(x) + \frac{m}{1 - x^2}h(x) + \frac{m(m + 2)x^2}{(1 - x^2)^2}h(x)\right) \\
+		&\quad - 2(m + 1)x(1 - x^2)^{-m/2}\left(h'(x) + \frac{mx}{1 - x^2}h(x)\right) + (l - m)(l + m + 1)(1 - x^2)^{-m/2}h(x) \\
+		\intertext{Kerrotaan koko yhtälö $(1 - x^2)^{m/2}$:lla:}
+		0 &= (1 - x^2)\left(h''(x) + \frac{2mx}{1 - x^2}h'(x) + \frac{m}{1 - x^2}h(x) + \frac{m(m + 2)x^2}{(1 - x^2)^2}h(x)\right) \\
+		&\quad - 2(m + 1)x\left(h'(x) + \frac{mx}{1 - x^2}h(x)\right) + (l - m)(l + m + 1)h(x) \\
+		0 &= (1 - x^2)h''(x) + 2mxh'(x) + mh(x) + \frac{m(m + 2)x^2}{1 - x^2}h(x) \\
+		&\quad - 2(m + 1)xh'(x) - \frac{2m(m + 1)x^2}{1 - x^2}h(x) + (l - m)(l + m + 1)h(x) \\
+		0 &= (1 - x^2)h''(x) + (2mx - 2(m + 1)x)h'(x) + \frac{m(m + 2)x^2 - 2m(m + 1)x^2}{1 - x^2}h(x) \\
+		&\quad  + \Big[(l - m)(l + m + 1) + m\Big]h(x) \\
+		0 &= (1 - x^2)h''(x) + 2x(m - m - 1)h'(x) + \frac{mx^2(m + 2 - 2(m + 1))}{1 - x^2}h(x) \\
+		&\quad  + \Big[(l - m)(l + m) + l - \cancel{m} + \cancel{m}\Big]h(x) \\
+		0 &= (1 - x^2)h''(x) - 2xh'(x) + \frac{mx^2(m + \cancel{2} - 2m - \cancel{2})}{1 - x^2}h(x) + \Big[(l - m)(l + m) + l\Big]h(x) \\
+		0 &= (1 - x^2)h''(x) - 2xh'(x) + \frac{mx^2(-m)}{1 - x^2}h(x) + \Big[l^2 - m^2 + l\Big]h(x) \\
+		0 &= (1 - x^2)h''(x) - 2xh'(x) - \frac{m^2x^2}{1 - x^2}h(x) + \Big[l(l + 1) - m^2\Big]h(x) \\
+		0 &= (1 - x^2)h''(x) - 2xh'(x) + \left[l(l + 1) - \frac{m^2x^2}{1 - x^2} - m^2\right]h(x) \\
+		0 &= (1 - x^2)h''(x) - 2xh'(x) + \left[l(l + 1) - \left(\frac{m^2x^2}{1 - x^2} + \frac{m^2(1 - x^2)}{1 - x^2}\right)\right]h(x) \\
+		0 &= (1 - x^2)h''(x) - 2xh'(x) + \left[l(l + 1) - \left(\frac{m^2x^2 + m^2(1 - x^2)}{1 - x^2}\right)\right]h(x) \\
+		0 &= (1 - x^2)h''(x) - 2xh'(x) + \left[l(l + 1) - \left(\frac{\cancel{m^2x^2} + m^2 - \cancel{m^2x^2}}{1 - x^2}\right)\right]h(x) \\
+		0 &= (1 - x^2)h''(x) - 2xh'(x) + \left[l(l + 1) - \frac{m^2}{1 - x^2}\right]h(x)
+	\end{align*}
+
+	On siis johdettu Legendren liittoyhtälö lähtien liikkeelle tavallisesta legendren yhtälöstä. Koska lähdettiin liikkeelle Legendren yhtälöstä, ovat funktiot $g(x) = \odv{^mf}{x^m}$ Legendren ensimmäisen ja toisen lajin funktioiden derivaattoja, sillä $f(x) = P_{x}$ ja $f(x) = Q_l(x)$ ratkaisevat Legendren yhtälön. Pätee siis: $g(x) = \odv{^mP_l(x)}{x^m}$ ja $g(x) = \odv{^mQ_l(x)}{x^m}$. Koska Legendren liittoyhtälö johdettiin Legendren yhtälöstä joiden ratkaisuja Legendren funktiot ovat, on $h(x)$:n ratkaistava Legendren liittoyhtälö. $h(x)$ määriteltiin seuraavasti:
+	
+	\begin{equation*}
+		h(x) = (1 - x^2)^{m/2}g(x)
+	\end{equation*}
+
+	Eli kun sijoitetaan $g(x)$ saadaan:
+	
+	\begin{equation*}
+		h(x) = (1 - x^2)^{m/2}\odv{^mP_l(x)}{x^m} \ \ \ \ \text{tai} \ \ \ \ h(x) = (1 - x^2)^{m/2}\odv{^mQ_l(x)}{x^m}
+	\end{equation*}
+
+	Ollaan siis löydetty kaksi lineaarisesti riippumatonta ratkaisua Legendren liittoyhtälölle. Ratkaisujen lineaarinen riippumattomuus seuraa siitä, että toinen ratkaisu on verrannollinen $P_l(x)$:ään ja toinen $Q_l(x)$:ään, jotka ovat keskenään lineaarisesti riippumattomia. Näitä ratkaisuja kutsutaan Legendren ensimmäisen ja toisen lajin liittofunktioiksi $P_{l}^m(x)$ ja $Q_l^m(x)$ ja ne on määritelty seuraavasti:
+	
+	\begin{equation}
+		\boxed{P_l^m(x) = (1 - x^2)^{m/2}\odv{^mP_l(x)}{x^m}}
+	\end{equation}
+
+	\begin{equation}
+		\boxed{Q_l^m(x) = (1 - x^2)^{m/2}\odv{^mQ_l(x)}{x^m}}
+	\end{equation}
+
+	Ollaan siis ratkaistu Legendren liittoyhtälö, kun $l,m \in \mathbb{Z}, \ \ \ -l \leq m \leq l$. Yhtälön yleinen ratkaisu on lineaarikombinaatio ensimmäisen ja toisen lajin Legendren liittofunktioista:
+	
+	\begin{equation}
+		\boxed{f_l^m(x) = C_1P_l^m(x) + C_2Q_l^m(x), \ \ \ \ l,m\in\mathbb{Z}, \ \ \ -l \leq m \leq l}
+	\end{equation}
+
+	Seuraava tärkeä tulos voidaan johtaa $P_l^m(x)$:lle Rodriguesin kaavan avulla:
+	
+	\begin{equation}
+		\label{assocleg}
+		\boxed{P_l^{-m}(x) = (-1)^m\frac{(l - m)!}{(l + m)!}P_l^m(x)}
+	\end{equation}
+
+	Tulos mahdollistaa ratkaisujen laajentamiseen edellämainitulle alueelle $-l \leq m \leq l$ sen sijaan etttä oltaisiin rajoitettu alueelle $0 \leq m \leq l$.
+	
+	\subsubsection{Palloharmoniset funktiot}
+	
+	Helmholtzin yhtälön separointi pallokoordinaatistossa johtaa radiaaliseen yhtälöön ja kulmayhtälöön. Kulmayhtälö on muotoa:
+	
+	\begin{equation}
+		\frac{1}{\sin\theta}\odv{}{\theta}\left(\sin\theta\odv{f}{\theta}\right) + \frac{1}{\sin^2\theta}\odv{^2f}{\varphi^2} + Kf = 0
+	\end{equation}
+
+	Kun myös kulmayhtälö separoidaan yritteellä $f(\theta, \varphi) = g(\varphi)h(\theta)$, saadaan kaksi tavallista differentiaaliyhtälöä:
+	
+	\begin{equation*}
+		\odv{^2g}{\varphi^2} = -m^2g	
+	\end{equation*}
+
+	\begin{equation*}
+		\frac{1}{\sin\theta}\odv{}{\theta}\left(\sin\theta\odv{h}{\theta}\right) + \left(K - \frac{m^2}{\sin^2\theta}\right)h = 0
+	\end{equation*}
+
+	Ensimmäinen yhtälöistä on yksinkertaisesti harmoninen yhtälö, jolloin sen yleinen ratkaisu voidaan ilmaista kompleksieksponentiaalin avulla muodossa:
+	
+	\begin{equation}
+		\boxed{h_m(x) = C_1e^{im\varphi}}
+	\end{equation}
+
+	Lasketaan toisen yhtälön derivaattatermi auki:
+	
+	\begin{align*}
+		\frac{1}{\sin\theta}\left[\sin\theta\odv{}{\theta}\left(\odv{h}{\theta}\right) + \odv{}{\theta}(\sin\theta)\odv{h}{\theta}\right] + \left(K - \frac{m^2}{\sin^2\theta}\right)h &= 0 \\
+		\frac{1}{\sin\theta}\left[\sin\theta\odv{^2h}{\theta^2} + \cos\theta\odv{h}{\theta}\right] + \left(K - \frac{m^2}{\sin^2\theta}\right)h &= 0
+	\end{align*}
+
+	Kun toiseen yhtälöön tehdään muuttujanvaihdos $x = \cos\theta$, muuttuvat derivaatat seuraavasti:
+	
+	\begin{align*}
+		\odv{h}{\theta} &= \odv{h}{x}\odv{x}{\theta} \\
+		&= \odv{h}{x}\odv{}{\theta}(\cos \theta) \\
+		\odv{h}{\theta} &= -\sin\theta\odv{h}{x}
+	\end{align*}
+
+	\begin{align*}
+		\odv{^2h}{\theta^2} &= \odv{}{\theta}\left(\odv{h}{\theta}\right) \\
+		&= \odv{}{\theta}\left(-\sin\theta\odv{h}{x}\right) \\
+		&= -\sin\odv{}{\theta}\left(\theta\odv{h}{x}\right) - \odv{}{\theta}(\sin\theta)\odv{h}{x} \\
+		&= -\sin\theta\odv{^2h}{x^2}\odv{x}{\theta} - \cos\theta\odv{h}{x} \\
+		&= -\sin\theta\odv{^2h}{x^2}\odv{}{\theta}(\cos\theta) - \cos\theta\odv{h}{x} \\
+		\odv{^2h}{\theta^2} &= \sin^2\theta\odv{^2h}{x^2} - \cos\theta\odv{h}{x} \\
+	\end{align*}
+
+	Sijoitetaan yhtälöön:
+	
+	\begin{align*}
+		\frac{1}{\sin\theta}\left[\sin\theta\left(\sin^2\theta\odv{^2h}{x^2} - \cos\theta\odv{h}{x}\right) + \cos\theta\left(-\sin\theta\odv{h}{x}\right)\right] + \left(K - \frac{m^2}{\sin^2\theta}\right)h &= 0 \\
+		\sin^2\theta\odv{^2h}{x^2} - \cos\theta\odv{h}{x} - \cos\theta\odv{h}{x} + \left(K - \frac{m^2}{\sin^2\theta}\right)h &= 0 \\
+		\sin^2\theta\odv{^2h}{x^2} - 2\cos\theta\odv{h}{x} + \left(K - \frac{m^2}{\sin^2\theta}\right)h &= 0 \\
+		\intertext{Ilmaistaan sinit kosinin avulla:}
+		(1 - \cos^2\theta)\odv{^2h}{x^2} - 2\cos\theta\odv{h}{x} + \left(K - \frac{m^2}{1 - \cos^2\theta}\right)h &= 0 \\
+		\intertext{Tiedetään: $\cos\theta = x$:}
+		(1 - x^2)\odv{^2h}{x^2} - 2x\odv{h}{x} + \left(K - \frac{m^2}{1 - x^2}\right)h &= 0 \\
+		\intertext{Mikäli $K = l(l + 1)$ (voidaan osoittaa, että vain $K = l(l + 1)$ tuottaa fysikaalisesti järkeviä ratkaisuja), saadaan Legendren liittoyhtälö:}
+		(1 - x^2)\odv{^2h}{x^2} - 2x\odv{h}{x} + \left(l(l + 1) - \frac{m^2}{1 - x^2}\right)h &= 0
+	\end{align*}
+
+	Toisen yhtälön ratkaisu on siis legendren liittofunktio:
+	
+	\begin{equation}
+		\boxed{h(\theta) = C_2P_l^m(x) = C_2P_l^m(\cos\theta)}
+	\end{equation}
+
+	Helmholtzin yhtälön radiaalisen yhtälön ratkaisu on siis tulo $g(\varphi)h(\theta)$, eli:
+	
+	\begin{equation*}
+		f(\varphi, \theta) = C_1C_2e^{im\varphi}P_l^m(\cos\theta)
+	\end{equation*}
+
+	Kun ratkaisua $f$ kerrotaan normalisaatiokertoimella $(-1)^m\sqrt{\frac{(2l + 1)(l - m)!}{4\pi(l + m)!}}$, saadaan nk. Palloharmonisen funktiot $Y_l^m(\theta, \varphi)$:
+	
+	\begin{equation}
+		\boxed{Y_l^m(\theta, \varphi) = (-1)^m\sqrt{\frac{(2l + 1)(l - m)!}{4\pi(l + m)!}}P_l^m(\cos\theta)e^{im\varphi}}
+	\end{equation}
+	
+	Tuloksesta (\ref{assocleg}) seuraa palloharmonisille funktioille:
+	
+	\begin{equation}
+		\boxed{Y_l^{-m}(\theta, \varphi) = (-1)^m[Y_l^m(\theta, \varphi)]^{*}}
+	\end{equation}
+	
+	\subsubsection{Laguerren yhtälö}
+	
+	\begin{equation}
+		x\odv{^2f}{x^2} + (1 - x)\odv{f}{x} + n f = 0
+	\end{equation}
+
+	Ratkaistaan potenssisarjayritteellä $f(x) = \sum_{k = 0}^{\infty}f_kx^{k + r}$. Derivaatat Besselin yhtälön ratkaisusta. Saadaan:
+	
+	\begin{align*}
+		x\sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 2} + (1 - x)\sum_{k = 0}^{\infty}f_k(k + r)x^{k + r - 1} + n\sum_{k = 0}^{\infty}f_kx^{k + r} &= 0 \\
+		\intertext{Kerrotaan eutkertoimet summien sisään. Termistä $(1 - x)$ tulee kaksi summaa:}
+		\sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 1} + \sum_{k = 0}^{\infty}f_k(k + r)x^{k + r - 1} - \sum_{k = 0}^{\infty}f_k(k + r)x^{k + r} + \sum_{k = 0}^{\infty}nf_kx^{k + r} &= 0 \\
+		\intertext{Yhdistetään summat, joissa $x$:n potenssi on sama:}
+		\sum_{k = 0}^{\infty}\Big[(k + r)(k + r - 1) + (k + r)\Big]f_kx^{k + r - 1} + \sum_{k = 0}^{\infty}\Big[n - (k + r)\Big]f_kx^{k + r} &= 0 \\
+		\sum_{k = 0}^{\infty}\Big[(k + r)(k + r - \cancel{1} + \cancel{1})\Big]f_kx^{k + r - 1} + \sum_{k = 0}^{\infty}(n - k - r)f_kx^{k + r} &= 0 \\
+		\sum_{k = 0}^{\infty}(k + r)^2f_kx^{k + r - 1} + \sum_{k = 0}^{\infty}(n - k - r)f_kx^{k + r} &= 0 \\
+		\intertext{Otetaan ensimmäisestä summasta ensimmäinen termi ulos:}
+		(0 + r)^2f_0x^{0 + r - 1} + \sum_{k = 1}^{\infty}(k + r)^2f_kx^{k + r - 1} + \sum_{k = 0}^{\infty}(n - k - r)f_kx^{k + r} &= 0 \\
+		r^2f_0x^{r - 1} + \sum_{k = 1}^{\infty}(k + r)^2f_kx^{k + r - 1} + \sum_{k = 0}^{\infty}(n - k - r)f_kx^{k + r} &= 0 \\
+		\intertext{Merkitään enimmäisessä summassa $k = j + 1 \iff j = k - 1$ ja nimetään toisen summan indeksit uudelleen $k\to j$:}
+		r^2f_0x^{r - 1} + \sum_{j = 0}^{\infty}(j + r + 1)^2f_{j + 1}x^{j + r} + \sum_{j = 0}^{\infty}(n - j - r)f_jx^{j + r} &= 0 \\
+		\intertext{Nyt summat voidaan yhdistää:}
+		r^2f_0x^{r - 1} + \sum_{j = 0}^{\infty}\Big[(j + r + 1)^2f_{j + 1} + (n - j - r)f_j\Big]x^{j + r} &= 0
+	\end{align*}
+
+	\noindent Kun vasemman puolen sarja samaistetaan oikean puolen nollaksisarjan kanssa, saadaan seuraavat ehdot:
+	
+	\begin{equation*}
+		r^2f_0x^{r - 1} = 0 \ \ \ \ \land \ \ \ \ (j + r + 1)^2f_{j + 1} + (n - j - r)f_j = 0
+	\end{equation*}
+
+	Ensimmäinen ehto, indeksiyhtälö, tuottaa kaksoisjuuren $r = 0$, jolloin tiedetään, että sarjakehitelmästä saadaan vain yksi lineaarisesti riippumaton ratkaisu. Tarkastellaan toista ehtoa:
+	
+	\begin{equation*}
+		(j + r + 1)^2f_{j + 1} + (n - j - r)f_j = 0
+	\end{equation*}
+
+	\noindent Ratkaistaan $f_{j + 1}$:
+	
+	\begin{align*}
+		f_{j + 1} &= \frac{-(n - j - r)}{(j + r + 1)^2}f_j \\
+		f_{j + 1} &= \frac{(j + r - n)}{(j + r + 1)^2}f_j \\
+		\intertext{Sijoitetaan $r = 0$:}
+		f_{j + 1} &= \frac{(j - n)}{(j + 1)^2}f_j \\
+		\intertext{Sovelletaan rekursiorelaatiota $f_j$:lle:}
+		f_{j + 1} &= \frac{(j - n)}{(j + 1)^2}\frac{(j - n - 1)}{j^2}f_{j - 1}
+	\end{align*}
+
+	\noindent Kun rekursiorelaatiota iteroidaan $f_1$:een saakka saadaan:
+	
+	\begin{equation*}
+		f_{j + 1} = \frac{(j - n)}{(j + 1)^2}\frac{(j - n - 1)}{j^2}\frac{(j - n - 2)}{(j - 1)^2}\dots\frac{1 - n}{1^2}f_{0}
+	\end{equation*}
+	
+	\noindent Tiedetään, että kussakin tulossa on yhteensä $j + 1$ termiä, jolloin ne voidaan ilmaista kompaktimmin:
+	
+	\begin{align*}
+		f_{j + 1} &= \frac{(-n)\risingfact{j+1}}{[(j + 1)!]^2}f_{0} \\
+		\intertext{Merkitään jälleen $k = j + 1$:}
+		f_{k} &= \frac{(-n)\risingfact{k}}{(k!)^2}f_{0} \\
+		\intertext{Otetaan $-1$ ulos nousevasta Pochhammer-symbolista, jolloin se muuttuu laskevaksi:}
+		f_{k} &= \frac{(-1)^kn\fallingfact{k}}{(k!)^2}f_{0} \\
+		\intertext{Laskevalle Pochhamer-symbolille pätee: $\frac{a\fallingfact{b}}{b!} = \binom{a}{b}$. Saadaan:}
+		f_{k} &= \frac{(-1)^k\binom{n}{k}}{k!}f_{0} \\
+	\end{align*}
+
+	Sijoitetaan kertoimet sarjayritteeseen:
+	
+	\begin{align*}
+		f(x) &= \sum_{k = 0}^{\infty}f_kx^{k + 0} \\
+		f(x) &= \sum_{k = 0}^{\infty}\frac{(-1)^k\binom{n}{k}}{k!}f_{0}x^{k} \\
+		\intertext{On olemassa eri normituksia $b_0$:lle. Perinteisesti $b_0 = 0$. Fysiikassa puolestaan käytetään usein normitusta $b_0 = n!$:}
+		f(x) = \sum_{k = 0}^{\infty}\frac{(-1)^k}{k!}\binom{n}{k}x^{k} \ \ &\lor \ \ f(x) = \sum_{k = 0}^{\infty}\frac{(-1)^k}{k!}\binom{n}{k}n!x^{k} \\
+		&\lor \ \ f(x) = n!\sum_{k = 0}^{\infty}\frac{(-1)^k}{k!}\binom{n}{k}x^{k} \\
+	\end{align*}
+
+	Ollaan siis löydetty yksi lineaarisesti riippumaton ratkaisu Laguerren yhtälölle. Mikäli $n$ on kokonaisluku (niinkuin se sovelluksisa onkin), päättyy sarja, sillä rekursiorelaatio $f_{j + 1} = \frac{(j - n)}{(j + 1)^2}f_j$ menee nollaan, kun $j = n$. Tällöin jäljelle jäävää lauseketta kutsutaan Laguerren polynomiksi $L_n(x)$:
+	
+	\begin{equation}
+		\boxed{L_n(x) = \sum_{k = 0}^{\infty}\frac{(-1)^k}{k!}\binom{n}{k}x^{k} = n!\sum_{k = 0}^{\infty}\frac{(-1)^k}{(k!)^2(n - k)!}x^{k}}
+	\end{equation}
+	
+	Ja vastaavasti fysiikassa käytetyllä konventiolla kirjoitettuna:
+	
+	\begin{equation}
+		\boxed{\bar{L}_n(x) = n!\sum_{k = 0}^{n}\frac{(-1)^k}{k!}\binom{n}{k}x^{k} = (n!)^2\sum_{k = 0}^{n}\frac{(-1)^k}{(k!)^2(n - k)!}x^k}
+	\end{equation}
+
+	Tavallisen ja fysiikan kovention välillä on siis relaatio:
+	
+	\begin{equation}
+		\boxed{\bar{L}_n(x) = n!L_n(x)}
+	\end{equation}
+
+	Kun tarkastellaan Laguerren yhtälöä havaitaan, että se vastaa konfluenttia hypergeometrista yhtälöä parametrien arvoilla $a = -n$ ja $c = 1$. Siispä sille voidaan löytää vaihtoehtoinen merkintätapa ilmaisemalla se ensimmäisen lajin konfluentin hypergeometrisen funktion nk. Kummerin funktion avulla:
+	
+	\begin{align*}
+		{_1{F}_1}(-n; 1; x) &= \sum_{k = 0}^{\infty}\frac{(-n)\risingfact{k}}{k!1\risingfact{k}}x^k \\
+		\intertext{$1\risingfact{k}$ on yksinkertaisesti $k!$. Otetaan miinusmerkki ulos nousevasta Pochhammer-symbolista, jolloin se muuttuu laskevaksi:}
+		{_1{F}_1}(-n; 1; x) &= \sum_{k = 0}^{\infty}\frac{(-1)^kn\fallingfact{k}}{(k!)^2}x^k \\
+		\intertext{Laskevalle Pochhamer-symbolille pätee: $\frac{a\fallingfact{b}}{b!} = \binom{a}{b}$. Saadaan:}
+		{_1{F}_1}(-n; 1; x) &= \sum_{k = 0}^{\infty}\frac{(-1)^k\binom{n}{k}}{k!}x^k \\
+		{_1{F}_1}(-n; 1; x) &= \sum_{k = 0}^{\infty}\frac{(-1)^k}{k!}\binom{n}{k}x^k \\
+		\intertext{Kun $k > n$, menee binomikerroin nollaksi, jolloin sarja redusoituu summaksi:}
+		{_1{F}_1}(-n; 1; x) &= \sum_{k = 0}^{n}\frac{(-1)^k}{k!}\binom{n}{k}x^k \\
+		\intertext{Tunnistetaan yhtälön oikealta puolelta Laguerren polynomi $L_n(x)$, jolloin saadaan yhteys:}
+		L_n(x) &= {_1{F}_1}(-n; 1; x) = M(-n, 1, x)
+	\end{align*}
+
+	Todetaan siis, että konventiosta riippuen Laguerren polynomit voidaan ilmaista ensimmäisen lajin konfluentteina hypergeometrisina funktioina seuraavasti:
+	
+	\begin{equation}
+		\boxed{L_n(x) = {_1{F}_1}(-n; 1; x) = M(-n, 1, x) \ \ \ \ \bar{L}_n(x) = n!\,{_1{F}_1}(-n; 1; x) = n!M(-n, 1, x)}
+	\end{equation}
+
+	Laguerren yhtälön lineaarisesti riippumaton ratkaisu on selvästi konfluentin hypergeometrisen yhtälön lineaarisesti riippumaton ratkaisu $x^{1-c}{_1{F}_1}(1 + a - c; 2 - c; x)$, nk. toisen lajin hyoergeometrinen funktio tai Tricomin funktio. Jälleen $a = -n$ ja $c = 1$, jolloin lineaarisesti riippumattomaksi ratkaisuksi saadaan:
+	
+	\begin{align*}
+		x^{1-c}{_1{F}_1}(1 + a - c; 2 - c; x) &= x^{1-1}{_1{F}_1}(1 - n - 1; 2 - 1; x) \\
+		x^{1-c}{_1{F}_1}(1 + a - c; 2 - c; x) &= {_1{F}_1}(- n; 1; x)
+	\end{align*}
+
+	Havaitaan, että lineaarisesti riippumaton ratkaisu redusoituu alkuperäiseksi ratkaisuksi, jolloin yhtälölle ei löydy muita ratkaisuja. [VOIKO OLLA?] Ollaan siis ratkaistu Laguerren yhtälö:
+	
+	\begin{equation}
+		\boxed{f_n(x) = C_1L_n(x) = C_1\,{_1{F}_1}(-n; 1; x) \ \ \ \ \lor \ \ \ \ f_n(x) = C_1\bar{L}_n(x) = C_1n!\,{_1{F}_1}(-n; 1; x)}
+	\end{equation}
+	
+	\subsubsection{Laguerren liittoyhtälö}
+	
+	\begin{equation}
+		x\odv{^2f}{x^2} + (\alpha + 1 - x)\odv{f}{x} + nf = 0
+	\end{equation}
+
+	Laguerren liittoyhtälö on Laguerren yhtälön yleisempi muoto, joka redusoituu Laguerren yhtälöksi, kun $\alpha = 0$. Yhtälö voitaisiin ratkaista sarjayritemenetelmällä, mutta sen sijaan tunnistetaan liittoyhtälö konfluentiksi hypergeometriseksi yhtälöksi, jossa $a = -n$ ja $c = \alpha + 1$. Tällöin yhtälön ratkaisevat ensimmäisen ja toisen lajin konfluentit hypergeometriset funktiot:
+	
+	\begin{align*}
+		f(x) &= {_1{F}_1}(-n; \alpha + 1; x) \\
+		f(x) &= \sum_{k = 0}^{\infty}\frac{(-n)\risingfact{k}}{k!(\alpha + 1)\risingfact{k}}x^k \\
+		\intertext{Otetaan miinusmerkki ulos osoittajan nousevasta Pochhammer-symbolista, jolloin se muuttuu laskevaksi:}
+		f(x) &= \sum_{k = 0}^{\infty}\frac{(-1)^kn\fallingfact{k}}{k!(\alpha + 1)\risingfact{k}}x^k \\
+		\intertext{Laskevalle Pochhamer-symbolille pätee: $\frac{a\fallingfact{b}}{b!} = \binom{a}{b}$. Vastaavasti nousevalle Pochammer-symbolille pätee: $\frac{a\risingfact{b}}{b!} = \binom{a + b - 1}{b}$. Saadaan:}
+		f(x) &= \sum_{k = 0}^{\infty}\frac{(-1)^k}{\binom{\alpha + 1 + k - 1}{k}k!}\binom{n}{k}x^k \\
+		f(x) &= \sum_{k = 0}^{\infty}\frac{(-1)^k}{\binom{\alpha + k}{k}k!}\binom{n}{k}x^k \\
+		f(x) &= \sum_{k = 0}^{\infty}\frac{(-1)^k}{k!}\frac{\binom{n}{k}}{\binom{\alpha + k}{k}}x^k \\
+		f(x) &= \sum_{k = 0}^{\infty}\frac{(-1)^k}{k!}\frac{\frac{n!}{k!(n - k)!}}{\frac{(\alpha + k)!}{k!(\alpha + k - k)!}}x^k \\
+		f(x) &= \sum_{k = 0}^{\infty}\frac{(-1)^k}{k!}\frac{n!}{\cancel{k!}(n - k)!}\frac{\cancel{k!}\alpha!}{(\alpha + k)!}x^k \\
+		f(x) &= \sum_{k = 0}^{\infty}(-1)^k\frac{n!}{k!(n - k)!}\frac{\alpha!}{(\alpha + k)!}x^k
+	\end{align*}
+
+	Laguerren liittofunktioiden $L_{n}^{\alpha}(x)$ normalisaatio on valittu siten, että hypergeometrista funktiota kertoo vakiotermi $\binom{n + \alpha}{\alpha}$, jolloin saadaan:
+	
+	\begin{align}
+		L_n^{\alpha}(x) &= \binom{n + \alpha}{\alpha}\sum_{k = 0}^{\infty}(-1)^k\frac{n!}{k!(n - k)!}\frac{\alpha!}{(\alpha + k)!}x^k \\
+		L_n^{\alpha}(x) &= \sum_{k = 0}^{\infty}(-1)^k\frac{n!}{k!(n - k)!}\frac{\alpha!}{(\alpha + k)!}\binom{n + \alpha}{\alpha}x^k \\
+		L_n^{\alpha}(x) &= \sum_{k = 0}^{\infty}(-1)^k\frac{\cancel{n!}}{k!(n - k)!}\frac{\alpha!}{(\alpha + k)!}\frac{(n + \alpha)!}{\cancel{n!}(n + \alpha - n)!}x^k \\
+		L_n^{\alpha}(x) &= \sum_{k = 0}^{\infty}(-1)^k\frac{1}{k!(n - k)!}\frac{\cancel{\alpha!}}{(\alpha + k)!}\frac{(n + \alpha)!}{\cancel{\alpha!}}x^k \\
+		L_n^{\alpha}(x) &= \sum_{k = 0}^{\infty}(-1)^k\frac{1}{k!(n - k)!}\frac{1}{(\alpha + k)!}(n + \alpha)!x^k \\
+		L_n^{\alpha}(x) &= \sum_{k = 0}^{\infty}(-1)^k\frac{(n + \alpha)!}{k!(n - k)!(\alpha + k)!}x^k \\
+		\intertext{Kun tunnistetaan $\binom{n + \alpha}{n - k} = \frac{(n + \alpha)!}{(n - k)!(n + \alpha - n + k)!} = \frac{(n + \alpha)!}{(n - k)!(\alpha + k)!}$ saadaan Laguerren liittofunktioille esitys myös binomikertoimien suhteen:}
+		L_n^{\alpha}(x) &= \sum_{k = 0}^{\infty}\frac{(-1)^k}{k!}\binom{n + \alpha}{n - k}x^k \\
+		\intertext{Termit menevät nollaksi, kun $k > n$, jolloin sarja supistuu summaksi:}
+		L_n^{\alpha}(x) &= \sum_{k = 0}^{n}\frac{(-1)^k}{k!}\binom{n + \alpha}{n - k}x^k \\
+	\end{align}
+
+	On siis saatu kuvaus nk. Laguerren liittofunktioille:
+	
+	\begin{equation}
+		\boxed{
+		\begin{aligned}
+			L_n^\alpha(x) &= \sum_{k = 0}^{n}\frac{(-1)^k}{k!}\binom{n + \alpha}{n - k}x^k = \sum_{k = 0}^{n}(-1)^k\frac{(n + \alpha)!}{k!(n - k)!(\alpha + k)!}x^k \\
+			&= \binom{n + \alpha}{\alpha}{_1{F}_1}(-n; \alpha + 1; x)	
+		\end{aligned}
+		}
+	\end{equation}
+
+	Vastaavasti kuin tavallisille Laguerren polynomeille on fysiikassa käytössä konventio, jossa Laguerren liittopolynomit on skaalattu termillä $(n + \alpha)!$:
+	
+	\begin{equation}
+		\boxed{
+		\begin{aligned}
+			\bar{L}_n^\alpha(x) &= (n + \alpha)!\sum_{k = 0}^{n}\frac{(-1)^k}{k!}\binom{n + \alpha}{n - k}x^k = \sum_{k = 0}^{n}(-1)^k\frac{[(n + \alpha)!]^2}{k!(n - k)!(\alpha + k)!}x^k \\
+			 &= (n + \alpha)!\binom{n + \alpha}{\alpha}{_1{F}_1}(-n; \alpha + 1; x)
+		\end{aligned}
+		}
+	\end{equation}
+
+	Tavallisen konvention ja fysiikkakonvention välillä on siis relaatio:
+	
+	\begin{equation}
+		\boxed{\bar{L}_n^\alpha(x) = (n + \alpha)!L_n^\alpha(x)}
+	\end{equation}
+
+	Vaihtoehtoisesti Laguerren liittofunktiot voidaan johtaa suoraan tavallisista Laguerren funktioista seuraavan määritelmän avulla:
+	
+	\begin{equation}
+		\boxed{L_{n}^{\alpha}(x) = (-1)^\alpha\odv{^\alpha}{x^\alpha}L_{n+\alpha}(x)}
+	\end{equation}
+
+	Sijoitetaan $L_{\alpha + n}(x)$ ja derivoidaan:
+	
+	\begin{align*}
+		L_{n}^{\alpha}(x) &= (-1)^\alpha\odv{^\alpha}{x^\alpha}\left[\sum_{k = 0}^{\infty}\frac{(-1)^k}{k!}\binom{n + \alpha}{k}x^{k}\right] \\
+		\intertext{Ainoa $x$-riippuvainen termi on $x^k$:}
+		L_{n}^{\alpha}(x) &= (-1)^\alpha\sum_{k = 0}^{\infty}\frac{(-1)^k}{k!}\binom{n + \alpha}{k}\odv{^\alpha}{x^\alpha}(x^{k}) \\
+		\intertext{Mikäli $\alpha > k$, katoaa $x^k$ kokonaan kun sitä derivoidaan. Summa siis alkaa termistä $k = \alpha$. Kun monomia $x^k$ derivoidaan $\alpha$ kertaa tulee sen eteen kertoimeksi $k\fallingfact{\alpha}$ ja sen eksponentti pienenee $\alpha$:n verran: $x^{k - \alpha}$:}
+		L_{n}^{\alpha}(x) &= (-1)^\alpha\sum_{k = \alpha}^{\infty}\frac{(-1)^k}{k!}\binom{n + \alpha}{k}k\fallingfact{\alpha}x^{k-\alpha} \\
+		\intertext{Ilmaistaan laskeva Pochhammer-symboli tavallisten kertomien osamääränä: $a\fallingfact{b} = \frac{a!}{(a - b)!}$. Otetaan lisäksi vakio $(-1)^\alpha$ summan sisään:}
+		L_{n}^{\alpha}(x) &= \sum_{k = \alpha}^{\infty}\frac{(-1)^{k + \alpha}}{\cancel{k!}}\binom{n + \alpha}{k}\frac{\cancel{k!}}{(k - \alpha)!}x^{k-\alpha} \\
+		L_{n}^{\alpha}(x) &= \sum_{k = \alpha}^{\infty}(-1)^{k + \alpha}\frac{(n + \alpha)!}{k!(n + \alpha - k)!}\frac{1}{(k - \alpha)!}x^{k-\alpha} \\
+		\intertext{Otetaan käyttöön uusi indeksi $j = k - \alpha \iff k = j + \alpha$, jolloin summa saadaan jälleen alkamaan nollasta:}
+		L_{n}^{\alpha}(x) &= \sum_{j = 0}^{\infty}(-1)^{j + \alpha + \alpha}\frac{(n + \alpha)!}{(j + \alpha)!(n + \alpha - j - \alpha)!}\frac{1}{(j + \alpha - \alpha)!}x^{j} \\
+		L_{n}^{\alpha}(x) &= \sum_{j = 0}^{\infty}(-1)^{j + 2\alpha}\frac{(n + \alpha)!}{(j + \alpha)!(n - j)!}\frac{1}{j!}x^{j} \\
+		\intertext{Tunnistetaan jälleen $\frac{(n + \alpha)!}{(j + \alpha)!(n - j)!} = \binom{n + \alpha}{n - \alpha}$. Lisäksi $(-1)^{j + 2\alpha} = (-1)^j(-1)^{2\alpha}$. Koska $2\alpha$ on parillinen luku, on $(-1)^{2\alpha}$ aina 1. Saadaan:}
+		L_{n}^{\alpha}(x) &= \sum_{j = 0}^{\infty}\frac{(-1)^{j}}{j!}\binom{n + \alpha}{n - \alpha}x^{j}
+	\end{align*}
+
+	\noindent Tunnistetaan näin saatu muoto yhteneväksi aiemman muodon kanssa. \\
+	
+	Laguerren liittoyhtälön lineaarisesti riippumaton ratkaisu $g(x)$ saadaan toisen lajin konfluentista hypergeometrisesta funktiosta parametreillä $a = -n$ ja $c = \alpha + 1$:
+	
+	\begin{align*}
+		g(x) &= x^{1 - c}{_1{F}_1}(1 + a - c; 2 - c; x) \\
+		g(x) &= x^{1 - \alpha - 1}{_1{F}_1}(1 - n - \alpha - 1; 2 - \alpha - 1; x) \\
+		g(x) &= x^{-\alpha}{_1{F}_1}(- n - \alpha; 1 - \alpha ; x) \\
+		g(x) &= x^{-\alpha}\sum_{k = 0}^{\infty}\frac{(-n-\alpha)\risingfact{k}}{k!(1 - \alpha)\risingfact{k}}x^k \\
+		\intertext{Otetaan miinusmerkki ulos kustakin nousevasta Pochhammer-symbolista, jolloin ne muuttuvat laskeviksi:}
+		g(x) &= x^{-\alpha}\sum_{k = 0}^{\infty}\frac{\cancel{(-1)^k}(n+\alpha)\fallingfact{k}}{k!\cancel{(-1)^k}(\alpha - 1)\fallingfact{k}}x^k \\
+		\intertext{Laskevalle Pochhamer-symbolille pätee: $\frac{a\fallingfact{b}}{b!} = \binom{a}{b}$. Saadaan:}
+		g(x) &= x^{-\alpha}\sum_{k = 0}^{\infty}\frac{\binom{n + \alpha}{k}}{\binom{\alpha - 1}{k}k!}x^k \\
+		g(x) &= x^{-\alpha}\sum_{k = 0}^{\infty}\frac{1}{k!}\frac{\binom{n + \alpha}{k}}{\binom{\alpha - 1}{k}}x^k \\
+		g(x) &= x^{-\alpha}\sum_{k = 0}^{\infty}\frac{1}{k!}\frac{\frac{(n + \alpha)!}{k!(n + \alpha - k)!}}{\frac{(\alpha - 1)!}{k!(\alpha - 1 - k)!}}x^k \\
+		g(x) &= x^{-\alpha}\sum_{k = 0}^{\infty}\frac{1}{k!}\frac{(n + \alpha)!}{\cancel{k!}(n + \alpha - k)!}\frac{\cancel{k!}(\alpha - 1 - k)!}{(\alpha - 1)!}x^k \\
+		g(x) &= x^{-\alpha}\sum_{k = 0}^{\infty}\frac{1}{k!}\frac{(n + \alpha)!}{(n + \alpha - k)!}\frac{(\alpha - 1 - k)!}{(\alpha - 1)!}x^k \\
+		\intertext{Koska nyt $\alpha$ voi olla mikä tahansa reaaliluku, korvataan kertomat Gammafunktiolla, jolle pätee $\Gamma(k + 1) = k!$, kun $k\in\mathbb{Z}$:}
+		g(x) &= x^{-\alpha}\sum_{k = 0}^{\infty}\frac{1}{k!}\frac{\Gamma(n + \alpha + 1)}{\Gamma(n + \alpha + 1 - k)}\frac{\Gamma(\alpha - k)}{\Gamma(\alpha)}x^k \\
+		\intertext{Otetaan vakiot summan ulkopuolelle:}
+		g(x) &= \frac{\Gamma(n + \alpha + 1)}{\Gamma(\alpha)}x^{-\alpha}\sum_{k = 0}^{\infty}\frac{\Gamma(\alpha - k)}{k!\Gamma(\alpha - k + n + 1)}x^k \\
+	\end{align*}
+
+	Ollaan siis läydetty lineaarisesti riippumaton ratkaisu $g(x)$ Laguerren liittoyhtälölle. Tällä funktiolla ei ole [AINAKAAN MINUN TIETÄÄKSENI] omaa erillistä nimeä, sillä se voidaan esittää toisen lajin konfluenttin hypergeometrisen funktion avulla, mutta merkitään sitä täydellisyyden vuoksi $M_{n}^{\alpha}(x)$:
+	
+	\begin{equation}
+		\boxed{M_n^{\alpha}(x) = \frac{\Gamma(n + \alpha + 1)}{\Gamma(\alpha)}x^{-\alpha}\sum_{k = 0}^{\infty}\frac{\Gamma(\alpha - k)}{k!\Gamma(\alpha - k + n + 1)}x^k = x^{-\alpha}{_1{F}_1}(- n - \alpha; 1 - \alpha ; x)}
+	\end{equation}
+
+	Ollaan siis ratkaistu Laguerren liittoyhtälö, jonka yleinen ratkaisu on lineaarikombinaatio saaduista ratkaisuista:
+
+	\begin{equation}
+		\boxed{f_{n}^{\alpha}(x) = C_1L_{n}^\alpha(x) + C_2M_{n}^{\alpha}(x) = C_1L_{n}^\alpha(x) + C_2x^{-\alpha}{_1{F}_1}(- n - \alpha; 1 - \alpha ; x)}
+	\end{equation} 
+
+	Vastaavasti fyysikkokonventiolla ratkaisu olisi muotoa:
+	
+	\begin{equation}
+		\boxed{f_{n}^{\alpha}(x) = C_1(n + \alpha)!L_{n}^\alpha(x) + C_2M_{n}^{\alpha}(x) = C_1(n + \alpha)!L_{n}^\alpha(x) + C_2x^{-\alpha}{_1{F}_1}(- n - \alpha; 1 - \alpha ; x)}
+	\end{equation} 
+
+	On huomattavaa, että kun $\alpha = 0$, redusoituu ratkaisu tavallisen Laguerren yhtälön ratkaisuksi, mikä onkin toivottavaa.
+	
+	\subsubsection{Hermiten yhtälö}
+	
+	\begin{equation}
+		\odv{^2f}{x^2} - 2x\odv{f}{x} + 2nf = 0
+	\end{equation}
+
+	Ratkaistaan potenssisarjayritteellä $f(x) = \sum_{k = 0}^{\infty}f_kx^{k + r}$. Derivaatat Besselin yhtälön ratkaisusta. Saadaan:
+	
+	\begin{equation*}
+		\sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 2} - 2x\sum_{k = 0}^{\infty}f_k(k + r)x^{k + r - 1} + 2n\sum_{k = 0}^{\infty}f_kx^{k + r} = 0
+	\end{equation*}
+	
+	\noindent Kerrotaan eutkertoimet summien sisään:
+	
+	\begin{align*}
+		\sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 2} - \sum_{k = 0}^{\infty}2f_k(k + r)x^{k + r} + \sum_{k = 0}^{\infty}2nf_kx^{k + r} = 0
+	\end{align*}
+
+	\noindent Yhdistetään kaksi viimeistä summaa ja otetaan ensimmäisestä summasta kaksi ensimmäistä termiä ulos:
+
+	\begin{equation*}
+		(0 + r)(0 + r - 1)f_0x^{0 + r - 2} + (1 + r)(1 + r - 1)f_1x^{1 + r - 2} + \sum_{k = 2}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 2} + \sum_{k = 0}^{\infty}2(n - k - r)f_kx^{k + r} = 0
+	\end{equation*}
+
+	\begin{align*}
+		r(r - 1)f_0x^{r - 2}+ r(r + 1)f_1x^{r - 1} + \sum_{k = 2}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 2} + \sum_{k = 0}^{\infty}2(n-k-r)f_kx^{k + r} &= 0 \\
+		\intertext{Merkitään enimmäisessä summassa $k = j + 2 \iff j = k - 2$ ja nimetään toisen summan indeksit uudelleen $k\to j$:}
+		r(r - 1)f_0x^{r - 2}+ r(r + 1)f_1x^{r - 1} + \sum_{j = 0}^{\infty}f_{j + 2}(j + 2 + r)(j + 2 + r - 1)x^{j + r} + \sum_{j = 0}^{\infty}2(n-j-r)f_jx^{j + r} &= 0 \\
+		\intertext{Nyt summat voidaan yhdistää:}
+		r(r - 1)f_0x^{r - 2}+ r(r + 1)f_1x^{r - 1} + \sum_{j = 0}^{\infty}\Big[(j + 2 + r)(j + 1 + r)f_{j + 2} + 2(n - j - r)f_j\Big]x^{j + r} &= 0 \\
+	\end{align*}
+
+	\noindent Kun vasemman puolen sarja samaistetaan oikena puolen nollasarjan kanssa, saadaan seuraavat ehdot:
+	
+	\begin{equation*}
+		r(r - 1)f_0 = 0 \ \ \ \ \land \ \ \ \ r(r + 1)f_1 = 0 \ \ \ \ \land \ \ \ \ (j + 2 + r)(j + 1 + r)f_{j + 2} + 2(n - j - r)f_j = 0
+	\end{equation*}
+
+	Vastaavalla argumentoinnilla kuin Legendren yhtälölle, voidaan valita $r = 0$ ja riippuen onko $f_0 = 0$ vai $f_1 = 0$, ratkaisussa on vain parittomia tai parillisia termejä. Tarkastllaan kolmatta ehtoa:
+	
+	\begin{equation*}
+		(j + 2 + r)(j + 1 + r)f_{j + 2} + 2(n - j - r)f_j = 0
+	\end{equation*}
+
+	Ratkaistaan $f_{j + 2}$:
+	
+	\begin{align*}
+		f_{j + 2} &= -\frac{2(n - j - r)}{(j + 2 + r)(j + 1 + r)}f_j \\
+		\intertext{Sijoitetaan $r = 0$:}
+		f_{j + 2} &= -\frac{2(n - j)}{(j + 2)(j + 1)}f_j
+	\end{align*}
+
+	Vastaavasti kuin Legendren yhtälölle koska rekursiorelaatio antaa yhteyden kertoimen $f_j$ ja $f_{j + 2}$ välille, ovat parilliset ja parittomat kertoimet täysin toisistaan riippumattomia, jolloin vaikka esim. parilliset kertoimet päättyisivät, voivat parittomat jatkua loputtomiin ja toisinpäin. On huomattavaa, että mikäli $n = j$, menee kerroin $f_{j + 2}$ nollaan, jolloin sarja päättyy näiden termien osalta. Tämä toki tapahtuu vain, mikäli $n$ on kokonaisluku, sillä $j$ on kokonaisluku. Sarjoissa parilliset ja parittomat kertoimet ovat kuitenkin toisistaan riippumattomia, jolloin jos $n$ on parillinen, päättyy parillinen sarja, mutta pariton sarja jatkuu loputtomiin ja toisinpäin. Siispä voidaan todeta, että Hermiten yhtälön toisen ratkaisun sarja päättyy, mikäli $n$ on kokonaisluku (Tällöin ratkaisuja kutsutaan Hermiten polynomeiksi) ja jatkuu loputtomiin, mikäli $n$ ei ole kokonaisluku (Tällöin ratkaisuja kutsutaan Hermiten funktioiksi). Jatketaan tarkastelua olettamalla, että $n$ on kokonaisluku, sillä tämä on käytännössä aina totta fysiikan sovelluksissa.
+	
+	Vastaavasti kuin Legendren yhtälölle koska $n$:n oletetaan olevan kokonaisluku, päättyy rekursiorelaatio, mikäli $j = n$, sillä tällöin $n - j = 0$. Jotta $j$ voisi koskaan olla $n$, tulee $j$:n ja $n$:n pariteetin olla samat, sillä $j$ kasvaa aina kahdella, jolloin jos $n$ on parillinen, $j$ saavuttaa sen vain mikäli rekursiorelaatio on alkanut $f_0$:sta (eli $j$ on parillinen) ja vastaaavasti jos $n$ on pariton, $j$ saavuttaa sen mikäli rekursiorelaatio on alkanut $f_1$:stä (eli $j$ on pariton). Koska $ln$:n ja $j$:n pariteetit ovat samat, on niiden erotus $n - j$ aina parillinen luku $2k$ (Todistus Legendren yhtälön ratkaisussa). Tehdään siis sijoitus $n - j = 2k \iff j = n - 2k$:
+	
+	\begin{align*}
+		f_{n - 2k + 2} &= -\frac{2(2k)}{(n - 2k + 2)(n - 2k + 1)}f_{n - 2k}
+		\intertext{Nyt jos rekursiorelaatiota sovellettaisiin ketjun loppuun asti, ei tiedettäisi, kuinka monta termiä tulossa on. Ratkaistaan sen sijaan rekursiorelaatio $f_{n - 2k}$:n suhteen:}
+		f_{n - 2k} &= -\frac{(n - 2k + 1)(n - 2k + 2)}{2(2k)}f_{n - 2k + 2}
+	\end{align*} 
+
+	Nyt siis vasemman puolen indeksissä $f_{n - 2k}$ $n$:stä vähennetään suurempi luku kuin oikean puolen indeksissä $f_{n - 2(k - 1)}$ ($2(k - 1) < 2k$), jolloin oikean puolen indeksi on suurempi ja rekursiorelaatio tuottaa aina seuraavasta indeksistä edellisen indeksin, mikäli siis rekursiorelaatiota sovellettaisiin tasan $k$ kertaa, tulisi oikean puolen indeksiksi $n - 2(k - k) = n$, eli olisi johdettu sarjan mielivaltaisen kertoimen $f_{n - 2k}$ lauseke suhteessa sarjan viimeiseen kertoimeen $f_n$. Tehdään siis juuri näin soveltamalla rekursiorelaatiota $k$ kertaa. Nyt siis $2k$ pienenee jokaisella iteraatiolla, sillä $2k = n - j$ ja $j$ kasvaa kun lähestytään $n$:ää. Samalla logiikalla $n - 2k$ kasvaa jokaisella iteraatiolla, sillä $n - 2k = j$ ja $j$ kasvaa kun lähestytään $n$:ää. Saadaan:
+	
+	\begin{equation*}
+		f_{n - 2k} = (-1)\frac{(n - 2k + 1)(n - 2k + 2)}{2(2k)}(-1)\frac{(n - 2k + 1 + 2)(n - 2k + 2 + 2)}{2(2k - 2)}\dots(-1)\frac{(n - 1)n}{2(2)}f_{n - 2(k - k)}
+	\end{equation*}
+
+	\noindent siistitään lauseketta:
+	
+	\begin{equation*}
+		f_{n - 2k} = \frac{(-1)^k}{2^k}\frac{(n - 2k + 1)(n - 2k + 2)(n - 2k + 3)\dots(n - 1)n}{(2k)(2k - 2)(2k - 4)\dots(2)}f_n
+	\end{equation*}
+	
+	\noindent Tulossa $(2k)(2k - 2)(2k - 4)\dots(2) = (2k)(2[k - 1])(2[k - 2])\dots(2[1])$ jokaisessa termissä on tekijänä $2$, jolloin koko tulosta voidaan ottaa yhteinen tekijä $2^k$ ja tulo tulee muotoon: $k(k - 1)(k - 2)\dots (1) = k!$. Saadaan:
+	
+	\begin{equation*}
+		f_{n - 2k} = \frac{(-1)^k}{2^{2k} k!}(n - 2k + 1)(n - 2k + 2)(n - 2k + 3)\dots(n - 1)nf_n
+	\end{equation*}
+
+	\noindent Tulo $(n - 2k + 1)(n - 2k + 2)(n - 2k + 3)\dots(n - 1)n$ vastaa laskevaa Pochammer-symbolia $n\fallingfact{2k}$, joka voidaan puolestaan ilmaista tavallisen kertoman avulla muodossa $\frac{n!}{(n - 2k)!}$. Saadaan:
+	
+	\begin{equation*}
+		f_{n - 2k} = \frac{(-1)^k n!}{2^{2k} k!(n - 2k)!}f_n
+	\end{equation*}
+
+	Ollan siis ilmaistu sarjan mielivaltainen kerroin suhteessa sarjan viimeiseen kertoimeen. Sijoitetaan tulos sarjayritteeseen:
+	
+	\begin{align*}
+		f_n(x) &= \sum_{n - 2k = n}^{n - 2k = 0}f_{n - 2k}x^{n - 2k + r} \\
+		\intertext{Merkinnällä $f_n(x)$ korostetaan sitä, että jokaiselle $n$:n arvolle on oma ratkaisunsa $f(x)$. Summausrajat seuraavat siitä, että $n - 2k = n$ implikoi että $k = 0$, sillä tällöin lukujen $n$ ja $2k$ etäisyys on $n$ eli ollaan summan alussa. Vastaavasti $n - 2k = 0$ implikoi, että $k = \frac{n}{2}$, sillä tällöin lukujen $n$ ja $2k$ etäisyys on $0$ eli ollaan summan lopussa. On huomattavaa, että mikäli $n$ on pariton, ei $\frac{n}{2}$ ole kokonaisluku, jolloin otetaan osamäärästä $\frac{n}{2}$ lattiafunktio, $\lfloor\frac{n}{2}\rfloor$. Lisäksi muistetaan, että $r = 0$, jolloin saadaan:}
+		f_n(x) &= \sum_{k = 0}^{\lfloor\frac{n}{2}\rfloor}f_{n - 2k}x^{n - 2k} \\
+	\end{align*}
+	
+	\noindent Sijoitetaan $f_{n - 2k}$:n lauseke:
+	
+	\begin{equation*}
+		f_n(x) = \sum_{k = 0}^{\lfloor\frac{n}{2}\rfloor}\left(\frac{(-1)^k n!}{2^{2k} k!(n - 2k)!}f_n\right)x^{n - 2k}
+	\end{equation*}
+	
+	\noindent Tässä kohtaa asetetaan $f_n  = 2^{n}$. [TÄHÄN EHKÄ JOKIN SYVÄLLISEMPI PERUSTELU]. Saadaan:
+	
+	\begin{align*}
+		f_n(x) &= \sum_{k = 0}^{\lfloor\frac{n}{2}\rfloor}\left(\frac{(-1)^k n!}{k!(n - 2k)!}2^{n - 2k}\right)x^{n - 2k} \\
+		f_n(x) &= \sum_{k = 0}^{\lfloor\frac{n}{2}\rfloor}\frac{(-1)^k n!}{k!(n - 2k)!}(2x)^{n - 2k}
+	\end{align*}
+
+	Nyt ollaan saatu yksi lineaarisesti riippumaton ratkaisu Hermiten yhtälölle. Näitä päättyviä sarjaratkaisuja kutsutaan Hermiten polynomeiksi $H_n(x)$:
+	
+	\begin{equation}
+		\boxed{H_n(x) = \sum_{k = 0}^{\lfloor\frac{n}{2}\rfloor}\frac{(-1)^k n!}{k!(n - 2k)!}(2x)^{n - 2k}}
+	\end{equation}
+
+	\subsubsection{Hypergeometrinen yhtälö}
+	
+	\begin{equation}
+		x(1 - x)\odv{^2f}{x^2} + [c - (a + b + 1)x]\odv{f}{x} - abf = 0
+	\end{equation}
+
+	Ratkaistaan potenssisarjayritteellä $f(x) = \sum_{k = 0}^{\infty}f_kx^{k + r}$. Derivaatat Besselin yhtälön ratkaisusta. Saadaan:
+	
+	\begin{equation*}
+		x(1 - x)\sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 2} + [c - (a + b + 1)x]\sum_{k = 0}^{\infty}f_k(k + r)x^{k + r - 1} - ab\sum_{k = 0}^{\infty}f_kx^{k + r} = 0
+	\end{equation*}
+
+	\noindent Kerrotaan eutkertoimet summien sisään. Termistä $x(1 - x) = x - x^2$ tulee kaksi summaa samoin kuin termistä $[c - (a + b + 1)x]$:
+	
+	\begin{align*}
+		0 &= \sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 1} - \sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r} \\
+		&\quad + \sum_{k = 0}^{\infty}cf_k(k + r)x^{k + r - 1} - \sum_{k = 0}^{\infty}(a + b + 1)f_k(k + r)x^{k + r} \\
+		&\quad - \sum_{k = 0}^{\infty}abf_kx^{k + r} = 0 \\
+		\intertext{Otetaan ensimmäisestä ja kolmannesta summasta yksi termi ulos ja yhdistetään muut summat yhdeksi summaksi:}
+		0 &= f_0(0 + r)(0 + r - 1)x^{0 + r - 1} + cf_0(0 + r)x^{0 + r - 1} \\
+		&\quad + \sum_{k = 1}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 1} + \sum_{k = 1}^{\infty}cf_k(k + r)x^{k + r - 1} \\
+		&\quad - \sum_{k = 0}^{\infty}\Big[(k + r)(k + r - 1) + (a + b + 1)(k + r) + ab\Big]f_kx^{k + r} \\
+		\intertext{Yhdistetään kaksi ensimmäistä summaa:}
+		0 &= [r(r - 1) + cr]f_0x^{r - 1} + \sum_{k = 1}^{\infty}\Big[(k + r)(k + r - 1) + c(k + r)\Big]f_kx^{k + r - 1} \\
+		&\quad - \sum_{k = 0}^{\infty}\Big[(k + r)(k + r \cancel{- 1} + a + b + \cancel{1}) + ab\Big]f_kx^{k + r} \\
+		0 &= r(r - 1 + c)f_0x^{r - 1} + \sum_{k = 1}^{\infty}\Big[(k + r)(k + r - 1 + c)\Big]f_kx^{k + r - 1} - \sum_{k = 0}^{\infty}\Big[(k + r)(k + r + a + b) + ab\Big]f_kx^{k + r} \\
+		\intertext{Merkitään enimmäisessä summassa $k = j + 1 \iff j = k - 1$ ja nimetään toisen summan indeksit uudelleen $k\to j$:}
+		0 &= r(r - 1 + c)f_0x^{r - 1} + \sum_{j = 0}^{\infty}\Big[(j + r + 1)(j + r + c)\Big]f_{j + 1}x^{j + r} - \sum_{j = 0}^{\infty}\Big[(j + r)(j + r + a + b) + ab\Big]f_jx^{j + r} \\
+		\intertext{Nyt summat voidaan yhdistää:}
+		0 &= r(r - 1 + c)f_0x^{r - 1} + \sum_{j = 0}^{\infty}\Big[(j + r + 1)(j + r + c)f_{j + 1} - [(j + r)(j + r + a + b) + ab]f_j\Big]x^{j + r} \\
+	\end{align*}
+
+	\noindent Kun oikean puolen sarja samaistetaan vasemman puolen nollasarjan kanssa, saadaan seuraavat ehdot:
+	
+	\begin{equation*}
+		r(r - 1 + c) = 0 \ \ \ \ \land \ \ \ \ (j + r + 1)(j + r + c)f_{j + 1} - [(j + r)(j + r + a + b ) + ab]f_j = 0
+	\end{equation*}
+
+	\noindent Ensimmäinen ehto, indeksiyhtälö, tuottaa ratkaisut $r = 0$ $\lor$ $r = 1 - c$. Toisesta reunaehdosta puolestaan saadaan:
+	
+	\begin{equation*}
+		(j + r + 1)(j + r + c)f_{j + 1} - [(j + r)(j + r + a + b) + ab]f_j = 0
+	\end{equation*}
+
+	\noindent Ratkaistaan $f_{j + 1}$:n suhteen:
+
+	\begin{align*}
+		f_{j + 1} &= \frac{(j + r)(j + r + a + b) + ab}{(j + r + 1)(j + r + c)}f_j \\
+		\intertext{Jaetaan tekijöihin:}
+		f_{j + 1} &= \frac{(j + r)(j + r + a) + b(j + r) + ab}{(j + r + 1)(j + r + c)}f_j \\
+		f_{j + 1} &= \frac{(j + r)(j + r + a) + b(j + r + a)}{(j + r + 1)(j + r + c)}f_j \\
+		f_{j + 1} &= \frac{(j + r + b)(j + r + a)}{(j + r + 1)(j + r + c)}f_j \\
+	\end{align*}
+
+	\noindent Ilmaistaan $f_j$ rekursiorelaation avulla:
+
+	\begin{align*}
+		f_{j + 1} &= \frac{(j + r + b)(j + r + a)}{(j + r + 1)(j + r + c)}\frac{(j - 1 + r + b)(j - 1 + r + a)}{(j \cancel{- 1} + r + \cancel{1})(j - 1 + r + c)}f_{j - 1}\\
+		f_{j + 1} &= \frac{(j + r + b)(j + r + a)}{(j + r + 1)(j + r + c)}\frac{(j - 1 + r + b)(j - 1 + r + a)}{(j + r)(j - 1 + r + c)}f_{j - 1}\\
+	\end{align*}
+
+	\noindent Kun rekursiorelaatiota sovelletaan $f_1$:n saakka saadaan:
+	
+	\begin{align*}
+		f_{j + 1} &= \frac{(j + r + b)(j + r + a)}{(j + r + 1)(j + r + c)}\frac{(j - 1 + r + b)(j - 1 + r + a)}{(j + r)(j - 1 + r + c)}\dots\frac{(j - j + r + b)(j - j + r + a)}{(j - (j - 1) + r)(j - j + r + c)}f_{0} \\
+		f_{j + 1} &= \frac{(j + r + b)(j + r + a)}{(j + r + 1)(j + r + c)}\frac{(j - 1 + r + b)(j - 1 + r + a)}{(j + r)(j - 1 + r + c)}\dots\frac{(r + b)(r + a)}{(1 + r)(r + c)}f_{0}
+	\end{align*}
+
+	\noindent Tiedetään, että kussakin neljässä tulossa on yhteensä $j + 1$ termiä, jolloin ne voidaan ilmaista nousevan Pochhammerin symbolin avulla kompaktisti:
+	
+	\begin{align*}
+		f_{j + 1} = \frac{(r + b)\risingfact{j + 1}(r + a)\risingfact{j + 1}}{(1 + r)\risingfact{j + 1}(r + c)\risingfact{j + 1}}f_0 \\
+		\intertext{Merkitään jälleen $k = j + 1$:}
+		f_{k} = \frac{(r + b)\risingfact{k}(r + a)\risingfact{k}}{(1 + r)\risingfact{k}(r + c)\risingfact{k}}f_0 \\
+	\end{align*}
+
+	Sijoitetaan rekursiorelaatio alkuperäiseen sarjayritteeseen, jolloin saadaan:
+	
+	\begin{align*}
+		f(x) &= \sum_{k = 0}^{\infty}\frac{(r + b)\risingfact{k}(r + a)\risingfact{k}}{(1 + r)\risingfact{k}(r + c)\risingfact{k}}f_0x^{k + r} \\
+		f(x) &= f_0x^r\sum_{k = 0}^{\infty}\frac{(r + b)\risingfact{k}(r + a)\risingfact{k}}{(1 + r)\risingfact{k}(r + c)\risingfact{k}}x^{k} \\
+		\intertext{Sijoitetaan indeksiyhtälön ratkaisut $r = 0$ ja $r = 1 - c$:}
+		f(x) = f_0x^0\sum_{k = 0}^{\infty}\frac{(0 + b)\risingfact{k}(0 + a)\risingfact{k}}{(1 + 0)\risingfact{k}(0 + c)\risingfact{k}}x^{k} \ \ &\lor \ \ f(x) = f_0x^{1 - c}\sum_{k = 0}^{\infty}\frac{(1 - c + b)\risingfact{k}(1 - c + a)\risingfact{k}}{(1 + 1 - c)\risingfact{k}(1 - c + c)\risingfact{k}}x^{k} \\
+		\intertext{$f_0$ voidaan asettaa ykköseksi yleispätevyyttä menettämättä, sillä differentiaaliyhtälön yleisessä ratkaisussa on jokatapauksessa määräämätön vakiotermi. Tunnistetaan lisäksi $1\risingfact{k} = k!$:}
+		f(x) = \sum_{k = 0}^{\infty}\frac{b\risingfact{k}a\risingfact{k}}{k!c\risingfact{k}}x^{k} \ \ &\lor \ \ f(x) = x^{1 - c}\sum_{k = 0}^{\infty}\frac{(1 - c + b)\risingfact{k}(1 - c + a)\risingfact{k}}{(2 - c)\risingfact{k}k!}x^{k} \\
+		\intertext{Muutetaan hieman termien järjestystä asettamalla ne aakkosjärjestykseen:}
+		f(x) = \sum_{k = 0}^{\infty}\frac{a\risingfact{k}b\risingfact{k}}{k!c\risingfact{k}}x^{k} \ \ &\lor \ \ f(x) = x^{1 - c}\sum_{k = 0}^{\infty}\frac{(1 + a - c)\risingfact{k}(1 + b - c)\risingfact{k}}{k!(2 - c)\risingfact{k}}x^{k}
+	\end{align*}
+
+	Ollaan siis ratkaistu hypergeometrinen yhtälö. Kun $1 - c \notin \mathbb{Z}$, ovat saadut ratkaisut lineaarisesti riippumattomia ja yleinen ratkaisu saadaan näiden lineaarikombinaatiosta. Hypergeometristä funktiota merkitään usein muodossa ${_2{F}_1}(a, b; c; x)$ tai yksinkertaisesti $F(a, b; c; x)$, jolloin yleiseksi ratkaisuksi saadaan:
+	
+	\begin{equation}
+		\boxed{f(x) = C_1\,{_2{F}_1}(a, b; c; x) + C_2\,{_2{F}_1}(1 + a - c, 1 + b - c; 2 - c; x), \ \ \ \ 1 - c \notin\mathbb{Z}}
+	\end{equation}
+
+	Jossa:
+	
+	\begin{equation}
+		\boxed{{_2{F}_1}(a, b; c; x) = F(a, b; c; x) = \sum_{k = 0}^{\infty}\frac{a\risingfact{k}b\risingfact{k}}{k!c\risingfact{k}}x^{k}}
+	\end{equation}
+
+	Hypergeometrinen funktio redusoituu monen tutun funktion sarjaksi oikeilla parametrien $a$, $b$ ja $c$ arvoilla. Ohessa esimerkkejä:
+	
+	\begin{table}[h!]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{|c|c|}
+			\hline
+			Hypergeometrinen funktio & Tulos \\
+			\hline
+			${_2{F}_1}(a, b; b; x)$ & $(1 - x)^{-a}$ \\
+			\hline
+			${_2{F}_1}(1, 1; 2; -x)$ & $\frac{\ln(1 + x)}{x}$ \\
+			\hline
+			$\lim_{m\to\infty}{_2{F}_1}\left(1, m; 1; \frac{x}{m}\right)$ & $e^{x}$ \\
+			\hline
+			${_2{F}_1}\left(\frac{1}{2}, -\frac{1}{2}; \frac{1}{2}; \sin^2x\right)$ & $\cos x$ \\
+			\hline
+			${_2{F}_1}\left(\frac{1}{2}, \frac{1}{2}; \frac{3}{2}; x^2\right)$ & $\frac{\arcsin x}{x}$ \\
+			\hline
+			${_2{F}_1}\left(m + 1, -m; 1; \frac{1 - x}{2}\right), \ \ m = 2n \in\mathbb{Z}$ & $P_{m}(x)$ \\
+			\hline
+		\end{tabular}
+		\caption{Muutamia esimerkkejä funktioista, jotka voidaan ilmaista hypergeometrisen funktion avulla}
+	\end{table}
+	
+	
+	\subsubsection{Konfluentti hypergeometrinen yhtälö}
+	
+	\begin{equation}
+		x\odv{^2f}{x^2} + (c - x)\odv{f}{x} - af = 0
+	\end{equation}
+
+	Johdetaan ensin konfluentti hypergeometrinen yhtälö alkuperäisestä hypergeometrisestä yhtälöstä:
+	
+	\begin{align*}
+		x(1 - x)\odv{^2f}{x^2} + [c - (a + b + 1)x]\odv{f}{x} - abf &= 0 \\
+		\intertext{Tehdään muuttujanvaihdos $x = \frac{u}{b} \iff u = bx$. Nyt $\odv{f}{x} = \odv{f}{u}\odv{u}{x} = \odv{f}{u}\odv{}{x}(bx) = b\odv{f}{u}$ ja $\odv{^2f}{x^2} = \odv{}{x}\left(\odv{f}{x}\right) = \odv{}{x}\left(b\odv{f}{u}\right) = b\odv{}{u}\left(b\odv{f}{u}\right) = b^2\odv{^2f}{u^2}$. Saadaan:}
+		\frac{u}{b}\left(1 - \frac{u}{b}\right)b^2\odv{^2f}{u^2} + \left[c - (a + b + 1)\frac{u}{b}\right]b\odv{f}{u} - abf &= 0 \\
+		bu\left(1 - \frac{u}{b}\right)\odv{^2f}{u^2} + \left[c - \left(\frac{au}{b} + \frac{bu}{b} + \frac{u}{b}\right)\right]b\odv{f}{u} - abf &= 0 \\
+		bu\left(1 - \frac{u}{b}\right)\odv{^2f}{u^2} + \left[c - \left(\frac{au}{b} + u + \frac{u}{b}\right)\right]b\odv{f}{u} - abf &= 0 \\
+		\intertext{Jaetaan yhtälö $b$:llä:}
+		u\left(1 - \frac{u}{b}\right)\odv{^2f}{u^2} + \left[c - \left(\frac{au}{b} + u + \frac{u}{b}\right)\right]\odv{f}{u} - af &= 0 \\
+		\intertext{Otetaan raja-arvo, kun $b\to\infty$:}
+		u\left(1 - \cancel{\frac{u}{b}}\right)\odv{^2f}{u^2} + \left[c - \left(\cancel{\frac{au}{b}} + u + \cancel{\frac{u}{b}}\right)\right]\odv{f}{u} - af &= 0 \\
+		u\odv{^2f}{u^2} + \left[c - u\right]\odv{f}{u} - af &= 0 \\
+		\intertext{Nimetään uudelleen $u \to x$, jolloin saadaan Konfluentti hypergeometrinen yhtälö:}
+		x\odv{^2f}{x^2} + (c - x)\odv{f}{x} - af &= 0 \\
+	\end{align*}
+	
+	\noindent Konfluentti hypergeometrinen yhtälö on siis hypergeometrisen yhtälön muoto, jossa heikko erikoispiste pisteessä $x = 1$ on kadonnut sillä se on yhdistettu heikkoon erikoispisteeseen äärettömyydessä. Ratkaistaan yhtälö potenssisarjayritteellä $f(x) = \sum_{k = 0}^{\infty}f_kx^{k + r}$. Derivaatat löytyvät jälleen Besselin yhtälön ratkaisusta. Saadaan:
+	
+	\begin{equation*}
+		x\sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 2} + (c - x)\sum_{k = 0}^{\infty}f_k(k + r)x^{k + r - 1} - a\sum_{k = 0}^{\infty}f_kx^{k + r} = 0
+	\end{equation*}
+
+	\noindent Kerrotaan etukertoimet summien sisään. Kerroin $(c - x)$ tuottaa kaksi summaa:
+	
+	\begin{equation*}
+		\sum_{k = 0}^{\infty}f_k(k + r)(k + r - 1)x^{k + r - 1} + \sum_{k = 0}^{\infty}cf_k(k + r)x^{k + r - 1} - \sum_{k = 0}^{\infty}f_k(k + r)x^{k + r} - \sum_{k = 0}^{\infty}af_kx^{k + r} = 0
+	\end{equation*}
+
+	\noindent Yhdistetään kaksi ensimmäistä summaa ja kaksi viimeistä summaa:
+	
+	\begin{align*}
+		\sum_{k = 0}^{\infty}\Big[(k + r)(k + r - 1) + c(k + r)\Big]f_kx^{k + r - 1} - \sum_{k = 0}^{\infty}\Big[(k + r) + a\Big]f_kx^{k + r} &= 0 \\
+		\sum_{k = 0}^{\infty}(k + r)(k + r - 1 + c)f_kx^{k + r - 1} - \sum_{k = 0}^{\infty}(k + r + a)f_kx^{k + r} &= 0 \\
+		\intertext{Otetaan ensimmäinen termi ulos ensimmäisestä summasta:}
+		(0 + r)(0 + r - 1 + c)f_0x^{0 + r - 1} + \sum_{k = 1}^{\infty}(k + r)(k + r - 1 + c)f_kx^{k + r - 1} - \sum_{k = 0}^{\infty}(k + r + a)f_kx^{k + r} &= 0 \\
+		r(r - 1 + c)f_0x^{r - 1} + \sum_{k = 1}^{\infty}(k + r)(k + r - 1 + c)f_kx^{k + r - 1} - \sum_{k = 0}^{\infty}(k + r + a)f_kx^{k + r} &= 0 \\
+		\intertext{Asetetaan ensimmäiseen summaan uusi indeksi $j = k + 1 \iff k = j - 1$ ja nimetään toisen summan indeksit uudelleen $k \to j$:}
+		r(r - 1 + c)f_0x^{r - 1} + \sum_{j = 0}^{\infty}(j + r + 1)(j + r + c)f_{j + 1}x^{j + r} - \sum_{j = 0}^{\infty}(j + r + a)f_jx^{j + r} &= 0 \\
+		\intertext{Nyt summat voidaan yhdistää:}
+		r(r - 1 + c)f_0x^{r - 1} + \sum_{j = 0}^{\infty}\Big[(j + r + 1)(j + r + c)f_{j + 1} - (j + r + a)f_j\Big]x^{j + r} &= 0
+	\end{align*}
+
+	\noindent Vaatimalla vasemman puolen yhtenevyys oikean puolen nollasarjan kanssa saadaan kaksi ehtoa:
+	
+	\begin{equation*}
+		r(r - 1 + c) = 0 \ \ \ \ \lor \ \ \ \ (j + r + 1)(j + r + c)f_{j + 1} - (j + r + a)f_j = 0
+	\end{equation*}
+
+	Indeksiyhtälö (ensimmäinen ehto) tuottaa $r = 0$ tai $r = 1 - c$. Tarkastellaan seuraavaksi toista ehtoa:
+	
+	\begin{equation*}
+		(j + r + 1)(j + r + c)f_{j + 1} - (j + r + a)f_j = 0
+	\end{equation*}
+
+	\noindent Ratkaistaan $f_{j + 1}$:
+	
+	\begin{align*}
+		f_{j + 1} &= \frac{(j + r + a)}{(j + r + 1)(j + r + c)}f_j \\
+		\intertext{Ilmaistaan $f_j$ myös rekursiorelaation avulla:}
+		f_{j + 1} &= \frac{(j + r + a)}{(j + r + 1)(j + r + c)}\frac{(j - 1 + r + a)}{(j + r)(j - 1 + r + c)}f_{j - 1}
+	\end{align*}
+
+	\noindent Kun rekursiorelaatiota sovelletaan $f_1$:een asti saadaan:
+	
+	\begin{align*}
+		f_{j + 1} &= \frac{(j + r + a)}{(j + r + 1)(j + r + c)}\frac{(j - 1 + r + a)}{(j + r)(j - 1 + r + c)}\dots\frac{(j - j + r + a)}{(j - j + r + 1)(j - j + r + c)}f_{0} \\
+		f_{j + 1} &= \frac{(j + r + a)}{(j + r + 1)(j + r + c)}\frac{(j - 1 + r + a)}{(j + r)(j - 1 + r + c)}\dots\frac{(r + a)}{(r + 1)(r + c)}f_{0}
+	\end{align*}
+
+	\noindent Kussakin tulossa on $j + 1$ termiä, jolloin ne voidaan ilmaista nousevan Pochhammerin symbolin avulla:
+	
+	\begin{align*}
+		f_{j + 1} &= \frac{(r + a)\risingfact{j + 1}}{(r + 1)\risingfact{j + 1}(r + c)\risingfact{j + 1}}f_0 \\
+		\intertext{Merkitään jälleen $k = j + 1$, jolloin saadaan:}
+		f_{k} &= \frac{(r + a)\risingfact{k}}{(r + 1)\risingfact{k}(r + c)\risingfact{k}}f_0
+	\end{align*}
+
+	\noindent Sijoitetaan rekursiorelaatio alkuperäiseen sarjayritteeseen, jolloin saadaan:
+	
+	\begin{align*}
+		f(x) &= \sum_{k = 0}^{\infty}\frac{(r + a)\risingfact{k}}{(r + 1)\risingfact{k}(r + c)\risingfact{k}}f_0x^{k + r} \\
+		f(x) &= f_0x^{r}\sum_{k = 0}^{\infty}\frac{(r + a)\risingfact{k}}{(r + 1)\risingfact{k}(r + c)\risingfact{k}}x^{k} \\
+		\intertext{Sijoitetaan indeksiyhtälön ratkaisut $r = 0$ ja $r = 1 - c$:}
+		f(x) = f_0x^{0}\sum_{k = 0}^{\infty}\frac{(0 + a)\risingfact{k}}{(0 + 1)\risingfact{k}(0 + c)\risingfact{k}}x^{k} \ \ &\lor \ \ f(x) = f_0x^{1 - c}\sum_{k = 0}^{\infty}\frac{(1 - c + a)\risingfact{k}}{(1 - c + 1)\risingfact{k}(1 - c + c)\risingfact{k}}x^{k} \\
+		\intertext{$f_0$ voidaan asettaa ykköseksi yleispätevyyttä menettämättä, sillä differentiaaliyhtälön yleisessä ratkaisussa on jokatapauksessa määräämätön vakiotermi. Tunnistetaan lisäksi $1\risingfact{k} = k!$:}
+		f(x) = \sum_{k = 0}^{\infty}\frac{a\risingfact{k}}{k!c\risingfact{k}}x^{k} \ \ &\lor \ \ f(x) = x^{1 - c}\sum_{k = 0}^{\infty}\frac{(1 + a - c)\risingfact{k}}{(2 - c)\risingfact{k}k!}x^{k} \\
+	\end{align*}
+
+	Ollaan siis ratkaistu konfluentti hypergeometrinen yhtälö. Kun $1 - c \notin\mathbb{Z}$, ovat saadun ratkaisut lineaarisesti riippumattomia ja yleinen ratkaisu saadaan näiden lineaarikombinaatiosta. Konfluentteja hypergeometristä funktiota merkitään usein muodossa ${_1{F}_1}(a; c; x)$ tai yksinkertaisesti $M(a, c, x)$, jossa $M$ on nk. Kummerin funktiot. Yleiseksi ratkaisuksi saadaan siis:
+	
+	\begin{equation}
+		\boxed{f(x) = C_1\,{_1{F}_1}(a; c; x) + C_2\,x^{1 - c}{_1{F}_1}(1 + a - c; 2 - c; x), \ \ \ \ 1 - c\notin\mathbb{Z}}
+	\end{equation}
+
+	Jossa:
+	
+	\begin{equation}
+		\boxed{{_1{F}_1}(a; c; x) = M(a, c, x) = \sum_{k = 0}^{\infty}\frac{a\risingfact{k}}{k!c\risingfact{k}}x^{k}}
+	\end{equation}
+
+	\begin{equation}
+		\boxed{x^{1 - c}{_1{F}_1}(1 + a - c; 2 - c; x) = M(1 + a - c, 2 - c, x) = x^{1 - c}\sum_{k = 0}^{\infty}\frac{(1 + a - c)\risingfact{k}}{k!(2 - c)\risingfact{k}}x^{k}}
+	\end{equation}
+
+	Tai vaihtoehtoisesti Kummerin funktion avulla ilmaistuna saadaan:
+	
+	\begin{equation}
+		\boxed{f(x) = C_1M(a, c, x) + C_2x^{1 - c}M(1 + a - c, 2 - c, x) \ \ \ \ 1 - c\notin\mathbb{Z}}
+	\end{equation}
+
+	Lisäksi tavallisten hypergeometrisen funktioiden ja konfluenttien hypergeometristen funktioiden välillä on seuraavat relaatiot:
+	
+	\begin{equation}
+		\boxed{{_1{F}_1}(a; c; x) = M(a, c, x) = \lim_{b\to\infty}{_2{F}_1}\left(a, b; c; \frac{x}{b}\right)}
+	\end{equation}
+	 
+	On olemassa myös yhdistelmäfunktio $U(a, c, x)$, joka yhdistää saadut lineaarisesti riippumattomat ratkaisut. $U$ on nimeltään Tricomin funktio ja on muotoa:
+
+	\begin{equation}
+		\boxed{U(a, c, x) = \frac{\Gamma(1 - b)}{\Gamma(a + 1 - b)}M(a, c, x) + \frac{\Gamma(b - 1)}{\Gamma(a)}x^{1 - c}M(a + 1 - c, 2 - b, x)}
+	\end{equation}
+
+	\subsubsection{Sturmin\textendash Liouville'n ongelmat}
+	
+	\begin{equation}
+		\odv{}{x}\left(p(x)\odv{f}{x}\right) + q(x)f = -\lambda w(x)f
+	\end{equation}
+	
+	\begin{table}[h!]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			SL-ongelma & SL-muoto & Ominaisfunktiot $f_k$ ominaisarvoilla $\lambda_k$ \\
+			\hline
+			Harmoninen yhtälö & $\odv{}{x}\left(\odv{f}{x}\right) = \odv{^2f}{x^2} = -\omega^2 f$ & $f_k(x) = C_1\sin(\omega_kx) + C_2\cos(\omega_kx), \lambda_k = \omega_k^2$ \\
+			\hline
+			Hyperbolinen yhtälö & $\odv{}{x}\left(\odv{f}{x}\right) = \odv{^2f}{x^2} = \omega^2 f$ & $f_k(x) = C_1\sinh(\omega_kx) + C_2\cosh(\omega_kx), \lambda_k = \omega_k^2$ \\
+			\hline
+			Cauchyn\textendash Eulerin & $\odv{}{x}\left(x^a\odv{f}{x}\right) = -bx^{a - 2}f $ & $f_k(x) = C_1x^{\lambda_k} + C_2x^{\lambda_k}, \lambda_k = \frac{1 - a\pm\sqrt{(a - 1)^2 - 4b}}{2}$ \\
+			\hline
+			Besselin yhtälö & $\odv{}{x}\left(x\odv{f}{x}\right) - \alpha^2f = -\omega^2 x^2 f$ & $f_k(x) = C_1J_{\alpha}(\omega_kx) + C_2Y_{\alpha}(\omega_kx), \lambda_k = \omega_k^2$ \\
+			\hline
+			Muokattu Bessel & $\odv{}{x}\left(x\odv{f}{x}\right) + \alpha^2f = \omega^2 x^2 f$ & $f_k(x) = C_1I_{\alpha}(\omega_kx) + C_2K_{\alpha}(\omega_kx), \lambda_k = \omega_k^2$ \\
+			\hline
+			Legendren yhtälö & $\odv{}{x}\left((1 - x^2)\odv{f}{x}\right) = -l(l + 1)f$ & $f_l(x) = C_1P_{l}(x) + C_2Q_{l}(x), \lambda_l = l(l + 1)$ \\
+			\hline
+			Legendren liitto & $\odv{}{x}\left((1 - x^2)\odv{f}{x}\right) - \frac{m^2}{1 - x^2}f$ & $f_l(x) = C_1P_{l}^{m}(x) + C_2Q_{l}^{m}(x),$ \\
+			& $= -l(l + 1)f(x)$ & $\lambda_l = l(l + 1)$\\
+			\hline
+			Laguerren yhtälö & $\odv{}{x}\left(xe^{-x}\odv{f}{x}\right) = -ne^{-x}f$ & $f_n(x) = C_1L_n(x) + C_2 \, {_{1}F_1}(-n; 1; x), \lambda_n = n$ \\
+			\hline
+			Laguerren liitto & $\odv{}{x}\left(x^{\alpha + 1}e^{-x}\odv{f}{x}\right) = -nx^\alpha e^{-x}f$ & $f_n(x) = C_1L_{n}^{\alpha}(x) + C_2x^{-\alpha} \, {_{1}F_1}(-n; \alpha + 1; x), \lambda_n = n$ \\
+			\hline
+			Hermiten yhtälö & $\odv{}{x}\left(e^{-x^2}\odv{f}{x}\right) = -2ne^{-x^2}f$ & $f_n(x) = C_1H_n(x) + C_{2} \, {_{1}F_{1}}\left(-\frac{n}{2}; \frac{1}{2}; x^2\right), \lambda_n = 2n$ \\
+			\hline
+			Hypergeom. yhtälö & $\odv{}{x}\left(x^c(1 - x)^{a + b - c + 1}\odv{f}{x}\right)$ & $f(x) = C_1 \, {_{2}F_1}(a, b; c; x)$ \\
+			& $= abx^{c - 1}(1 - x)^{a + b - c}f$ & $ + C_2x^{1 - c}\,{_{2}F_1}(a - c + 1, b - c + 1; 2 - c; x), \lambda = -ab$ \\
+			\hline
+			Konfluentti hypergeom. & $\odv{}{x}\left(x^ce^{-x}\odv{f}{x}\right) = ax^{c-1}e^{-x}f$ & $f(x) = C_1 \, {_{1}F_1}(a; c; x) + C_2 x^{1-c}\,{_{1}F_1}(a - c + 1; 2 - c; x),$ \\
+			& & $\lambda = -a$ \\
+			\hline
+		\end{tabular}
+		\caption{Muutamia 2. kertaluvun yhtälöitä SL-muodossa ominaisfunktioineen}
+	\end{table}
+	
+	\begin{comment}
+		Lin. vak.kerr. & $\odv{}{x}\left(e^{bx}\odv{f}{x}\right) = -\lambda f$ & $f_k(x) = C_1e^{\frac{x}{2}\left(-b + \sqrt{b^2 - 4\lambda_k}\right)} + C_2e^{-\frac{x}{2}\left(b + \sqrt{b^2 - 4\lambda_k}\right)}, \lambda_k = \omega_k$ \\
+	\end{comment}
+\end{document}

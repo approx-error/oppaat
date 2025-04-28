@@ -1,0 +1,250 @@
+\documentclass[../johdoksia.tex]{subfiles}
+\graphicspath{{\subfix{../kuvat/}}}
+
+\begin{document}
+	Vektoriavaruudet ovat eräs matemaattinen rakenne, jota esiintyy kaikkialla fysiikassa. Oli kyseessä sitten klassiset paikka-, nopeus-, ja kiihtyvyysvektorit, kvanttimekaaniset tilavektorit, suhteellisuusteorian nelivektorit, funktiot, funktionaalit, distribuutiot tai niihin liittyvät testifunktiot. Kaikkia näitä konsepteja yhdistää se, että niiden voidaan hyvin luontevasti ajatella olevan erilaisten vektoriavaruuksien alkioita. On siis hyvin olennaista ymmärtää, mitä vektoriavaruudet ovat ja miten niiden ominaisuuksia voidaan hyödyntää.
+	
+	\subsection{Vektoriavaruuden määrittely}
+	
+	Kaikkein yksinkertaisimmillaan vektoriavaruudet kokoavat tietyntyyppisiä vektoreita yhteen niiden samankaltaisuuden nojalla. Jotta objekti voi olla vektoriavaruuden jäsen ja sitä kautta vektori, tulee vektorin ja avaruuden johon se kuuluu toteuttaa kahdeksan ehtoa. Ehdot ovat pitkälti intuitiivisia henkilölle joka on aiemmin tutustunut vektoreihin numeroiden listoina ja joka osaa tulkita nämä numeroiden listat geometrisesti nuolina avaruudessa. Säännöt liittyvät siihen, miten vektoreita saa summata toisiinsa ja skaalata luvuilla jolloin mikäli geometrinen tulkinta on hallussa löytyy kaikille säännöille helposti visuaalinen perustelu. On tärkeää muistaa että säännöt eivät ole absoluuttisia siinä mielessä että niiden pitää olla juuri sellaiset kuin ne ovat. Päin vastoin säännöt ovat juuri sellaiset kuin ne ovat sillä on huomattu että tällaisten sääntöjen muodostamia rakenteita esiintyy erittäin monessa kontekstissa jolloin on ollut hyödyllistä yleistää tästä vektoriavaruuden käsite.
+	
+	Ennen kuin tarkastellaan sääntöjä, on tärkeää määritellä minkä asioiden suhteen vektoriavaruudet määritellään. Koska fysiikassa mitattavat suureet voivat käytännössä saada mitä arvoja tahansa, määritellään fysiikassa lähes aina vektoriavaruudet suhteessa reaalilukuihin $\mathbb{R}$ tai kompleksilukuihin $\mathbb{C}$. Pitäydymme siis näissä joukoissa tässäkin tekstissä. Lukijan on siis oltava sinut reaalilukujen ja kompleksilukujen sekä niille määriteltyjen operaatioiden ($+$, $-$, $\cdot$, $/$, $\sqrt[n]{}$, $\log$, $a^b$) kanssa (nk. reaalilukujen kunta ja kompleksilukujen kunta). Mitä tämä määrittely kunnan $\mathbb{R}$ tai $\mathbb{C}$ suhteen käytännössä tarkoittaa, on että vektorien mahdolliset numeeriset representaatiot (esim. vektorit lukujen listoina tai funktion arvo jossakin kohdassa) tapahtuvat näiden kuntien sisällä.
+	
+	Kunnan lisäksi vektoriavaruuksissa on oltava kaksi vektoreita muokkaavaa operaatiota, joilla vektoreita voidaan yhdistellä ja skaalata. Nämä operaatiot ovat (vektorien) yhteenlasku ja skalaarilla kertominen. Merkitään tästä eteenpäin mielivaltaista vektoriavaruutta $V$:llä. Nimensä mukaisesti (vektorien) yhteenlasku $+$ ottaa argumentikseen kaksi vektoria ja palauttaa kolmannen vektorin. Toisin sanoen se on kuvaus $+: V \times V \to V$. Se, miten kahden vektorin summa määritetään riippuu vektorien representaatiosta (esim. ovatko ne numerolistoja, nuolia avaruudessa tai vaikka funktioita) mutta operaatio on kaikille vektoriavaruuksille olemassa ja käyttäytyy samalla tavalla kaikille vektoriavaruuksille sillä kahdeksan sääntöä vaativat näin.
+	
+	Skalaarilla kertominen tarkoittaa vektorin kertomista jollakin sen kunnan $\mathbb{F}$ ($\mathbb{R}$ tai $\mathbb{C}$) jäsenellä jonka yli vektoriavaruus on määritelty. Se ottaa siis argumentikseen luvun ja vektorin ja palauttaa toisen vektorin. Toisin sanoen se on kuvaus $\mathbb{F} \times V \to V$. Jälleen se, miten skalaarilla kertomisen tulos määritetään riippuu vektorien representaatiosta mutta operaatioiden ominaisuudet ovat kaikille avaruuksille samat.
+	
+	Nyt päästään vektoriavaruuden formaaliin määritelmään. Vektoriavaruus kunnan $\mathbb{F}$ ($\mathbb{R}$ tai $\mathbb{C}$) yli on joukko $V$ jossa on määritelty kaksi operaatiota yhteenlasku ja skalaarilla kertominen. Lisäksi jokaiselle vektorille $\vtr{a}$, $\vtr{b}$, $\vtr{c}$ $\in V$ sekä skalaarille (luvulle) $\alpha, \beta \in \mathbb{F}$ pätee seuraavat kahdeksan aksioomaa:
+	
+	\begin{enumerate}
+		\item Vektorien yhteenlasku on liitännäinen operaatio: $\vtr{a} + (\vtr{b} + \vtr{c}) = (\vtr{a} + \vtr{b}) + \vtr{c}$
+		\item Vektorien yhteenlasku on vaihdannainen operaatio: $\vtr{a} + \vtr{b} = \vtr{b} + \vtr{a}$
+		\item On olemassa yhteenlaskun identiteettielementti, nk. nollavektori $\vtr{0} \in V$, jolle pätee: $\vtr{a} + \vtr{0} = \vtr{a}$
+		\item Jokaiselle vektorille $\vtr{a} \in V$ on olemassa yhteenlaskun käänteiselementti $-a \in V$, jolle pätee: $\vtr{a} + (-\vtr{a}) = \vtr{0}$
+		\item Skalaarilla kertominen ja kunnan $\mathbb{F}$ sisäinen kertolasku ovat yhteensopivat: $\alpha(\beta\vtr{a}) = (\alpha\beta)\vtr{a}$
+		\item On olemassa skalaarilla kertomisen identiteettielementti, joka on sama kuin kunnan $\mathbb{F}$ kertolaskun identiteettielementti 1, jolle pätee: $1\vtr{a} = \vtr{a}$
+		\item Skalaarilla kertomiselle pätee osittelulaki vektorien yhteenlaskun suhteen: $\alpha(\vtr{a} + \vtr{b}) = \alpha\vtr{a} + \alpha\vtr{b}$
+		\item Skalaarilla kertomiselle pätee osittelulaki kunnan yhteenlaskun suhteen: $(\alpha + \beta)\vtr{a} = \alpha\vtr{a} + \beta\vtr{a}$
+	\end{enumerate}
+	
+	Kaikki nämä ominaisuudet on helppo varmistaa itselleen ja sitä kautta myös perustella tarkastelemalla vektoreita numeroiden listoina ja nuolina, jolloin sääntöjen valinta tuntuu vähemmän mielivaltaiselta ja enemmän intuitiiviselta. On myös hyvä pitää mielessä että sääntöihin tarvitsee harvoin vedota kun tottuu vektoreiden kanssa työskentelyyn sillä vektoreiden kanssa työskentely muuttuu nopeasti yhtä helpoksi kuin tavallisten muuttujien kanssa työskentely notaation samankaltaisuuden ja objektien samanlaisten ominaisuuksien vuoksi.
+	
+	\subsection{Tärkeitä vektoriavaruuksien ominaisuuksia}
+	
+	Vektoriavaruuksilla on monia tärkeitä ominaisuuksia, jotka on hyvä tuntea. Kenties olennaisin näistä on vektoriavaruuden kanta. Kanta on se joukko vektoreita $\vtr{a}_i \in V$, joiden avulla mikä tahansa muu avaruuden vektori voidaan ilmaista. Kaikilla vektoriavaruuksilla on kanta ja se mahdollistaa esimerkiksi vektorien tulkitsemisen numeroiden listana. Jos siis joukko $K = \{\vtr{a}_i\} \subset V$ on kanta ja luvut $\alpha_i \in \mathbb{F}$, pätee kaikille $\vtr{b} \in V$:
+	
+	\begin{equation}
+		\vtr{b} = \alpha_1\vtr{a}_1 + \alpha_2\vtr{a}_2 + \dots  
+	\end{equation}
+
+	Kannan vektorien on oltava keskenään lineaarisesti riippumattomia, mikä tarkoittaa että niitä ei voi ilmaista toistensa suhteen. Jos nimittäin jokin kannan vektoreista $\vtr{a}$ voitaisiin ilmaista kannan muiden vektorien avulla, ei tätä tarvittaisi mielivaltaisen vektori ilmaisemiseen, sillä tällöin $\vtr{a}$ voitaisiin aina korvata sen representaatiolla kannan suhteen jolloin $\vtr{a}$ ei kuuluisi kantaan alun alkaenkaan. Lineaarisen riippumattomuuden ehdon voi ilmaista seuraavasti. Joukko vektoreita on lineaarisesti riippumaton jos ja vain jos niiden lineaarikombinaatio ei ole koskaan nollavektori:
+	
+	\begin{equation}
+		\alpha_1\vtr{a}_1 + \alpha_2\vtr{a}_2 + \dots \neq \vtr{0}, \ \ \ \ \alpha_i \neq 0
+	\end{equation}
+
+	Vektoriavaruuden ulottuvuus liittyy hyvin läheisesti kantaan. Se on nimittäin kannan $K$ mahtavuus (kardinaliteetti) eli kantavektoreiden lukumäärä. Esimerkiksi kaksiulotteisella vektoriavaruudella on kaksi kantavektoria, kolmiulotteisella kolme ja $N$-ulotteisella $N$. Vektoriavaruuden $V$ ulottuvuutta merkitään $\dim V$.
+	
+	Vektoriavaruuden sisällä on myös monia vektoriavaruuksia. Jos esimerkiksi valitaan alkuperäisen avaruuden $V$ kannasta $K$ jokin alijoukko $J$, pystytään tällä uudella kannalla ilmaisemaan vain osa $V$:n vektoreista, jolloin tämä vektoriavaruus $W$ on $V$:n aliavaruus.
+	
+	\subsection{Lisää rakennetta: Sisätulot}
+	
+	Vektorit kuvaavat usein jotakin fysikaalista, jolloin niiden mittaaminen ja keskinäisen etäisyyden tai kulman määrittäminen on usein tavoiteltavaa. Tämän tekemiseksi on määriteltävä, mitä tarkoittaa vektorin pituus tai etäisyys kahden vektorin välillä. Näiden määritelmät riippuvat hyvin paljon vektoreiden sovelluskohteista eikä niitä aina tarvita, jolloin niitä ei ole suoraan sisällytetty vektoriavaruuksien määritelmään. Fysiikassa vektorin pituuden halutaan tyypillisesti vastaavan jonkin fysikaalisen objektin pituutta, jonkin vektorisuureen suuruutta (esim. nopeusvektorin pituus on kappaleen vauhti), jonkin tapahtuman todennäköisyyttä (kvanttimekaniikassa tilavektorin pituus on verrannollinen tilan todennäköisyyteen) tai funktion itseisarvoa.
+	
+	Tähän mennessä määritellyssä vektoriavaruudessa ei ole mitään keinoa vertailla vektoreita keskenään tai määrittää niiden pituuksia. Tätä varten on siis lisättävä uusi operaatio, joka mahdollistaa vektorien vertailun ja mittaamisen. Tavallisissa euklidisissa vektoriavaruuksissa tämä operaatio on nk. pistetulo, joka palauttaa positiivisen luvun kun kahden vektorin kulma on alle 90 astetta, nollan kun se on tismalleen 90 astetta ja negatiivisen luvun muulloin. Tämän vuoksi sen avulla voidaan mitata vektorien välisiä kulmia. Sisätulo on konseptina tavallisen pistetulon yleistys mielivaltaiselle vektoriavaruudelle, joka antaa erilaisesta nimestään huolimatta samanlaista rakennetta avaruudelle kuin pistetulo antaa euklidisille avaruuksille.
+	
+	Formaalisti sisätulo on kuvaus, joka yhdistää kaksi vektoriavaruuden alkiota johonkin avaruuden määrittelemän kunnan elementtiin. Sisätulo $P$ määritellään vektoriavaruudelle kuvauksena $P: V \times V \to \mathbb{F}$. Se siis ottaa argumentikseen kaksi vektoria ja palauttaa vektorikentän määrittävän kunnan elementin (reaali- tai kompleksiluvun). Kahden vektorin sisätuloa voidaan merkitä useilla eri tavoilla: $\vtr{a}\cdot\vtr{b}$, $\langle\vtr{a}, \vtr{b}\rangle$, $\langle\vtr{a}\mid\vtr{b}\rangle$ ja $(\vtr{a}\mid\vtr{b})$. Toistaiseksi käytämme merkinnöistä toista $\langle\vtr{a}, \vtr{b}\rangle$. Sisätulolle pätee seuraavat vaatimukset:
+	
+	\begin{enumerate}
+		\item Symmetrinen kompleksikonjugaation suhteen: $\langle\vtr{a}, \vtr{b}\rangle = \langle\vtr{b}, \vtr{a}\rangle^\ast$
+		\item Lineaarisuus toisen argumentin suhteen: $\langle\vtr{c}, \alpha\vtr{a} + \beta\vtr{b}, \vtr{c}\rangle = \alpha\langle\vtr{c}, \vtr{a}\rangle + \beta\langle\vtr{c},\vtr{b}\rangle$
+		\item Puhtaasti positiivinen: $\vtr{a} \neq \vtr{0} \implies \langle\vtr{a}, \vtr{a}\rangle > 0$
+	\end{enumerate}
+
+	Näistä vaatimuksista seuraa seuraavanlaisia ominaisuuksia sisätulolle:
+	
+	\begin{enumerate}
+		\item Sisätulo nollavektorin kanssa on nolla: $\langle\vtr{a}, \vtr{0}\rangle = \langle\vtr{0}, \vtr{a} = 0$
+		\item Sisätulo itsensä kanssa on reaalinen ja epänegatiivinen: $\langle\vtr{a}, \vtr{a}\rangle \geq 0 \ \land \ \langle\vtr{a}, \vtr{a}\rangle \in \mathbb{R}$
+		\item Antilineaarisuus ensimmäisen argumentin suhteen (seuraa kompleksikonjugaatiosymmetriasta): $\langle\alpha\vtr{a} + \beta\vtr{b}, \vtr{c}\rangle = \alpha^\ast\langle\vtr{a},\vtr{c}\rangle + \beta^\ast\langle\vtr{b},\vtr{c}\rangle$
+	\end{enumerate}
+
+	Se, että sisätulo on lineaarinen toisen argumentin suhteen ja antilineaarinen ensimmäisen suhteen varmistaa että sisätulolle toivotut ominaisuudet toteutuvat kompleksivektoriavaruuksissakin. Tätä yhdistelmää lineaarisuudesta ja antilineaarisuudesta kutsutaan sesquilineaarisuudeksi. Kun vektoriavaruus on määritelty reaalilukujen yli, on sisätulo symmetrinen ja lineaarinen kunkin argumentin suhteen ja täten suora yleistys pistetulosta. Kun vektoriavaruuteen lisätään sisätulo, kutsutaan syntynyttä avaruutta sisätuloavaruudeksi.
+	
+	Sisätulon avulla määritellään uusia hyödyllisiä käsitteitä, kuten ortogonaalisuus ja ortogonaalinen komplementti. Kaksi vektoria $\vtr{a}$ ja $\vtr{b}$ ovat keskenään kohtisuorassa $\vtr{a} \perp \vtr{b}$, eli ortogonaalisia, mikäli $\inprod{\vtr{a}}{\vtr{b}} = 0$. Ortogonaalisuuden avulla voidaan määritellä nk. ortogonaalinen komplementti. Vektoriavaruuden $V$ aliavaruuden $C$ ortogonaalinen komplementti $C^\perp$ on joukko niitä vektoreita, jotka ovat ortogonaalisia kaikkien $C$:n vektorien kanssa, eli:
+	
+	\begin{equation}
+		C^\perp = \left\{\vtr{a} \in V \mid \forall \vtr{b} \in C: \inprod{a}{b} = 0\right\}
+	\end{equation}
+
+	\subsection{Lisää rakennetta: Normi}
+	
+	Sisätulon lisääminen vektoriavaruuteen teki siitä sisätuloavaruuden. Tämä mahdollistaa vektorien vertailun keskenään. Sisätulon avulla on myös mahdollista määritellä miten vektorin pituus tai sitä vastaava abstraktimpi käsite lasketaan. Sisätulo indusoi siis avaruudelle nk. normin, joka tekee avaruudesta automaattisesti normitetun vektoriavaruuden. Sisätulon indusoima normi määritellään seuraavasti (Huom! Normi voidaan määritellä lukuisilla muillakin tavoilla mutta useimmiten se tehdään sisätulon suhteen.):
+	
+	\begin{equation}
+		||\vtr{a}|| = \sqrt{\langle\vtr{a},\vtr{a}\rangle}
+	\end{equation}
+
+	Koska vektorin sisätulo tisensä kanssa on aina positiinen, on myös normi positiivinen luku. Normi vastaa fysikaalisesti vektorin pituutta tai suureen voimakkuutta. Sillä on lukuisia ominaisuuksia:
+	
+	\begin{enumerate}
+		\item Absoluuttinen homogeenisyys: $||\alpha\vtr{a}|| = |\alpha|\,||\vtr{a}||$
+		\item Kolmioepäyhtälö: $||\vtr{a} + \vtr{b}|| \leq ||\vtr{a}|| + ||\vtr{b}||$
+		\item Cauchyn\textendash Schwarzin epäyhtälö: $|\inprod{\vtr{a}}{\vtr{b}}| \leq ||\vtr{a}||\,||\vtr{b}||$
+		\item Suunnikassääntö: $\norm{\vtr{a} + \vtr{b}}^2 + \norm{\vtr{a} - \vtr{b}}^2 = 2\norm{\vtr{a}}^2 + 2\norm{\vtr{b}}^2$
+		\item Polarisaatioidentiteetti: $\norm{\vtr{a} + \vtr{b}}^2 = \norm{\vtr{a}}^2 + \norm{\vtr{b}}^2 + 2\Re\inprod{\vtr{a}}{\vtr{b}}$
+	\end{enumerate}
+
+	Polarisaatioidentiteetin avulla kahden vektorin sisätulo voidaan saada ulos normista. Sisätulon imaginääriosa saadaan sisätulon $\inprod{\vtr{a}}{i\vtr{b}}$ reaaliosasta. Muita normin ja sisätulon yhdistäviä tuloksia ovat:
+	
+	\begin{enumerate}
+		\item Pythagoraan lause: $\vtr{a} \perp \vtr{b} \iff \norm{\vtr{a}}^2 + \norm{\vtr{b}}^2 = \norm{\vtr{a} + \vtr{b}}^2$
+		\item Pythagoraan lauseen induktio, Parsevalin identiteetti: $\forall i \neq j \leq N: \vtr{a}_i \perp \vtr{a}_j \iff \sum_{i = 1}^{N}\norm{\vtr{a}_i}^2 = \norm{\sum_{i = 1}^{N}\vtr{a}_i}^2$
+	\end{enumerate}
+	
+	\subsection{Lisää rakennetta: Metriikka}
+	
+	Siinä missä sisätulo indsusoi vektoriavaruudelle normin, normi indusoi vektoriavaruudelle nk. metriikan tai etäisyysfunktion. Se määrittelee määrittelee kahden vektorin välisen etäisyyden yksikäsitteisesti. Vastaavasti kuin vektoriavaruuksille, liittyy metriikkan määritelmään muutamia vaatimuksia, jotka ovat intuitiivisia kun oletetaan etäisyyden käyttäytyvän samalla tavalla kuin etäisyydetä käyttäytyvät todellisessa maailmassa mutta jotka ovat jälleen sääntöjä vain koska sellaisten sääntöjen luomista konstruktioista on ollut hyödyllistä puhua.
+	
+	Formaalisti metrinen avaruus on joukko $M$, jolle on määritelty metriikka $d : M \times M \to \mathbb{R}$. Metriikka kuvaa siis joukon $M$ elementtejä reaaliluvuiksi ja tämä luku vastaa näiden objektien välistä ''etäisyyttä''. Olkoot $a, b, c \in M$. Ollakseen metriikka, tulee $d$:lle päteä seuraavat neljä aksioomaa:
+	
+	\begin{enumerate}
+		\item Pisteen etäisyys itsestään on nolla: $d(a, a) = 0$
+		\item Kahden erillisen pisteen etäisyys on aina positiivinen: $a \neq b \implies d(a, b) > 0$
+		\item Etäisyys on symmetrinen. $a$:n etäisyys $b$:stä on sama kuin $b$:n etäisyys $a$:sta: $d(a, b) = d(b, a)$
+		\item Etäisyys toteuttaa kolmioepäyhtälön: $d(a, c) \leq d(a, b) + d(b, c)$
+	\end{enumerate}
+	
+	Viimeinen vaatimus saattaa tuntua hatusta vedetyltä, mutta kolmioepäyhtälö on hyvin luonnollinen vaatimus etäisyydelle ei pelkästään sen takia että fysikaalinen etäisyys noudattaa aina kolmioepäyhtälöä vaan myös sen takia, että abstraktisti käy järkeen että mikäli $a$, $b$ ja $c$ ovat keskenään erillisiä pisteitä, on matkustaminen suoraan $a$:sta $c$:hen aina helpompaa tai yhtä helppoa kuin matkustaminen $a$:sta ensin $b$:hen ja sitten vasta $c$:hen.
+	
+	Kuten havaitaan, metriikan määritelmä ei kerro mikä metriikka vektoriavaruudelle tulisi antaa. Se vain kertoo mitkä asiat tulee toteutua, jotta jokin funktio olisi metriikka. Klassisia esimerkkejä metriikoista ovat mm. kahden reaaliluvun etäisyys $d(a,b) = |a - b|$, kahden kaksiulotteisen pisteen etäisyys: $d(P, Q) = \sqrt{(P_x - Q_x)^2 + (P_y - Q_y)^2}$ ja kahden kaksiulotteisen pisteen taksinkuljettajan etäisyys $d(P, Q) = |P_x - Q_x| + |P_y - Q_y|$. Vektoriavaruuksien tapauksessa metriikan indusoi avaruuteen normi, jolloin on osoitettava, että normilla on metriikkaan vaadittavat ominaisuudet. Tarkastellaan normia metriikkana:
+	
+	\begin{enumerate}
+		\item Pisteen etäisyys itsestään on nolla, eli nollavektorin normi on nolla: $\norm{\vtr{a} - \vtr{a}} = \norm{\vtr{0}} = 0$
+		\item Kahden erillisen vektorin etäisyys on aina positiivinen: $\vtr{a} \neq \vtr{b} \implies \norm{\vtr{a} - \vtr{b}} > 0$
+		\item Etäisyys on symmetrinen: $\norm{\vtr{a} - \vtr{b}} = \norm{\vtr{b} - \vtr{a}}$
+		\item Etäisyys toteuttaa kolmioepäyhtälön: $\norm{\vtr{a} - \vtr{c}} \leq \norm{\vtr{a} - \vtr{b}} + \norm{\vtr{b} - \vtr{c}}$
+	\end{enumerate}
+
+	Kaikki ominaisuudet on helppo osoittaa todeksi, jolloin normi indusoi kuin indusoikin avaruudelle metriikan
+	
+	\subsection{Lisää rakennetta: Topologia}
+	
+	On vielä yksi asia, jota vektoriavaruudessamme ei voi tehdä. Emme voi käsitellä vektorien sarjoja, eli äärettömiä summia sillä ei ole varmuutta siitä, onko ääretön summa vektoriavaruuden alkio. Esimerkiksi mikäli vektoriavaruutemme olisi polynomit lukuvälillä $[0, 1]$, voitaisiin niiden äärettömällä sarjalla (Taylorin sarja) approksimoida mitä tahansa jaktuvaa funktiota, eli myös funktioita, jotka eivät ole polynomeja (eksponenttifunktio, logaritmifunktio, trigonometriset funktiot). Nämä funktiot eivät ole vektoriavaruutemme alkioita, jolloin polynomien sarja ei ole suljettu vektoriavaruuden sisään. Vastaavasti kaikkien lukuvälillä $[0, 1]$ määriteltyjen jatkuvien funktioiden vektoriavaruus olisi suljettu sarjojen suhteen. Vektoriavaruutta, joka on suljettu sarjojen suhteen eli jolle kaikki sarjat suppenevat uudeksi vektoriavaruuden alkioksi, kutusutaan täydelliseksi vektoriavaruudeksi. Vektoriavaruus on täydellinen, mikäli kaikki nk. Cauchyn lukujonot suppenevat. Jotta suppenevuutta voidaan tarkastella tulee määritellä käsite vektoreiden läheisyydestä, jota kutsutaan tässä tapauksessa vektoriavaruuden topologiaksi. Tämän topologian indusoi aiemmin normin avulla määrittelemämme metriikka, jolloin voimme sanoa että vektoreiden $\vtr{a}_n$ jono suppenee $\vtr{a}$:han jos ja vain jos:
+	
+	\begin{equation}
+		\lim_{n\to\infty}||\vtr{a}_n - \vtr{a}|| = 0
+	\end{equation}
+
+	Kun vektoriavaruudelle annetaan topologia, johtaa se äärellisulotteisten vektoriavaruuksien tapauksessa ekvivalenttiin suppenemiseen. Jos ulottuvuuksia on ääretön määrä, on suppeneminen perustavanlaatuisesti erilaista erilaisille topologioille. Tästä seuraa että topologian lisääminen tuottaa erilaisia avaruuksia joihin voisimme edetä. Kun valitaan sisätulo määrittämään avaruudelle normin kautta topologia saadaan nk. Hilbertin avaruus johon törmätään kvanttimekaniikassa. Jos puolestaan suoraan määritellään avaruudelle normi, joka määrittelee topologian, saadaan nk. Banachin avaruus. Se, mikä erottaa Hilbertin avaruudet muista Banachin avaruuksista on juurikin avaruuden suhde sisätuloon. Siinä missä millä tahansa normitetulla vektoriavaruudella (Banach) on nk. L-semi-sisätulo (semi-sisätulo Lumerin mukaan) eli sisätulo jonka ei tarvitse olla puhtaasti positiivinen ($\inprod{\vtr{a}}{\vtr{a}} > 0$) vaan se on puhtaasti epänegatiivinen ($\inprod{\vtr{a}}{\vtr{a}} \geq 0$), on Hilbertin avaruuksilla nimenomaan sisätulo, joka on puhtaasti positiivinen.
+	
+	\subsection{Lisää rakennetta: Separoituvuus}
+	
+	Aiemmin pääsimme Hilbertin avaruuden formaaliin määritelmään vaatimalla, että vektoriavaruutemme on täydellinen sisätulon indusoiman metriikan suhteen. Fysiikassa kuitenkin lisätään usein vielä yksi vaatimus Hilbertin avaruudelle: separoituvuus. Avaruus on separoituva, jos siihen sisältyy numeroituva ja tiheä alijoukko. Toisin sanoen on oltava jokin jono $\{a_n\}_{n = 1}^{\infty}$ joka kuuluu avaruuteen siten että jokainen avaruuden alkio on joko $a_n$ tai mielivaltaisen lähellä jokaista $a_n$:nää. Tiheys on helpointa ymmärtää rationaalilukujen ja reaalilukjen kontekstissa. Rationaaliluvut ovat numeroituva joukko (eli niiden kardinaliteetti on sama kuin luonnollisten lukujen $\aleph_0$) ja ne ovat tiheitä reaaliluvuissa, sillä rationaaliluvuilla voidaan päästä mielivaltaisen lähelle mitä tahansa rationaalilukua.
+	
+	Separoituvuudesta (yhdistettyna Zornin lemmaan) seuraa erittäin tärkeä tulos: Separoituva Hilbertin avaruus $\iff$ Hilbertin avaruus, jonka kanta on numeroituva.
+	
+	\subsection{Funktioavaruudet}
+	
+	Nimensä mukaisesti funktioavaruudet ovat funktioiden muodostamia vektoriavaruuksia. Niitä esiintyy runsaasti fysiikassa. $N$:nen kertaluvun differentiaaliyhtälön ratkaisut muodostavat $N$-ulotteisen funktioavaruuden, sillä yhtälöllä on $N$ lineaarisesti riippumatonta ratkaisua. Toisen asteen polynomit muodostavat kolmiulotteisen vektoriavaruuden, jossa kantavektorit ova $x^0$, $x^1$ ja $x^2$. Neliöintegroitavat funktiot muodostavat funktioavaruuden. Distribuutiot muodostavat funktioavaruuden. Lista jatkuu.
+	
+	Myöa funktioavaruuksille on hyödyllistä määritellä aiemmin mainittuja lisärakenteita, kuten sisätulon käsite ja normi. Näiden rakenteiden avulla myös funktiot voivat esimerkiksi olla Hilbertin avaruuksien alkioita. Määritelmiä tehdessä törmätään kuitenkin ongelmaan: siinä missä tavallisille vektoreille sisätulo on vain summa (tai sarja ääretönulotteisen avaruuden tapauksessa), ei jatkuvaa funktiota voi summata kaikkien argumenttiensa yli niiden epänumeroituvuuden vuoksi. Tämän vuoksi funktioiden sisätulon on oltava jollakin tavalla jatkuva analogia tavallisten vektoreiden välisestä sisätulosta. Mikä sitten on summan jatkuva analogia? No integraali! Funktioiden välinen sisätulo määritelläänkin usein integraalin avulla. Oletetaan, että funktiot $f$ ja $g$ ovat (kompleksi)funktioita ja että ne ovat neliöintegroituvia välillä $[0, 1]$ ja ovat täten funktioavaruuden $L^2([0,1])$ (Neliöintegroituvat funktiot välillä $[0,1]$) alkioita. Tällöin niiden välille voidaan määrittää sisätulo seuraavanlaisena integraalina:
+	
+	\begin{equation}
+		\inprod{f}{g} = \int_{0}^{1}f^{\ast}(x)g(x)\odif{x}
+	\end{equation}
+
+	Osoittautuu, että $L^p$-avaruuksista ainoastaan $L^2$-avaruudet ovat yhteensopivia sisätulon kanssa, eli vaikka kaikki $L^p$-avaruudet ovat normitettuja ja täydellisiä (eli ovat Banachin avaruuksia). Vain $L^2$-avaruudet ovat normitettuja, täydellisiä sisätuloavaruuksia eli Hilbertin avaruuksia. Tarkastellaan nyt tarkemmin $L^p$ avaruuksia.
+	
+	$L^p$-avaruudet ovat siis normitettuja funktioavaruuksia, jossa $p$ kertoo, mikä normi funktioavaruudelle on annettu. Nk. $p$-normit määritellään diskreetissä tapauksessa summana:
+	
+	\begin{equation}
+		\norm{\vtr{a}}_p = \left(\sum_{i}|a_i|^p\right)^{1/p}
+	\end{equation}
+
+	Kun $p = 1$, saadaan taksinkuljettajan etäisyys ja kun $p = 2$ saadaan tavallinen euklidinen normi. 2-normille ominaista on se, että se indusoituu kanonisesta sisätilosta, eli $\norm{\vtr{a}}_2 = \sqrt{\inprod{\vtr{a}}{\vtr{a}}}$. Kun $p = \infty$, on kyseessä nk. supremum normi, joka on määritelty seuraavasti:
+	
+	\begin{equation}
+		\norm{\vtr{a}}_{\infty} = \sup\{|a_1|, |a_2|, \dots |a_i|, \dots\}
+	\end{equation}
+
+	Määritelmä on luonteva kun miettii miten $p$-normi käyttäytyy kun $p$ kasvaa. Kaikki 2-normin 1 omaavat vektorit ($\norm{\vtr{a}}_2 = 1$) muodostavat yksikköympyrän tai sen korkeampiulotteisen vastineen origon ympärille. Kun $p$-kasvaa muuttuu tämä alue yhä neliömäisemmäksi, kunnes rajankäynnillä äärettömyydessä on luontevaa määritellä että kaikki $\infty$-normin 1 omaavat vektorit ($\norm{\vtr{a}}_\infty = 1$) muodostavat neliön tai sen korkeampiulotteisen vastineen, jonka sivun pituus on kaksi, origon ympärille. 
+	
+	On huomattavaa, että arvoille $0 < p < 1$ $p$-normi ei toteuta enää kolmioepäyhtälöä, jolloin se ei ole perinteisessä mielessä normi. Tästä huolimatta näissäkin tilanteissa on mahdollista määrittää avaruudelle metriikka, jolloin kaikki $L^p$-avaruudet ovat täydellisiä metrisiä vektoriavaruuksia. Jotta kuitenkin voitaisiin käsitellä funktioiden normeja tarvitaan jatkuva analogia $p$-normille. Olkoon $f \in L^p(S)$. Tällöin $p$-normi on integraali:
+	
+	\begin{equation}
+		\norm{f}_p = \left(\int_S|f|^p\odif{\mu}\right)^{1/p} < \infty
+	\end{equation}
+
+	Ollakseen $L^p(S)$-avaruuden jäsen, tulee funktion olla $p$-integroituva, eli toteuttaa ehto:
+	
+	\begin{equation}
+		\int_S|f|^p\odif{x} < \infty
+	\end{equation}
+
+	Kun $p = 2$ tätä kutsutaan neliöintegroituvuudeksi ja kuten aiemmin todettiin vain $L^2$-avaruudet ovat Hilbertin avaruuksia
+
+	\subsection{Jonoavaruudet}
+	
+	Nimensä mukaisesti ovat äärettömien jonojen vektoriavaruuksia. Vastaavasti kuin $L^p$-avaruudet, merkitään tietyntyyppisiä jonoavaruuksia $\ell^p$, jossa $p$ kertoo jälleen ehdon jonon suppenemiselle sekä normin, joka jonolle on määritelty. Ollakseen $\ell^p$-avaruuden jäsen, on jonon toteutettava ehto:
+	
+	\begin{equation}
+		\sum_n |x_n|^p \leq \infty
+	\end{equation}
+
+	Kun $p = 2$ tätä kutsutaan neliösummautuvuudeksi ja jälleen vain $\ell^2$ on Hilbertin avaruus, sillä $2$-normin on $p$-normeista ainoa, joka indusoituu kanonisesta sisätulosta.
+	
+	\subsection{Lineaariset operaattorit}
+	
+	Kuvaukset vektoriavaruudesta toiseen tai avaruuteen itseensä
+	
+	\subsection{Duaaliavaruudet}
+	
+	Jokaisella vektoriavaruudella on nk. duaaliavaruus, joka on nimensä mukaisesti jollakin tavalla alkuperäisen avaruuden ''kaksoisolento'' tai ''peilikuva''. Syy tälle nimelle ei ole itsestäänselvä pelkästään duaaliavaruuden määritelmän kuullessa, vaan vaatii hieman enemmän konstekstia. Nimestä voi kuitenkin päätellä, että kyseessä on hyvin tärkeä käsite, sillä matematiikassa kahden eri asian välinen duaalisuus on hyvin syvä yhteys ja mahdollistaa usein jonkin asian ymmärtämisen kahdesta erilaisesta perspektiivistä. Näin on myös duaaliavaruuksien tapauksessa.
+	
+	Formaalisti vektoriavaruden $V$ duaaliavaruus $V^\ast$ (myös $V'$) on joukko lineaarisia funktionaaleja $f$ $V$:stä siihen kuntaan $\mathbb{F}$, jonka yli $V$ on määritelty. Toisin sanoen $f$ on kuvaus $f: V \to \mathbb{F}$. Funktionaaleista puhutaan myöhemmin tarkemmin, mutta tässä vaiheessa on olennaista että lineaarinen funktionaali kuvaa vektoreita joko reaali- tai kompleksiluvuiksi.
+	
+	Kun $f$:lle määritellään säännöt yhteenlaskun ja skalaarilla kertomisen suhteen, tulee myös $V^\ast$:sta vektoriavaruus, jossa vektorit ovat edellä mainittuja lineaarisia funktionaaleja ja skalaarit kunnan $\mathbb{F}$ alkioita. Lineaarisille funktionaaleille pätee siis:
+	
+	\begin{enumerate}
+		\item Additiivisuus: $(f + g)[\vtr{a}] = f[\vtr{a}] + g[\vtr{a}]$
+		\item Skalaarilla kertominen $(\alpha f)[\vtr{a}] = \alpha (f[\vtr{a}])$
+	\end{enumerate}
+
+	On huomattavaa, että funktionaalien argumentit merkitään usein hakasulkeisiin kaarisulkeiden sijaan. Tällä halutaan korostaa, että ne voivat ottaa argumenteikseen muutakin kuin pelkkiä muuttujia (esim. kokonaisia funktioita ja niiden derivaattoja).
+	
+	Nyt muodostuneen vektoriavaruuden $V^\ast$ alkoita kutsutaan usein kovektoreiksi (liittyy läheisesti kontravarianssin ja kovarianssin käsitteisiin) tai lineaarisiksi funktionaaleiksi. Miksi sitten duaaliavaruuksia kutsutaan juuri duaaliavaruuksiksi? Ensimmäinen hyvä syy tähän on, että duaaliavaruuden dimensio on sama kuin alkuperäisen avaruuden ja että ainakin äärellisulotteisessa tapauksessa alkuperäisen avaruuden kannasta $\{\vtr{a}_i\}$ voidaan muodostaa duaaliavaruuden kanta $\{\vtr{a}^i\}$ nimeltään duaalikanta seuraavan relaation avulla:
+	
+	\begin{equation}
+		\vtr{a}^i(c^1\vtr{a}_1 + \dots + c^n\vtr{e}_n) = c^i, \ \ i = 1, \dots, n, \ \ c^{i} \in \mathbb{F}
+	\end{equation}
+
+	Kun kukin $c^{i}$ asetetaan vuorollaan ykköseksi ja muut nollaksi saadaan yhtälöryhmä:
+	
+	\begin{equation}
+		\vtr{a}^i\vtr{a}_j = \delta^i_j
+	\end{equation}
+
+	Ylläolevassa yhtälössä oikea puoli on yksi vain, jos $i = j$ ja muutoin se on nolla. Mikäli $V$:n vektorit ovat tavallisia pystyvektoreita (sarakevektoreita), voidaan $V^\ast$:n vektorit tulkita vaakavektoreiksi (rivivektoreiksi), sillä vaakavektorin ja pystyvektorin tulo on skalaari, jolloin $V^\ast$:n elementillä $V$:n elementtiin operoiminen tuottaa kuin tuottaakin kunnan $\mathbb{F}$ jäsenen. Olkoon $\vtr{a} \in V$ ja $\vtr{b} \in V^{\ast}$. Tällöin pätee:
+	
+	\begin{equation}
+		\vtr{b}\vtr{a} = \begin{bmatrix}
+			b^1 & b^2 & \dots & b^N
+		\end{bmatrix}\begin{bmatrix}
+		a_1 \\
+		a_2 \\
+		\vdots \\
+		a_N
+	\end{bmatrix} = b^1a_1 + b^2a_2 + \dots + b^Na_N = c \in \mathbb{F}
+	\end{equation}
+
+	Tässä kohtaa voidaan tehdä tärkeä havainto: Laskutoimitus $\vtr{b}\vtr{a}$ näyttää hyvin samanlaiselta tavallisen sisätulon laskutoimituksen kanssa. Tälle on hyvä syy. On nimittäin olemassa nk. luonnollinen paritus, joka yhdistää duaaliavaruuden alkioita ja alkuperäisen avaruuden alkioita erään bilineaarisen kuvauksen kautta ja jota merkitään $\inprod{f}{\vtr{a}}$. Notaation samanlaisuus sisätulon kanssa ei ole sattumaa, sillä osoittautuu että jokainen sisätulo kahden vektorin välillä voidaan myös tulkita duaaliavaruuden elementin ja vektorin väliseksi tuloksi, jolloin duaaliavaruuksilla on syvä yhteys sisätuloihin. Aiemmin näimme esimerkin tavallisten koordinaattivektorien tapauksessa, jossa pistetulo voitiin tulkita vaaka- ja pystyvektorien väliseksi matriisituloksi. Toinen luonnollinen paritus on funktioavaruuksissa määrättyjen integraalien ja funktioiden välillä. Jos $f(x) \in C([a, b])$ (jatkuvat funktiot välillä $[a, b]$) ja $I[f] = \int_{a}^{b}f(x)\odif{x}$ on lineaarinen funktionaali $C[a, b]$:stä reaalilukuihin, on näiden välillä luonnollinen paritus $\inprod{I[f]}{f(x)}$, joka tuottaa $f(x)$:n neliön määrätyn integraalin, eli $f(x)$:n sisätulon itsensä kanssa! Kyseessä on siis dualismi sisätulon $\inprod{f}{f}$ ja lineaarisen funktionaalin $I[f]$ välillä!
+	
+	\begin{equation}
+		\inprod{I[f]}{f} = (I[f])[f] = \int_{a}^{b}[f(x)]^2\odif{x} = \inprod{f}{f}
+	\end{equation} 
+	
+	
+	
+	
+\end{document}

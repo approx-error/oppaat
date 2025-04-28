@@ -1,0 +1,131 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{geometry}%
+\geometry{margin=3cm}%
+\usepackage[finnish]{babel}%
+\usepackage{amsmath}%
+\usepackage{amssymb}%
+\usepackage{amsthm}%
+\usepackage{physics}%
+\usepackage{derivative}%
+\usepackage{graphicx}%
+\usepackage{cancel}%
+\usepackage{comment}%
+\usepackage{listingsutf8}%
+\usepackage{color}%
+\usepackage{esint}
+\usepackage{bigints}
+\usepackage{diagbox}
+
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}	
+
+\newtheorem{theorem}{Lause}[section]
+\newtheorem{corollary}{Seuraus}[theorem]
+\newtheorem{definition}{Määritelmä}[section]
+\newtheorem{remark}{Havainto}[section]
+
+
+% Unit vector, boldstyle
+\newcommand{\unitv}[1]{\mathbf{\hat{#1}}}
+% Unit vector, bolstyle (greek)
+\newcommand{\unitg}[1]{\boldsymbol{\hat{#1}}}
+% Vector, boldstyle
+\newcommand{\vtr}[1]{\mathbf{#1}}
+% Vector, boldstyle (greek)
+\newcommand{\vtg}[1]{\boldsymbol{#1}}
+
+% Vector calculus
+% Gradient: use nabla
+% Laplacian: use nabla^2
+% Divergence:
+\newcommand{\divop}{\nabla\cdot}
+% Curl:
+\newcommand{\curlop}{\nabla\times}
+
+% Rising and falling factorials (Pochhammer symbols)
+\newcommand{\risingfact}[1]{^{\overline{#1}}}
+\newcommand{\fallingfact}[1]{^{\underline{#1}}}
+
+% Supremum
+\newcommand{\Sup}[1]{\underset{#1}{\sup\,}}
+% Infimum
+\newcommand{\Inf}[1]{\underset{#1}{\inf\,}}
+
+% Inner product
+\newcommand{\inprod}[2]{\langle#1,#2\rangle}
+
+
+% Projektin jako useaan tiedostoon:
+\usepackage{subfiles}
+
+
+\title{Johdoksia fysiikan matematiikasta}%
+\author{Juuso Kaarela}%
+\date{}
+%
+\begin{document}%
+\normalsize%
+\maketitle%
+
+\tableofcontents
+
+\pagebreak
+
+\section{Differentiaalilaskenta}%
+\label{sec:diff}%
+
+\subfile{osiot/1_differentiaalilaskenta}
+
+\pagebreak
+%
+\section{Differentiaaliyhtälötietoa}
+\label{sec:difftie}
+
+\subfile{osiot/2_difftietoa}
+
+\pagebreak
+
+%
+\section{Tavalliset differentiaaliyhtälöt}%
+\label{sec:tdy}%
+
+\subfile{osiot/3_tavalliset_dyt}
+
+\pagebreak
+
+%
+\section{Osittaisdifferentiaaliyhtälöt}%
+\label{sec:ody}
+
+\subfile{osiot/4_osittais_dyt}
+
+\pagebreak
+
+\section{Vektoriavaruudet ja funktiot vektoreina}
+\label{sec:vekt}
+
+\subfile{osiot/5_vektoriavaruudet}
+
+\pagebreak
+
+\section{Funktionaaleista, distribuutioista ja funktionaalianalyysistä}%
+\label{sec:funk}
+
+\subfile{osiot/6_funktionaalianalyysi}
+
+\pagebreak
+
+\section{Approksimaatiot, kasvunopeus ja asymptotiikka}
+\label{sec:approks}
+
+\subfile{osiot/7_approksimaatiot}
+
+%
+\end{document}

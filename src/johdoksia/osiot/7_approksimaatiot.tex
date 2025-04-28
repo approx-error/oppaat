@@ -1,0 +1,122 @@
+\documentclass[../johdoksia.tex]{subfiles}
+\graphicspath{{\subfix{../kuvat/}}}
+
+\begin{document}
+	\subsection{Erilaisia approksimaatioita}
+	
+	\subsubsection{Binomiapproksimaatio}
+	
+	Binomiapproksimaatiolla nimensä mukaisesti approksimoidaan binomeja, tarkemmin muotoa $(1 + x)^\alpha$ olevia binomeja, jossa $x,\alpha \in \mathbb{C}$ ja joille pätee $|x| < 1$ ja $|\alpha x| \ll 1$. Kun nämä ehdot täyttyvät, voidaan kirjoittaa:
+	
+	\begin{equation}
+		(1 + x)^\alpha \approx 1 + \alpha x
+	\end{equation}
+
+	Tulos voidaan johtaa tekemällä funktiolle $f(x) = (1 + x)^\alpha$ lineaarinen approksimaatio pisteen $x = 0$ ympäristössä. Approksimaatio on muotoa $L(x) = kx + b$ oleva suora, jossa $k = f'(0)$ ja $b = f(0)$. Saadaan:
+	
+	\begin{equation*}
+		f'(x)|_{x = 0} = \alpha(1 + x)^{\alpha - 1}|_{x = 0} = \alpha(1 + 0)^{\alpha - 1} = \alpha
+	\end{equation*} 
+
+	\begin{equation*}
+		f(0) = (1 + 0)^{\alpha} = 1
+	\end{equation*}
+
+	Lineaarinen approksimaatio on siis:
+	
+	\begin{equation*}
+		L(x) = kx + b = f'(0)x + f(0) = \alpha x + 1
+	\end{equation*}
+
+	Myös seuraavassa osiossa esiteltävillä Taylorin polynomeilla voidaan johtaa binomiapproksimaatio.
+	
+	\subsubsection{Taylorin polynomit}
+	
+	\subsection{Funktioiden vertailu}
+	
+	\subsubsection{$O$- ja $o$-notaatio}
+		Iso O:
+		\begin{equation}
+			f(x) = O(g(x)) \iff \exists M \in \mathbb{R}_+, x_0 \in \mathbb{R}: (\forall x \geq x_0: |f(x)| \leq Mg(x))
+		\end{equation}
+		Pikku o:
+		\begin{equation}
+			f(x) = o(g(x)) \iff \forall M \in \mathbb{R}_+: (\exists x_0 \in \mathbb{R}: (\forall x \geq x_0: |f(x)| \leq Mg(x)))
+		\end{equation}
+	
+	Pikku o rajoittaa enemmän kuin iso O, sillä isolle O:lle riittää että on olemassa jokin $M$, jolle epäyhtälö $|f(x)| \leq Mg(x)$ pätee jossakin vaiheessa kun $x \geq x_0$, mutta pieni o vaatii, että kaikille $M$:lle on olemassa jokin $x_0$, jonka jälkeen epäyhtälö $|f(x)| \leq Mg(x)$ pätee. Eli vaikka $M$ olisi hyvin lähellä nollaa, tulee $g(x)$:n kasvaa niin paljon nopeammin kuin $|f(x)|$:n että $Mg(x)$ päihittää $|f(x)|$:n lopulta.
+	
+	Vaihtoehtoisesti iso ja pieni o voidaan määritellä raja-arvojen avulla:
+	
+	\begin{equation}
+		f(x) = O(g(x)) \iff \underset{x \to \infty}{\lim\sup} \frac{|f(x)|}{g(x)} < \infty
+	\end{equation}
+
+	\begin{equation}
+		f(x) = o(g(x)) \iff \lim_{x \to \infty}\frac{f(x)}{g(x)} = 0
+	\end{equation}
+	
+	\subsubsection{$\ll$, $\lll$, $\gg$ ja $\ggg$}
+	
+	Symboleille $\ll$ ja $\gg$ ei ole eksaktia määritelmää, mutta voidaan silti muodostaa konsistentti määritelmä sarjakehitelmiin liittyen. Oletetaan, että $A$ ja $B$ ovat jotakin suureita, joita on merkityksellistä vertailla (esim. etäisyyksiä, massoja, nopeuksia jne.). Oletetaan myös, että on jokin funktio $f$, joka riippuu jollakin tavalla $A$:sta ja $B$:stä. Tällöin voidaan sanoa, että $A \ll B$, jos $f$:n sarjakehitelmässä $f\left(\frac{A}{B}\right) - f(0)$ johtavan termin jälkeiset termit voidaan jättää huomiotta. Se, että termit voidaan jättää huomiotta riippuu mittausten tarkkuudesta tai teoreettisten parametrien epävarmuudesta, jolloin tälle ei ole yhtä tiettyä määritelmää. Sen sijaan se riippuu tilanteesta. Lisäksi on olennaista, että funktion $f$ sarjakehitelmän kertoimet $f_n$ eivät kasva suuresti kun termien asteluku kasvaa, sillä tällöin termejä ei voitaisi jättää huomiotta pelkästään pienen argumentin arvon takia. Usein fysiikassa funktiot kuitenkin ovat sellaisia, että kertoimet $f_n$ ovat kertaluokaltaan lähellä ykköstä eivätkä ne kasva asteluvun kasvaessa (esim. $\frac{1}{1 - x} = 1 + x + x^2 + \dots$) vaan usein jopa pienentyvät (esim. $e^x, \sin x, \cos x$, $\tan x$, $\sinh x$, $\cosh x$, $\tanh x$).
+	
+	Olkoon $f(x)$:n sarjakehitelmä muotoa:
+	
+	\begin{equation*}
+		f(x) = \sum_{k = 0}^{\infty}f_kx^k = f_0 + f_1x + f_2x^2 + \dots
+	\end{equation*}
+
+	Tällöin $f\left(\frac{A}{B}\right)$ on:
+	
+	\begin{equation*}
+		f\left(\frac{A}{B}\right) = \sum_{k = 0}^{\infty}f_k\left(\frac{A}{B}\right)^k = f_0 + f_1\left(\frac{A}{B}\right) + f_2\left(\frac{A}{B}\right)^2 \dots
+	\end{equation*}
+
+	Ja $f(0) = f_0 + \cancel{f_1\cdot(0)} + \cancel{f_2\cdot(0)^2} + \dots = f_0$. Nyt erotus $f\left(\frac{A}{B}\right) - f(0)$ on muotoa:
+	
+	\begin{align*}
+		f\left(\frac{A}{B}\right) - f(0) &= \sum_{k = 0}^{\infty}f_k\left(\frac{A}{B}\right)^k - f_0 \\
+		&= f_0 + f_1\left(\frac{A}{B}\right) + f_2\left(\frac{A}{B}\right)^2 + f_3\left(\frac{A}{B}\right)^3 + \dots - f_0 \\
+		f\left(\frac{A}{B}\right) - f(0) &= f_1\left(\frac{A}{B}\right) + f_2\left(\frac{A}{B}\right)^2 + f_3\left(\frac{A}{B}\right)^3 + \dots
+	\end{align*}
+
+	Nyt siis $A \ll B$, mikäli termit $O\left(\frac{A^2}{B^2}\right)$ voidaan jättää huomiotta tilanteen puitteissa. \\
+	
+	\noindent Merkinnöille $\lll$ ja $\ggg$ on vielä epätäsmällisempi määritelmä: Ne tarkoittavat sitä, mitä niiden halutaan tarkoittavan. Esimerkiksi voitaisiin määritellä aiemman innoittamana, että $A \lll B$, jos sarjakehitelmän $f\left(\frac{A}{B}\right) - f(0)$ termit $O\left(\frac{A}{B}\right)$ voidaan jättää huomiotta tilanteen puitteissa, eli että $\frac{A}{B} \approx 0$ tarkkuuden rajoissa. Kuitenkin karkeasti $\lll$ ja $\ggg$ ovat jollakin tavalla rajoittavampia versioita $\ll$:stä ja $\gg$:stä. Eli jos $\ll$ on ''paljon pienempi kuin'', olisi $\lll$ ''paljon, paljon pienempi kuin''.
+	
+	\subsubsection{$\lessapprox$, $\lesssim$, $\gtrapprox$ ja $\gtrsim$}
+	
+	Näillä symboleilla halutaan korostaa, että suure $A$ on pienempi tai suurempi kuin $B$ tai jopa yhtä suuri kuin $B$ mutta että yhtäsuuruus on aprokksimaattista sen sijaan että se olisi tarkkaa. Symbolit $\lessapprox$ ja $\lesssim$ ovat vaihtoehtoiset kirjoitusasut samaa tarkoittavalle symbolille samoin kuin $\gtrapprox$ ja $\gtrsim$. Siinä missä $A \leq B$ kertoo, että $A$ on joko pienempi kuin $B$ tai tarkalleen $B$, kertoo $A \lesssim B$, että $A$ on joko pienempi kuin $B$ tai approksimaattisesti $B$. Oletetaan kuitenkin, että $A \not\geq B$. Tämän perusteella voidaan muodostaa hierarkia vertailuoperaattoreista niiden rajoittavuuden mukaan. Olkoon $\prec$ ''on rajoittavampi kuin'', eli $A \prec B$ tarkoittaa, että vertailuoperaattori $A$ rajoittaa mahdollisia arvoja jotka toteuttavat vertailun enemmän kuin vertailuoperaattori $B$ Olkoon $\preceq$ ''on rajoittavampi tai yhtä rajoittava kuin''. Tällöin pätee seuraava rajoittavuushierarkia:
+	
+	\begin{equation}
+		(\lll) \ \preceq \ (\ll) \ \prec \ (<) \ \prec \ (\lesssim) \ \preceq \ (\leq)
+	\end{equation}
+
+	Ja vastaavasti:
+	
+	\begin{equation}
+		(\ggg) \ \preceq \ (\gg) \ \prec \ (>) \ \prec \ (\gtrsim) \ \preceq \ (\geq)
+	\end{equation}
+	
+	Operaatioiden $\lll$ ja $\ll$ sekä $\ggg$ ja $\gg$ välillä on relaatio $\preceq$, sillä $\lll$ ja $\ggg$ ovat hyvin epäformaalisti määriteltyjä symboleita, jolloin on mahdollista että ne määritellään karkeasti samalla tavalla kuin $\ll$ ja $\gg$. Operaatioiden $\lesssim$ ja $\leq$ sekä $\gtrsim$ ja $\geq$ välillä puolestaan on relaatio $\preceq$, sillä mikäli $A \lesssim B$, voi olla $A = B$, sillä $A \approx B$ sisältää mahdollisuuden yhtäsuuruudelle. Sama pätee $\gtrsim$:lle.
+	
+	\subsection{Asymptotiikka}
+	
+	$\sim$:n määritelmä
+	
+	\begin{equation}
+		f(x) \sim g(x) \iff \lim_{x\to \infty}\frac{f(x)}{g(x)} = 1
+	\end{equation}
+
+	Vaihtoehtoisesti erityisesti jaksollisille funktioille $g(x)$:
+	
+	\begin{equation}
+		f(x) \sim g(x) \iff f(x) = g(x)(1 + o(1))
+	\end{equation}
+	
+	\subsubsection{Asymptoottisia approksimaatioita}
+	
+	\subsubsection{Asymptoottisia sarjakehitelmiä}
+	
+
+\end{document}

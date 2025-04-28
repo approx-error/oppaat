@@ -1,0 +1,445 @@
+\documentclass[../johdoksia.tex]{subfiles}
+\graphicspath{{\subfix{../kuvat/}}}
+
+\begin{document}
+	\subsection{Derivaattoja}
+	
+	\subsection{Differentiaalioperaattorien kaavoja}
+	
+	\subsubsection{Gradientti}
+	
+	Funktion $f(\vtr{r})$ Gradientti $\nabla f(\vtr{r})$ on määritelmän mukaan suure, joka yhdistää infinitesimaalisen muutoksen $\vtr{r}$:ssä tätä vastaavaan infinitesimaaliseen muutokseen $f$:ssä. Toisin sanoen:
+	
+	\begin{equation}
+		\odif{f} = \nabla f\cdot\odif{\vtr{r}}
+	\end{equation}
+	
+	Gradientti on siis yleistys yksiulotteisesta derivaasta $D$, jolle pätee:
+	
+	\begin{equation}
+		\odif{f} = D\odif{x}
+	\end{equation}
+	
+	Tai tutummin:
+	
+	\begin{equation}
+		D = \odv{f}{x}
+	\end{equation}
+	
+	Gradientille tulisi nyt löytää tulosta (3) vastaava kaava, jotta se voitaisiin määrittää. Tarkastellaan tilannetta eri koordinaatistoissa:
+	
+	\begin{enumerate}
+		\item \textbf{Karteesinen koordinaatisto}
+		
+		Karteesisessa koordinaatistossa pätee $f = f(x,y,z)$. $f$:n differentiaali $\odif{f}$ on tällöin summa:
+		
+		\begin{equation}
+			\odif{f} = \pdv{f}{x}\odif{x} + \pdv{f}{y}\odif{y} + \pdv{f}{z}\odif{z}
+		\end{equation}
+		
+		Eli $f$:n muutos riippuu kunkin muuttujan aiheuttamasta muutoksesta $f$:ään. Mielivaltainen muuttujien inifinitesimaalista muutosta kuvaava vektori $\odif{\vtr{r}}$ on tällöin:
+		
+		\begin{equation}
+			\odif{\vtr{r}} = \odif{x}\unitv{x} + \odif{y}\unitv{y} + \odif{z}\unitv{z}
+		\end{equation}
+		
+		Sijoitetaan (4) ja (5) yhtälöön (1):
+		
+		\begin{align}
+			\pdv{f}{x}\odif{x} + \pdv{f}{y}\odif{y} + \pdv{f}{z}\odif{z} &= \nabla f \cdot \big(\odif{x}\unitv{x} + \odif{y}\unitv{y} + \odif{z}\unitv{z}\big) \\
+			\intertext{Merkitään $\nabla f$:n komponentteja $(\nabla f)_i$, jossa $i \in \left\{x,y,z\right\}$, jolloin saadaan:}
+			\pdv{f}{x}\odif{x} + \pdv{f}{y}\odif{y} + \pdv{f}{z}\odif{z} &= \Big((\nabla f)_x\unitv{x} + (\nabla f)_y\unitv{y} + (\nabla f)_z\unitv{z}\Big) \cdot (\odif{x}\unitv{x} + \odif{y}\unitv{y} + \odif{z}\unitv{z}) \\
+			\pdv{f}{x}\odif{x} + \pdv{f}{y}\odif{y} + \pdv{f}{z}\odif{z} &= (\nabla f)_x\odif{x} + (\nabla f)_y\odif{y} + (\nabla f)_z\odif{z} \\
+			\intertext{Vertailemalla yhtälön puolia voidaan tehdä identifikaatiot:}
+			(\nabla f)_x = \pdv{f}{x} \ \ \ \ \text{ja} \ \ \ \ (\nabla f)_y &= \pdv{f}{y} \ \ \ \ \text{ja} \ \ \ \ (\nabla f)_z = \pdv{f}{z}
+		\end{align}
+		
+		\noindent Tästä seuraa, että karteesisen koordinaatiston vektorina $\nabla f$ on muotoa:
+		
+		\begin{equation}
+			\boxed{\nabla f = \pdv{f}{x}\unitv{x} + \pdv{f}{y}\unitv{y} + \pdv{f}{z}\unitv{z}}
+		\end{equation}
+		
+		\item \textbf{Sylinterikoordinaatisto}
+		
+		\noindent Nyt $f = f(\rho, \varphi, z)$, jolloin pätee:
+		
+		\begin{equation}
+			\odif{f} = \pdv{f}{\rho}\odif{\rho} + \pdv{f}{\varphi}\odif{\varphi} + \pdv{f}{z}\odif{z}
+		\end{equation}
+		
+		Siirtymävektori $\odif{\vtr{r}}$ on nyt:
+		
+		\begin{equation}
+			\odif{\vtr{r}} = \odif{\rho}\unitg{\rho} + \rho\odif{\varphi}\unitg{\varphi} + \odif{z}\unitv{z}
+		\end{equation}
+		
+		Toisessa termissä on $\rho$-riippuvuus, sillä kulmalla $\varphi$ kääntäminen aiheuttaa sitä suuremman muutoksen sijaintiin mitä kauempana origosta ollaan. Jälleen sijoittamalla (11) ja (12) yhtälöön (1) ja laskemalla pistetulo auki saadaan:
+		
+		\begin{align}
+			\pdv{f}{\rho}\odif{\rho} + \pdv{f}{\varphi}\odif{\varphi} + \pdv{f}{z}\odif{z} &= (\nabla f)_\rho\odif{\rho} + (\nabla f)_\varphi \rho\odif{\varphi} + (\nabla f)_z\odif{z} \\
+			\intertext{Tehdään seuraavat identifikaatiot:}
+			(\nabla f)_\rho = \pdv{f}{\rho} \ \ \ \ \text{ja} \ \ \ \ (\nabla f)_\varphi \rho &= \pdv{f}{\varphi} \iff (\nabla f)_\varphi = \frac{1}{\rho}\pdv{f}{\varphi} \ \ \ \ \text{ja} \ \ \ \ (\nabla f)_z = \pdv{f}{z}
+		\end{align}
+		
+		\noindent Sylinterikoordinaatiston vektorina $\nabla f$ on siis muotoa:
+		
+		\begin{equation}
+			\boxed{\nabla f = \pdv{f}{\rho}\unitg{\rho} + \frac{1}{\rho}\pdv{f}{\varphi}\unitg{\varphi} + \pdv{f}{z}\unitv{z}}
+		\end{equation}
+		
+		\item \textbf{Pallokoordinaatisto}
+		
+		\noindent Nyt $f = f(r, \theta, \varphi)$, jolloin pätee:
+		
+		\begin{equation}
+			\odif{f} = \pdv{f}{r}\odif{r} + \pdv{f}{\theta}\odif{\theta} + \pdv{f}{\varphi}\odif{\varphi}
+		\end{equation}
+		
+		Siirtymävektori $\odif{\vtr{r}}$ on nyt:
+		
+		\begin{equation}
+			\odif{\vtr{r}} = \odif{r}\unitv{r} + r\odif{\theta}\unitg{\theta} + r\sin\theta\odif{\varphi}\unitg{\varphi}
+		\end{equation}
+		
+		Vastaavasti kuin sylinterikoordinaatistossa, johtuu toisen termin $r$-riippuvuus siitä, että kauempana origosta kulmalla $\theta$ kääntäminen saa aikaiseksi suuremman paikan muutoksen. Kerroin $r\sin\theta$ viimeisessä termissä johtuu samasta syystä, mutta kulmalla $\varphi$ kääntämiseen vaikuttaa ainoastaan $r$:n $\varphi$-suuntainen komponentti, joka on $r\sin\theta$. Sijoittamalla (16) ja (17) yhtälöön (1) ja laskemalla pistetulo auki saadaan:
+		
+		\begin{align}
+			\pdv{f}{r}\odif{r} + \pdv{f}{\theta}\odif{\theta} + \pdv{f}{\varphi}\odif{\varphi} &= (\nabla f)_r\odif{r} + (\nabla f)_\theta r\odif{\theta} + (\nabla f)_\varphi r\sin\theta\odif{\varphi} \\
+			\intertext{Tehdään identifikaatiot:}
+			(\nabla f)_r = \pdv{f}{r} \ \ \text{ja} \ \ (\nabla f)_\theta r = \pdv{f}{\theta} \iff (\nabla f)_\theta &= \frac{1}{r}\pdv{f}{\theta} \ \ \text{ja} \ \ (\nabla f)_\varphi r\sin\theta = \pdv{f}{\varphi} \iff (\nabla f)_\varphi = \frac{1}{r\sin\theta}\pdv{f}{\varphi}
+		\end{align}
+		
+		\noindent Pallokoordinaatiston vektorina $\nabla f$ on siis muotoa:
+		
+		\begin{equation}
+			\boxed{\nabla f = \pdv{f}{r}\unitv{r} + \frac{1}{r}\pdv{f}{\theta}\unitg{\theta} + \frac{1}{r\sin\theta}\pdv{f}{\varphi}\unitg{\varphi}}
+		\end{equation}
+		
+	\end{enumerate}
+	
+	\subsubsection{Divergenssi}
+	
+	Vektorifunktion $\vtr{F}$ Divergenssiä merkitään usein $\divop\vtr{F}$, jossa ikään kuin otetaan pistetulo gradientin (esim. karteesisessa kooridaatistossa gradienttivektori on $\nabla = (\partial_x\unitv{x} + \partial_y\unitv{y} + \partial_z\unitv{z})$) ja vektorin välillä. Tämä on periaatteessa notaation väärinkäyttöä, sillä ei ole takeita siitä, että derivaattaoperaattori käyttäytyy pistetulon kanssa samoin kuin tavallinen muuttuja, ja osoittautuukin että notaation $\divop\vtr{F}$ tulkitseminen naiivisti pistetuloksi toimii vain karteesisessa koordinaatistossa. Sylinteri- ja pallokoordinaatistossa asia ei kuitenkaan ole yhtä yksinkertainen ja divergenssin määrittämisessä tulee olla tarkkana. Alla on esitetty divergenssin johtaminen kussakin koordinaatistossa. Jokaisessa johdoksessa on varovaisia divergenssin määritelmän kanssa, jotta oikea tulos saataisiin ulos.
+	
+	\begin{enumerate}
+		\item \textbf{Karteesinen koordinaatisto:}
+		
+		\begin{align}
+			\divop\vtr{F} &= \left(\pdv{}{x}\unitv{x} + \pdv{}{y}\unitv{y} + \pdv{}{z}\unitv{z}\right)\cdot(F_x\unitv{x} + F_y\unitv{y} + F_z\unitv{z}) \\
+			\intertext{Naiivisti pistetulon määritelmää soveltamalla ja tulo $\pdv{}{x}a$ tulkitsemalla derivoinniksi $\pdv{a}{x}$ saataisiin:}
+			\divop\vtr{F} &= \pdv{F_x}{x} + \pdv{F_y}{y} + \pdv{F_z}{z} \\
+			\intertext{Tämä osoittautuu oikeaksi tulokseksi, mutta varmistetaan se vielä tekemällä asiat hieman varovaisemmin. Merkitään aluksi $F_x\unitv{x} + F_y\unitv{y} + F_z\unitv{z} = \vtr{F}$:}
+			\divop\vtr{F} &= \left(\pdv{}{x}\unitv{x} + \pdv{}{y}\unitv{y} + \pdv{}{z}\unitv{z}\right)\cdot\vtr{F} \\
+			\intertext{Pistetulo on distributiivinen, jolloin se voidaan ottaa kustakin termistä erikseen:}
+			\divop\vtr{F} &= \pdv{}{x}\unitv{x}\cdot\vtr{F} + \pdv{}{y}\unitv{y}\cdot\vtr{F} + \pdv{}{z}\unitv{z}\cdot\vtr{F} \\
+			\intertext{Pistetulo on lineaarinen, jolloin derivaatta voidaan ottaa pistetulon sisään. Jälleen tulkitaan tulo $\pdv{}{x}a$ derivoinniksi $\pdv{a}{x}$:}
+			\divop\vtr{F} &= \unitv{x}\cdot\pdv{\vtr{F}}{x} + \unitv{y}\cdot\pdv{\vtr{F}}{y} + \unitv{z}\cdot\pdv{\vtr{F}}{z} \\
+			\intertext{Sijoitetaan $\vtr{F} = F_x\unitv{x} + F_y\unitv{y} + F_z\unitv{z}$:}
+			\divop\vtr{F} &= \unitv{x}\cdot\pdv{}{x}(F_x\unitv{x} + F_y\unitv{y} + F_z\unitv{z}) \\
+			&\quad + \unitv{y}\cdot\pdv{}{y}(F_x\unitv{x} + F_y\unitv{y} + F_z\unitv{z}) \\
+			&\quad + \unitv{z}\cdot\pdv{}{z}(F_x\unitv{x} + F_y\unitv{y} + F_z\unitv{z}) \\
+			\intertext{Derivaatta voidaan ottaa kustakin termistä erikseen:}
+			\divop\vtr{F} &= \unitv{x}\cdot\left(\pdv{}{x}(F_x\unitv{x}) + \pdv{}{x}(F_y\unitv{y}) + \pdv{}{x}(F_z\unitv{z})\right) \\
+			&\quad + \unitv{y}\cdot\left(\pdv{}{y}(F_x\unitv{x}) + \pdv{}{y}(F_y\unitv{y}) + \pdv{}{y}(F_z\unitv{z})\right) \\
+			&\quad + \unitv{z}\cdot\left(\pdv{}{z}(F_x\unitv{x}) + \pdv{}{z}(F_y\unitv{y}) + \pdv{}{z}(F_z\unitv{z})\right) \\
+			\intertext{Soveltamalla tulon derivointisääntöä saadaan:}
+			\divop\vtr{F} &= \unitv{x}\cdot\left(\left[\pdv{F_x}{x}\unitv{x} + F_x\pdv{\unitv{x}}{x}\right] + \left[\pdv{F_y}{x}\unitv{y} + F_y\pdv{\unitv{y}}{x}\right] + \left[\pdv{F_z}{x}\unitv{z} + F_z\pdv{\unitv{z}}{x}\right]\right) \\
+			&\quad + \unitv{y}\cdot\left(\left[\pdv{F_x}{y}\unitv{x} + F_x\pdv{\unitv{x}}{y}\right] + \left[\pdv{F_y}{y}\unitv{y} + F_y\pdv{\unitv{y}}{y}\right] + \left[\pdv{F_z}{y}\unitv{z} + F_z\pdv{\unitv{z}}{y}\right]\right) \\
+			&\quad + \unitv{z}\cdot\left(\left[\pdv{F_x}{z}\unitv{x} + F_x\pdv{\unitv{x}}{z}\right] + \left[\pdv{F_y}{z}\unitv{y} + F_y\pdv{\unitv{y}}{z}\right] + \left[\pdv{F_z}{z}\unitv{z} + F_z\pdv{\unitv{z}}{z}\right]\right) \\
+			\intertext{Karteesisen koordinaatiston kantavektorit $\unitv{x}$, $\unitv{y}$ ja $\unitv{z}$ eivät muutu koskaan, jolloin mikä tahansa derivaatta $\pdv{\unitv{u}}{u}$, jossa $\unitv{u} \in \{\unitv{x},\unitv{y},\unitv{z}\}$ ja $u\in\{x,y,z\}$ menee nollaan. Jäljelle jää siis vain termit, joissa $\vtr{F}$:n komponentteja derivoidaan:}
+			\divop\vtr{F} &= \unitv{x}\cdot\left(\pdv{F_x}{x}\unitv{x} + \pdv{F_y}{x}\unitv{y} + \pdv{F_z}{x}\unitv{z}\right) \\
+			&\quad + \unitv{y}\cdot\left(\pdv{F_x}{y}\unitv{x} + \pdv{F_y}{y}\unitv{y} + \pdv{F_z}{y}\unitv{z}\right) \\
+			&\quad + \unitv{z}\cdot\left(\pdv{F_x}{z}\unitv{x} + \pdv{F_y}{z}\unitv{y} + \pdv{F_z}{z}\unitv{z}\right)
+		\end{align}
+		
+		\noindent Koska yksikkövektorit ovat ortogonaalisia (kohtisuorassa suhteessa toisiinsa), tuottaa pistetulo yksikkövektorin ja mielivaltaisen vektorin (joita suluissa olevat lausekkeen ovat) välillä yksikkövektorin suuntaisen komponentin. Jäljelle jää siis vain termit, joiden yksikkövektori vastaa sulkujen ulkopuolella olevaa yksikkövektoria ja divergenssin kaavaksi saadaan kuin saadaankin:
+		
+		\begin{equation}
+			\boxed{\divop\vtr{F} = \pdv{F_x}{x} + \pdv{F_y}{y} + \pdv{F_z}{z}}
+		\end{equation}
+		
+		\item \textbf{Sylinterikoordinaatisto:}
+		
+		\begin{align}
+			\divop\vtr{F} &= \left(\pdv{}{\rho}\unitg{\rho} + \frac{1}{\rho}\pdv{}{\varphi}\unitg{\varphi} + \pdv{}{z}\unitv{z}\right)\cdot(F_\rho\unitg{\rho} + F_\varphi\unitg{\varphi} + F_z\unitv{z}) \\
+			\intertext{Naiivisti pistetulon määritelmää soveltamalla ja tulo $\pdv{}{x}a$ tulkitsemalla derivoinniksi $\pdv{a}{x}$ saataisiin:}
+			\divop\vtr{F} &= \pdv{F_\rho}{\rho} + \frac{1}{\rho}\pdv{F_\varphi}{\varphi} + \pdv{F_z}{z} \\
+			\intertext{Tämä osoittautuu kuitenkin vääräksi, jolloin tehdään asiat vastaavasti kuin karteesisessa koordinaatistossa. Merkitään aluksi $F_\rho\unitg{\rho} + F_\varphi\unitg{\varphi} + F_z\unitv{z} = \vtr{F}$:}
+			\divop\vtr{F} &= \left(\pdv{}{\rho}\unitg{\rho} + \frac{1}{\rho}\pdv{}{\varphi}\unitg{\varphi} + \pdv{}{z}\unitv{z}\right)\cdot\vtr{F} \\
+			\intertext{Samoilla periaatteilla kuin karteesisessa tapauksessa (Derivaatta pistetulon sisään, sijoitetaan $\vtr{F}$ ja sovelletaan tulon derivaattaa), voidaan kirjoittaa yhtälöä (1.32) vastaava tulos sylinterikoordinaatistossa:}
+			\divop\vtr{F} &= \unitg{\rho}\cdot\left(\left[\pdv{F_\rho}{\rho}\unitg{\rho} + F_\rho\pdv{\unitg{\rho}}{\rho}\right] + \left[\pdv{F_\varphi}{\rho}\unitg{\varphi} + F_\varphi\pdv{\unitg{\varphi}}{\rho}\right] + \left[\pdv{F_z}{\rho}\unitv{z} + F_z\pdv{\unitv{z}}{\rho}\right]\right) \\
+			&\quad + \frac{1}{\rho}\unitg{\varphi}\cdot\left(\left[\pdv{F_\rho}{\varphi}\unitg{\rho} + F_\rho\pdv{\unitg{\rho}}{\varphi}\right] + \left[\pdv{F_\varphi}{\varphi}\unitg{\varphi} + F_\varphi\pdv{\unitg{\varphi}}{\varphi}\right] + \left[\pdv{F_z}{\varphi}\unitv{z} + F_z\pdv{\unitv{z}}{\varphi}\right]\right) \\
+			&\quad + \unitv{z}\cdot\left(\left[\pdv{F_\rho}{z}\unitg{\rho} + F_\rho\pdv{\unitg{\rho}}{z}\right] + \left[\pdv{F_\varphi}{z}\unitg{\varphi} + F_\varphi\pdv{\unitg{\varphi}}{z}\right] + \left[\pdv{F_z}{z}\unitv{z} + F_z\pdv{\unitv{z}}{z}\right]\right) \\
+			\intertext{Sylinterikoordinaatiston kantavektorit $\unitg{\rho}$ ja $\unitg{\varphi}$ eivät ole samalla tavalla muuttumattomia kuin karteesisen koordinaatiston kantavektorit, sillä niiden suunta riippuu sen objektin, jonka paikkaa ne kuvaavat, paikasta. Tämä johtuu siitä, että $\unitv{\rho}$:n on osoitettava aina radiaalisesti poispäin origosta, jolloin jos kappaleen kulma muuttuu, tulee $\unitg{\rho}$:n kääntyä kappaleen mukana. Vastaava logiikka pätee $\unitg{\varphi}$-vektoriin, sillä sen on pysyttävä kokoajan ortogonaalisena $\unitg{\rho}$-vektorin kanssa. Kantavektori $\unitv{z}$ käyttäytyy edelleen samalla tavalla kuin aiemmin, sillä vaikka $\unitg{\rho}$:n ja $\unitg{\varphi}$:n suunnat muuttuisivatkin, tapahtuu suunnanmuutos $xy$-tasossa, jolloin $\unitv{z}$ pysyy kokoajan lineaarisesti riippumattomana muista kantavektoreista. Voidaan siis suoraan sanoa, että derivaatat $\pdv{\unitv{z}}{u}$, jossa $u\in\{\rho, \varphi, z\}$ menevät nollaan. Myös derivaatat $\pdv{\unitv{u}}{z}$, jossa $\unitv{u}\in\{\unitg{\rho}, \unitg{\varphi}, \unitv{z}\}$ menevät nollaan, sillä $z$-koordinaatin muuttuminen ei aiheuta tarvetta muuttaa $\unitg{\rho}$:n tai $\unitg{\varphi}$:n suuntaa:}
+			\divop\vtr{F} &= \unitg{\rho}\cdot\left(\left[\pdv{F_\rho}{\rho}\unitg{\rho} + F_\rho\pdv{\unitg{\rho}}{\rho}\right] + \left[\pdv{F_\varphi}{\rho}\unitg{\varphi} + F_\varphi\pdv{\unitg{\varphi}}{\rho}\right] + \pdv{F_z}{\rho}\unitv{z}\right) \\
+			&\quad + \frac{1}{\rho}\unitg{\varphi}\cdot\left(\left[\pdv{F_\rho}{\varphi}\unitg{\rho} + F_\rho\pdv{\unitg{\rho}}{\varphi}\right] + \left[\pdv{F_\varphi}{\varphi}\unitg{\varphi} + F_\varphi\pdv{\unitg{\varphi}}{\varphi}\right] + \pdv{F_z}{\varphi}\unitv{z}\right) \\
+			&\quad + \unitv{z}\cdot\left(\pdv{F_\rho}{z}\unitg{\rho} + \pdv{F_\varphi}{z}\unitg{\varphi} + \pdv{F_z}{z}\unitv{z}\right) \\
+			\intertext{Tarkastellaan seuraavaksi derivointia $\rho$:n suhteen. Mikäli $\rho$, eli kappaleen radiaalinen etäisyys origosta muuttuu, ei $\unitg{\rho}$:n tai $\unitg{\varphi}$:n tarvitse muuttua kuvatakseen edelleen kappaleen paikkaa oikein. Tällöin derivaatat $\rho$:n suhteen katoavat. Viimeisenä ovat derivaatat $\varphi$:n suhteen. Muista poiketen nämä eivät mene nollaksi, sillä kuten aiemmin todettiin tulee $\unitg{\rho}$:n ja $\unitg{\varphi}$:n pysyä kokoajan ortogonaalisina, jolloin molempien on muututtava mikäli kulma $\varphi$ muuttuu. Mikäli kulma $\varphi$ muuttuu positiiviseen kiertosuuntaan, on $\unitg{\rho}$:n seurattava perässä ja käännyttävä hieman positiiviseen kiertosuuntaan. Infinitesimaalisella rajalla (muutoksen suuruus on $\odif{\varphi}$) muutoksen suunta osoittaa tismalleen $\unitg{\varphi}$:n suuntaan, jolloin $\pdv{\unitg{\rho}}{\varphi} = \unitg{\varphi}$. Pysyäkseen ortogonaalisena $\unitg{\rho}$:n kanssa on $\unitg{\varphi}$:n käännyttävä samaan suuntaan. Infinitesimaalisella rajalla muutoksen suunta osoittaa tismalleen $-\unitg{\rho}$:n suuntaan, jolloin $\pdv{\unitg{\varphi}}{\varphi} = -\unitg{\rho}$. (Vaihtoehtoisesti tulokset voisi johtaa yksikkövektorien karteesisisia representaatioita $\unitg{\rho} = \sin\varphi\unitv{x} + \cos\varphi\unitv{y}$ sekä $\unitg{\varphi} = -\sin\varphi\unitv{x} + \cos\varphi\unitv{y}$ derivoimalla.) Saadaan:}
+			\divop\vtr{F} &= \unitg{\rho}\cdot\left(\pdv{F_\rho}{\rho}\unitg{\rho} + \pdv{F_\varphi}{\rho}\unitg{\varphi} + \pdv{F_z}{\rho}\unitv{z}\right) \\
+			&\quad + \frac{1}{\rho}\unitg{\varphi}\cdot\left(\left[\pdv{F_\rho}{\varphi}\unitg{\rho} + F_\rho\unitg{\varphi}\right] + \left[\pdv{F_\varphi}{\varphi}\unitg{\varphi} - F_\varphi\unitg{\rho}\right] + \pdv{F_z}{\varphi}\unitv{z}\right) \\
+			&\quad + \unitv{z}\cdot\left(\pdv{F_\rho}{z}\unitg{\rho} + \pdv{F_\varphi}{z}\unitg{\varphi} + \pdv{F_z}{z}\unitv{z}\right) \\
+			\intertext{Kootaan komponentit yhteen rivillä (1.49):}
+			\divop\vtr{F} &= \unitg{\rho}\cdot\left(\pdv{F_\rho}{\rho}\unitg{\rho} + \pdv{F_\varphi}{\rho}\unitg{\varphi} + \pdv{F_z}{\rho}\unitv{z}\right) \\
+			&\quad + \frac{1}{\rho}\unitg{\varphi}\cdot\left(\left[\pdv{F_\rho}{\varphi} - F_\varphi\right]\unitg{\rho} + \left[F_\rho + \pdv{F_\varphi}{\varphi}\right]\unitg{\varphi} + \pdv{F_z}{\varphi}\unitv{z}\right) \\
+			&\quad + \unitv{z}\cdot\left(\pdv{F_\rho}{z}\unitg{\rho} + \pdv{F_\varphi}{z}\unitg{\varphi} + \pdv{F_z}{z}\unitv{z}\right) \\
+			\intertext{Jälleen pistetuloista jää kantavektorien ortogonaalisuuden nojalla jäljelle vain keskenään identtisten kantavektorien kertoimet, jolloin saadaan:}
+			\divop\vtr{F} &= \pdv{F_\rho}{\rho} + \frac{1}{\rho}\left(F_\rho + \pdv{F_\varphi}{\varphi}\right) + \pdv{F_z}{z} \\
+			\divop\vtr{F} &= \pdv{F_\rho}{\rho} + \frac{1}{\rho}F_\rho + \frac{1}{\rho}\pdv{F_\varphi}{\varphi} + \pdv{F_z}{z} \\
+			\intertext{Otetaan $\frac{1}{\rho}$ yhteiseksi teijäksi kahdesta ensimmäisestä termistä:}
+			\divop\vtr{F} &= \frac{1}{\rho}\left(\rho\pdv{F_\rho}{\rho} + F_\rho\right) + \frac{1}{\rho}\pdv{F_\varphi}{\varphi} + \pdv{F_z}{z}
+		\end{align}
+		
+		\noindent Sulkujen sisällä oleva lauseke vastaa derivointia $\pdv{(\rho F_\rho)}{\rho}$, sillä tulon derivaatan nojalla pätee: $\pdv{(\rho F_\rho)}{\rho} = \rho\pdv{F_\rho}{\rho} + \pdv{\rho}{\rho}F_\rho = \rho\pdv{F_\rho}{\rho} + F_\rho$. Lopulliseksi divergenssiksi saadaan siis:
+		
+		\begin{equation}
+			\boxed{\divop\vtr{F} = \frac{1}{\rho}\pdv{(\rho F_\rho)}{\rho} + \frac{1}{\rho}\pdv{F_\varphi}{\varphi} + \pdv{F_z}{z}}
+		\end{equation}
+		
+		\item \textbf{Pallokoordinaatisto:}
+		
+		\begin{align}
+			\divop\vtr{F} &= \left(\pdv{}{r}\unitv{r} + \frac{1}{r}\pdv{}{\theta}\unitg{\theta} + \frac{1}{r\sin\theta}\pdv{}{\varphi}\unitg{\varphi}\right)\cdot(F_r\unitv{r} + F_\theta\unitg{\theta} + F_\varphi\unitg{\varphi}) \\
+			\intertext{Naiivisti pistetulon määritelmää soveltamalla ja tulo $\pdv{}{x}a$ tulkitsemalla derivoinniksi $\pdv{a}{x}$ saataisiin:}
+			\divop\vtr{F} &= \pdv{F_r}{r} + \frac{1}{r}\pdv{F_\theta}{\theta} + \frac{1}{r\sin\theta}\pdv{F_\varphi}{\varphi} \\
+			\intertext{Tämä osoittautuu jälleen vääräksi sillä kuten sylinterikoordinaatistossa voivat pallokoordinaatiston kantavektorit muuttua. Merkitään aluksi $F_r\unitv{r} + F_\theta\unitg{\theta} + F_\varphi\unitg{\varphi} = \vtr{F}$:}
+			\divop\vtr{F} &= \left(\pdv{}{r}\unitv{r} + \frac{1}{r}\pdv{}{\theta}\unitg{\theta} + \frac{1}{r\sin\theta}\pdv{}{\varphi}\unitg{\varphi}\right)\cdot\vtr{F} \\
+			\intertext{Samoilla periaatteilla kuin aiemmin (Derivaatta pistetulon sisään, sijoitetaan $\vtr{F}$ ja sovelletaan tulon derivaattaa), voidaan kirjoittaa yhtälöjä (1.32) ja (1.42) vastaava tulos pallokoordinaatistossa:}
+			\divop\vtr{F} &= \unitv{r}\cdot\left(\left[\pdv{F_r}{r}\unitv{r} + F_r\pdv{\unitv{r}}{r}\right] + \left[\pdv{F_\theta}{r}\unitg{\theta} + F_\theta\pdv{\unitg{\theta}}{r}\right] + \left[\pdv{F_\varphi}{r}\unitg{\varphi} + F_\varphi\pdv{\unitg{\varphi}}{r}\right]\right) \\
+			&\quad + \frac{1}{r}\unitg{\theta}\cdot\left(\left[\pdv{F_r}{\theta}\unitv{r} + F_r\pdv{\unitv{r}}{\theta}\right] + \left[\pdv{F_\theta}{\theta}\unitg{\theta} + F_\theta\pdv{\unitg{\theta}}{\theta}\right] + \left[\pdv{F_\varphi}{\theta}\unitg{\varphi} + F_\varphi\pdv{\unitg{\varphi}}{\theta}\right]\right) \\
+			&\quad + \frac{1}{r\sin\theta}\unitg{\varphi}\cdot\left(\left[\pdv{F_r}{\varphi}\unitv{r} + F_r\pdv{\unitv{r}}{\varphi}\right] + \left[\pdv{F_\theta}{\varphi}\unitg{\theta} + F_\theta\pdv{\unitg{\theta}}{\varphi}\right] + \left[\pdv{F_\varphi}{\varphi}\unitg{\varphi} + F_\varphi\pdv{\unitg{\varphi}}{\varphi}\right]\right) \\
+			\intertext{Kaikki derivoinnit $r$:n suhteen menevät nollaan, sillä kappaleen radiaalisen etäisyyden origosta muuttaminen ei vaadi kulman muuttamista:}
+			\divop\vtr{F} &= \unitv{r}\cdot\left(\pdv{F_r}{r}\unitv{r} + \pdv{F_\theta}{r}\unitg{\theta} + \pdv{F_\varphi}{r}\unitg{\varphi}\right) \\
+			&\quad + \frac{1}{r}\unitg{\theta}\cdot\left(\left[\pdv{F_r}{\theta}\unitv{r} + F_r\pdv{\unitv{r}}{\theta}\right] + \left[\pdv{F_\theta}{\theta}\unitg{\theta} + F_\theta\pdv{\unitg{\theta}}{\theta}\right] + \left[\pdv{F_\varphi}{\theta}\unitg{\varphi} + F_\varphi\pdv{\unitg{\varphi}}{\theta}\right]\right) \\
+			&\quad + \frac{1}{r\sin\theta}\unitg{\varphi}\cdot\left(\left[\pdv{F_r}{\varphi}\unitv{r} + F_r\pdv{\unitv{r}}{\varphi}\right] + \left[\pdv{F_\theta}{\varphi}\unitg{\theta} + F_\theta\pdv{\unitg{\theta}}{\varphi}\right] + \left[\pdv{F_\varphi}{\varphi}\unitg{\varphi} + F_\varphi\pdv{\unitg{\varphi}}{\varphi}\right]\right) \\
+			\intertext{Loput derivaatat saadaan vastaavanlaisilla geometrisillä argumenteilla kuin sylinterikoordinaatistossa: $\pdv{\unitv{r}}{\theta} = \unitg{\theta}$, $\pdv{\unitg{\theta}}{\theta} = -\unitv{r}$, $\pdv{\unitg{\varphi}}{\theta} = 0$, $\pdv{\unitv{r}}{\varphi} = \sin\theta\unitg{\varphi}$, $\pdv{\unitg{\theta}}{\varphi} = \cos\theta\unitg{\varphi}$ ja $\pdv{\unitg{\varphi}}{\varphi} = -\sin\theta\unitv{r} - \cos\theta\unitg{\theta}$. Nyt siis vektorien muutosnopeus riippuu siitä, minkä kulman paikkavektori muodostaa $z$-akselin kanssa, mikä käy järkeen (Intuitiivisia kuvia tähän?). Saadaan:}
+			\divop\vtr{F} &= \unitv{r}\cdot\left(\pdv{F_r}{r}\unitv{r} + \pdv{F_\theta}{r}\unitg{\theta} + \pdv{F_\varphi}{r}\unitg{\varphi}\right) \\
+			&\quad + \frac{1}{r}\unitg{\theta}\cdot\left(\left[\pdv{F_r}{\theta}\unitv{r} + F_r\unitg{\theta}\right] + \left[\pdv{F_\theta}{\theta}\unitg{\theta} - F_\theta\unitv{r}\right] + \pdv{F_\varphi}{\theta}\unitg{\varphi}\right) \\
+			&\quad + \frac{1}{r\sin\theta}\unitg{\varphi}\cdot\left(\left[\pdv{F_r}{\varphi}\unitv{r} + F_r\sin\theta\unitg{\varphi}\right] + \left[\pdv{F_\theta}{\varphi}\unitg{\theta} + F_\theta\cos\theta\unitg{\varphi}\right] + \left[\pdv{F_\varphi}{\varphi}\unitg{\varphi} - F_\varphi(\sin\theta\unitv{r} + \cos\theta\unitg{\theta})\right]\right) \\
+			\intertext{Kootaan komponentit yhteen riveillä (1.68) ja (1.69):}
+			\divop\vtr{F} &= \unitv{r}\cdot\left(\pdv{F_r}{r}\unitv{r} + \pdv{F_\theta}{r}\unitg{\theta} + \pdv{F_\varphi}{r}\unitg{\varphi}\right) \\
+			&\quad + \frac{1}{r}\unitg{\theta}\cdot\left(\left[\pdv{F_r}{\theta} - F_\theta\right]\unitv{r} + \left[F_r + \pdv{F_\theta}{\theta}\right]\unitg{\theta} + \pdv{F_\varphi}{\theta}\unitg{\varphi}\right) \\
+			&\quad + \frac{1}{r\sin\theta}\unitg{\varphi}\cdot\left(\left[\pdv{F_r}{\varphi} - F_\varphi\sin\theta\right]\unitv{r} + \left[\pdv{F_\theta}{\varphi} - F_\varphi\cos\theta\right]\unitg{\theta} + \left[F_r\sin\theta + F_\theta\cos\theta + \pdv{F_\varphi}{\varphi}\right]\unitg{\varphi}\right) \\
+			\intertext{Jälleen pistetuloista jää kantavektorien ortogonaalisuuden nojalla jäljelle vain keskenään identtisten kantavektorien kertoimet, jolloin saadaan:}
+			\divop\vtr{F} &= \pdv{F_r}{r} + \frac{1}{r}\left(F_r + \pdv{F_\theta}{\theta}\right) + \frac{1}{r\sin\theta}\left(F_r\sin\theta + F_\theta\cos\theta + \pdv{F_\varphi}{\varphi}\right) \\
+			\divop\vtr{F} &= \pdv{F_r}{r} + \frac{1}{r}F_r + \frac{1}{r}\pdv{F_\theta}{\theta} + \frac{1}{r\sin\theta}F_r\sin\theta + \frac{1}{r\sin\theta}F_\theta\cos\theta + \frac{1}{r\sin\theta}\pdv{F_\varphi}{\varphi} \\
+			\divop\vtr{F} &= \pdv{F_r}{r} + \frac{1}{r}F_r + \frac{1}{r}\pdv{F_\theta}{\theta} + \frac{1}{r}F_r + \frac{\cos\theta}{r\sin\theta}F_\theta + \frac{1}{r\sin\theta}\pdv{F_\varphi}{\varphi} \\
+			\divop\vtr{F} &= \pdv{F_r}{r} + \frac{2}{r}F_r + \frac{1}{r}\pdv{F_\theta}{\theta} + \frac{\cos\theta}{r\sin\theta}F_\theta + \frac{1}{r\sin\theta}\pdv{F_\varphi}{\varphi} \\
+			\intertext{Otetaan kahdesta ensimmäisestä termistä yhteinen tekijä $\frac{1}{r^2}$ ja kahdesta seuraavasta $\frac{1}{r\sin\theta}$:}
+			\divop\vtr{F} &= \frac{1}{r^2}\left(r^2\pdv{F_r}{r} + 2rF_r\right) + \frac{1}{r\sin\theta}\left(\sin\theta\pdv{F_\theta}{\theta} + \cos\theta F_\theta\right) + \frac{1}{r\sin\theta}\pdv{F_\varphi}{\varphi}
+		\end{align}
+		
+		\noindent Sulkujen sisällä olevat lausekkeet ovat nyt derivaatat $\pdv{(r^2F_r)}{r}$ ja $\pdv{(\sin\theta F_\theta)}{\theta}$, jolloin divergenssiksi pallokoordinaatistossa saadaan:
+		
+		\begin{equation}
+			\boxed{\divop\vtr{F} = \frac{1}{r^2}\pdv{(r^2F_r)}{r} + \frac{1}{r\sin\theta}\pdv{(\sin\theta F_\theta)}{\theta} + \frac{1}{r\sin\theta}\pdv{F_\varphi}{\varphi}}
+		\end{equation}
+	\end{enumerate}
+	
+	
+	\subsubsection{Roottori}
+	
+	Vastaavasti kuin Divergenssiä merkittiin nablan ja vektorikentän pistetulona, merkitään roottoria nablan ja vektorikentän ristitulona $\curlop\vtr{F}$. Jälleen tämä on käytännössä notaation väärinkäyttöä, mutta osoittautuu toimivaksi karteesisessa koordinaatistossa ja varoivaisuutta käyttäen myös sylinteri- ja pallokoordinaatistoissa. Tämä osio hyödyntää edellisessä osiossa saatuja lausekkeita yksikkövektorien derivaatoille, jolloin mahdolliset epäselvyydet ratkeavat lukemalla sitä.
+	
+	\begin{enumerate}
+		\item \textbf{Karteesinen koordinaatisto}
+		
+		Karteesisessa koordinaatistossa roottori voidaan tulkita naiivisti ristituloksi:
+		
+		\begin{align}
+			\curlop\vtr{F} &= \left(\pdv{}{x}\unitv{x} + \pdv{}{y}\unitv{y} + \pdv{}{z}\unitv{z}\right)\times\left(F_x\unitv{x} + F_y\unitv{y} + F_z\unitv{z}\right) \\
+			\intertext{Määritetään ristitulo determinantin avulla:}
+			\curlop\vtr{F} &= 
+			\begingroup
+			\renewcommand*{\arraystretch}{1.5}
+			\begin{vmatrix}
+				\unitv{x} & \unitv{y} & \unitv{z} \\
+				\pdv{}{x} & \pdv{}{y} & \pdv{}{z} \\
+				F_x & F_y & F_z 
+			\end{vmatrix}
+			\endgroup \\
+			\curlop\vtr{F} &= \left(\pdv{F_z}{y} - \pdv{F_y}{z}\right)\unitv{x} - \left(\pdv{F_z}{x} - \pdv{F_x}{z}\right)\unitv{y} + \left(\pdv{F_y}{x} - \pdv{F_x}{y}\right)\unitv{z}
+		\end{align}
+		
+		\noindent Kerrotaan miinusmerkki toisen termin sisään, jolloin roottorin lausekkeeksi karteesisessa koordinaatistossa saadaan:
+		
+		\begin{equation}
+			\boxed{\curlop\vtr{F} = \left(\pdv{F_z}{y} - \pdv{F_y}{z}\right)\unitv{x} + \left(\pdv{F_x}{z} - \pdv{F_z}{x}\right)\unitv{y} + \left(\pdv{F_y}{x} - \pdv{F_x}{y}\right)\unitv{z}}
+		\end{equation}
+		
+		\item \textbf{Sylinterikoordinaatisto}
+		
+		Roottoria ei voida enää tulkita naiivisti ristituloksi, vaan tulee olla varovaisempi:
+		
+		\begin{align}
+			\curlop\vtr{F} &= \left(\pdv{}{\rho}\unitg{\rho} + \frac{1}{\rho}\pdv{}{\varphi}\unitg{\varphi} + \pdv{}{z}\unitv{z}\right)\times(F_\rho\unitg{\rho} + F_\varphi\unitg{\varphi} + F_z\unitv{z}) \\
+			\intertext{Kirjoitetaan $F_\rho\unitg{\rho} + F_\varphi\unitg{\varphi} + F_z\unitv{z} = \vtr{F}$:}
+			\curlop\vtr{F} &= \left(\pdv{}{\rho}\unitg{\rho} + \frac{1}{\rho}\pdv{}{\varphi}\unitg{\varphi} + \pdv{}{z}\unitv{z}\right)\times\vtr{F} \\
+			\intertext{Ristitulo voidaan ottaa erikseen kustakin termistä distributiivisuutensa ansiosta:}
+			\curlop\vtr{F} &= \pdv{}{\rho}\unitg{\rho}\times\vtr{F} + \frac{1}{\rho}\pdv{}{\varphi}\unitg{\varphi}\times\vtr{F} + \pdv{}{z}\unitv{z}\times\vtr{F} \\
+			\intertext{Skalaarit $\pdv{}{a}$ voidaan laittaa ''kertomaan'' $\vtr{F}$:ää eli derivoimaan sitä kussakin termissä:}
+			\curlop\vtr{F} &= \unitg{\rho}\times\pdv{\vtr{F}}{\rho} + \frac{1}{\rho}\unitg{\varphi}\times\pdv{\vtr{F}}{\varphi} + \unitv{z}\times\pdv{\vtr{F}}{z} \\
+			\intertext{Sijoitetaan $\vtr{F}$. Derivaatta operoi kutakin termiä erikseen:}
+			\curlop\vtr{F} &= \unitg{\rho}\times\left(\pdv{(F_\rho\unitg{\rho})}{\rho} + \pdv{(F_\varphi\unitg{\varphi})}{\rho} + \pdv{(F_z\unitv{z})}{\rho}\right) \\
+			&\quad + \frac{1}{\rho}\unitg{\varphi}\times\left(\pdv{(F_\rho\unitg{\rho})}{\varphi} + \pdv{(F_\varphi\unitg{\varphi})}{\varphi} + \pdv{(F_z\unitv{z})}{\varphi}\right) \\
+			&\quad + \unitv{z}\times\left(\pdv{(F_\rho\unitg{\rho})}{z} + \pdv{(F_\varphi\unitg{\varphi})}{z} + \pdv{(F_z\unitv{z})}{z}\right) \\
+			\intertext{Sovelletaan tulon derivaattaa:}
+			\curlop\vtr{F} &= \unitg{\rho}\times\left(\left[F_\rho\pdv{\unitg{\rho}}{\rho} + \pdv{F_\rho}{\rho}\unitg{\rho}\right] + \left[F_\varphi\pdv{\unitg{\varphi}}{\rho} + \pdv{F_\varphi}{\rho}\unitg{\varphi}\right] + \left[F_z\pdv{\unitv{z}}{\rho} + \pdv{F_z}{\rho}\unitv{z}\right]\right) \\
+			&\quad + \frac{1}{\rho}\unitg{\varphi}\times\left(\left[F_\rho\pdv{\unitg{\rho}}{\varphi} + \pdv{F_\rho}{\varphi}\unitg{\rho}\right] + \left[F_\varphi\pdv{\unitg{\varphi}}{\varphi} + \pdv{F_\varphi}{\varphi}\unitg{\varphi}\right] + \left[F_z\pdv{\unitv{z}}{\varphi} + \pdv{F_z}{\varphi}\unitv{z}\right]\right) \\
+			&\quad + \unitv{z}\times\left(\left[F_\rho\pdv{\unitg{\rho}}{z} + \pdv{F_\rho}{z}\unitg{\rho}\right] + \left[F_\varphi\pdv{\unitg{\varphi}}{z} + \pdv{F_\varphi}{z}\unitg{\varphi}\right] + \left[F_z\pdv{\unitv{z}}{z} + \pdv{F_z}{z}\unitv{z}\right]\right) \\
+			\intertext{Kantavektoreiden derivaatoista jäävät jäljelle (ks. divergenssin johto sylinterikoordinaatistossa) vain $\pdv{\unitg{\rho}}{\varphi} = \unitg{\varphi}$ sekä $\pdv{\unitg{\varphi}}{\varphi} = -\unitg{\rho}$. Muut derivaatat menevät nollaan:}
+			\curlop\vtr{F} &= \unitg{\rho}\times\left(\left[0 + \pdv{F_\rho}{\rho}\unitg{\rho}\right] + \left[0 + \pdv{F_\varphi}{\rho}\unitg{\varphi}\right] + \left[0 + \pdv{F_z}{\rho}\unitv{z}\right]\right) \\
+			&\quad + \frac{1}{\rho}\unitg{\varphi}\times\left(\left[F_\rho\unitg{\varphi} + \pdv{F_\rho}{\varphi}\unitg{\rho}\right] + \left[-F_\varphi\unitg{\rho} + \pdv{F_\varphi}{\varphi}\unitg{\varphi}\right] + \left[0 + \pdv{F_z}{\varphi}\unitv{z}\right]\right) \\
+			&\quad + \unitv{z}\times\left(\left[0 + \pdv{F_\rho}{z}\unitg{\rho}\right] + \left[0 + \pdv{F_\varphi}{z}\unitg{\varphi}\right] + \left[0 + \pdv{F_z}{z}\unitv{z}\right]\right) \\
+			\intertext{Siivotaan lausekkeita ja etenkin toisessa termissä kerätään termit kantavektoreittain yhteen:}
+			\curlop\vtr{F} &= \unitg{\rho}\times\left(\pdv{F_\rho}{\rho}\unitg{\rho} + \pdv{F_\varphi}{\rho}\unitg{\varphi} + \pdv{F_z}{\rho}\unitv{z}\right) \\
+			&\quad + \frac{1}{\rho}\unitg{\varphi}\times\left(\left[\pdv{F_\rho}{\varphi} - F_\varphi\right]\unitg{\rho} + \left[F_\rho + \pdv{F_\varphi}{\varphi}\right]\unitg{\varphi} + \pdv{F_z}{\varphi}\unitv{z}\right) \\
+			&\quad + \unitv{z}\times\left(\pdv{F_\rho}{z}\unitg{\rho} + \pdv{F_\varphi}{z}\unitg{\varphi} + \pdv{F_z}{z}\unitv{z}\right) \\
+			\intertext{Lasketaan ristitulot. Tiedetään, että $\unitg{\rho}\times\unitg{\varphi} = \unitv{z} \iff \unitg{\varphi}\times\unitg{\rho} = -\unitv{z}$, $\unitg{\varphi}\times\unitv{z} = \unitg{\rho} \iff \unitv{z}\times\unitg{\varphi} = -\unitg{\rho}$ ja $\unitv{z}\times\unitg{\rho} = \unitg{\varphi} \iff \unitg{\rho}\times\unitv{z} = -\unitg{\varphi}$. Lisäksi $\unitg{\rho}\times\unitg{\rho} = \unitg{\varphi}\times\unitg{\varphi} = \unitv{z}\times\unitv{z} = \vtr{0}$. Saadaan:}
+			\curlop\vtr{F} &= \vtr{0} + \pdv{F_\varphi}{\rho}\unitv{z} + \pdv{F_z}{\rho}\left(-\unitg{\varphi}\right) \\
+			&\quad + \frac{1}{\rho}\left(\left[\pdv{F_\rho}{\varphi} - F_\varphi\right](-\unitv{z}) + \vtr{0} + \pdv{F_z}{\varphi}\unitg{\rho}\right) \\
+			&\quad + \pdv{F_\rho}{z}\unitg{\varphi} + \pdv{F_\varphi}{z}(-\unitg{\rho}) + \vtr{0} \\
+			\curlop\vtr{F} &= \pdv{F_\varphi}{\rho}\unitv{z} - \pdv{F_z}{\rho}\unitg{\varphi} \\
+			&\quad + \frac{1}{\rho}\left[F_\varphi - \pdv{F_\rho}{\varphi}\right]\unitv{z} + \frac{1}{\rho}\pdv{F_z}{\varphi}\unitg{\rho} \\
+			&\quad + \pdv{F_\rho}{z}\unitg{\varphi} - \pdv{F_\varphi}{z}\unitg{\rho} \\
+			\intertext{Kootaan termit kantavektoreittain:}
+			\curlop\vtr{F} &= \left(\frac{1}{\rho}\pdv{F_z}{\varphi} - \pdv{F_\varphi}{z}\right)\unitg{\rho} + \left(\pdv{F_\rho}{z} - \pdv{F_z}{\rho}\right)\unitg{\varphi} + \left(\pdv{F_\varphi}{\rho}  + \frac{1}{\rho}\left[F_\varphi - \pdv{F_\rho}{\varphi}\right]\right)\unitv{z} \\
+			\intertext{Otetaan $\frac{1}{\rho}$ yhteiseksi tekijäksi viimeisestä termistä:}
+			\curlop\vtr{F} &= \left(\frac{1}{\rho}\pdv{F_z}{\varphi} - \pdv{F_\varphi}{z}\right)\unitg{\rho} + \left(\pdv{F_\rho}{z} - \pdv{F_z}{\rho}\right)\unitg{\varphi} + \frac{1}{\rho}\left(\rho\pdv{F_\varphi}{\rho} + F_\varphi - \pdv{F_\rho}{\varphi}\right)\unitv{z}
+		\end{align}
+		
+		\noindent Tunnistetaan $\rho\pdv{F_\varphi}{\rho} + F_\varphi = \pdv{(\rho F_\varphi)}{\rho}$, jolloin lopulliseksi roottorin lausekkeeksi sylinterikoordinaatistossa saadaan:
+		
+		\begin{equation}
+			\boxed{\curlop\vtr{F} = \left(\frac{1}{\rho}\pdv{F_z}{\varphi} - \pdv{F_\varphi}{z}\right)\unitg{\rho} + \left(\pdv{F_\rho}{z} - \pdv{F_z}{\rho}\right)\unitg{\varphi} + \frac{1}{\rho}\left(\pdv{(\rho F_\varphi)}{\rho} - \pdv{F_\rho}{\varphi}\right)\unitv{z}}
+		\end{equation}
+		
+		\item \textbf{Pallokoordinaatisto}
+		
+		Vastaavasti kuin sylinterikoordinaatistossa, ei roottoria voida pallokoordinaatistossa tulkita naiivisti ristituloksi vaan on oltava varovaisempi:
+		
+		\begin{align}
+			\curlop\vtr{F} &= \left(\pdv{}{r}\unitv{r} + \frac{1}{r}\pdv{}{\theta}\unitg{\theta} + \frac{1}{r\sin\theta}\pdv{}{\varphi}\unitg{\varphi}\right)\times(F_r\unitv{r} + F_\theta\unitg{\theta} + F_\varphi\unitg{\varphi}) \\
+			\intertext{Täysin analogisella tavalla kuin sylinterikoordinaatistolle, voidaan pallokoordinaatiston roottorin lauseke johtaa yhtälöä (1.90)-(1.92) vastaavaan muotoon:}
+			\curlop\vtr{F} &= \unitv{r}\times\left(\left[F_r\pdv{\unitv{r}}{r} + \pdv{F_r}{r}\unitv{r}\right] + \left[F_\theta\pdv{\unitg{\theta}}{r} + \pdv{F_\theta}{r}\unitg{\theta}\right] + \left[F_\varphi\pdv{\unitg{\varphi}}{r} + \pdv{F_\varphi}{r}\unitg{\varphi}\right]\right) \\
+			&\quad + \frac{1}{r}\unitg{\theta}\times\left(\left[F_r\pdv{\unitv{r}}{\theta} + \pdv{F_r}{\theta}\unitv{r}\right] + \left[F_\theta\pdv{\unitg{\theta}}{\theta} + \pdv{F_\theta}{\theta}\unitv{r}\right] + \left[F_\varphi\pdv{\unitg{\varphi}}{\theta} + \pdv{F_\varphi}{\theta}\unitg{\varphi}\right]\right) \\
+			&\quad + \frac{1}{r\sin\theta}\unitg{\varphi}\times\left(\left[F_r\pdv{\unitv{r}}{\varphi} + \pdv{F_r}{\varphi}\unitv{r}\right] + \left[F_\theta\pdv{\unitg{\theta}}{\varphi} + \pdv{F_\theta}{\varphi}\unitg{\theta}\right] + \left[F_\varphi\pdv{\unitg{\varphi}}{\varphi} + \pdv{F_\varphi}{\varphi}\unitg{\varphi}\right]\right) \\
+			\intertext{Kantavektoreiden derivaatoista jäljelle jäävät (ks. divergenssin johto) $\pdv{\unitv{r}}{\theta} = \unitg{\theta}$, $\pdv{\unitg{\theta}}{\theta} = -\unitv{r}$, $\pdv{\unitg{\varphi}}{\theta} = 0$, $\pdv{\unitv{r}}{\varphi} = \sin\theta\unitg{\varphi}$, $\pdv{\unitg{\theta}}{\varphi} = \cos\theta\unitg{\varphi}$ ja $\pdv{\unitg{\varphi}}{\varphi} = -\sin\theta\unitv{r} - \cos\theta\unitg{\theta}$. Muut derivaatat menevät nollaan. Saadaan:}
+			\curlop\vtr{F} &= \unitv{r}\times\left(\left[0 + \pdv{F_r}{r}\unitv{r}\right] + \left[0 + \pdv{F_\theta}{r}\unitg{\theta}\right] + \left[0 + \pdv{F_\varphi}{r}\unitg{\varphi}\right]\right) \\
+			&\quad + \frac{1}{r}\unitg{\theta}\times\left(\left[F_r\unitg{\theta} + \pdv{F_r}{\theta}\unitv{r}\right] + \left[F_\theta(-\unitv{r}) + \pdv{F_\theta}{\theta}\unitv{r}\right] + \left[0 + \pdv{F_\varphi}{\theta}\unitg{\varphi}\right]\right) \\
+			&\quad + \frac{1}{r\sin\theta}\unitg{\varphi}\times\left(\left[F_r\sin\theta\unitg{\varphi} + \pdv{F_r}{\varphi}\unitv{r}\right] + \left[F_\theta\cos\theta\unitg{\varphi} + \pdv{F_\theta}{\varphi}\unitg{\theta}\right] + \left[F_\varphi(-\sin\theta\unitv{r} - \cos\theta\unitg{\theta}) + \pdv{F_\varphi}{\varphi}\unitg{\varphi}\right]\right) \\
+			\intertext{Siivotaan lausekkeita ja ryhmitellään termit kantavektoreittain:}
+			\curlop\vtr{F} &= \unitv{r}\times\left(\pdv{F_r}{r}\unitv{r} + \pdv{F_\theta}{r}\unitg{\theta} + \pdv{F_\varphi}{r}\unitg{\varphi}\right) \\
+			&\quad + \frac{1}{r}\unitg{\theta}\times\left(\left[\pdv{F_r}{\theta} - F_\theta\right]\unitv{r} + F_r\unitg{\theta} + \pdv{F_\varphi}{\theta}\unitg{\varphi}\right) \\
+			&\quad + \frac{1}{r\sin\theta}\unitg{\varphi}\times\left(\left[\pdv{F_r}{\varphi} - F_\varphi\sin\theta\right]\unitv{r} + \left[\pdv{F_\theta}{\varphi} - F_\varphi\cos\theta\right]\unitg{\theta} + \left[F_r\sin\theta + F_\theta\cos\theta + \pdv{F_\varphi}{\varphi}\right]\unitg{\varphi}\right) \\
+			\intertext{Lasketaan ristitulot. Tiedetään: $\unitv{r}\times\unitg{\theta} = \unitg{\varphi} \iff \unitg{\theta} \times \unitg{r} = -\unitg{\varphi}, \ \unitg{\theta} \times \unitg{\varphi} = \unitv{r} \iff \unitg{\varphi} \times \unitg{\theta} = -\unitv{r}$ ja $\unitg{\varphi} \times \unitv{r} = \unitg{\theta} \iff \unitv{r} \times \unitg{\varphi} = -\unitg{\theta}$. Lisäksi $\unitv{r} \times \unitv{r} = \unitg{\theta} \times \unitg{\theta} = \unitg{\varphi} \times \unitg{\varphi} = \vtr{0}$. Saadaan:}
+			\curlop\vtr{F} &= \vtr{0} + \pdv{F_\theta}{r}\unitg{\varphi} - \pdv{F_\varphi}{r}\unitg{\theta} \\
+			&\quad + \frac{1}{r}\left(\left[\pdv{F_r}{\theta} - F_\theta\right](-\unitg{\varphi}) + \vtr{0} + \pdv{F_\varphi}{\theta}\unitv{r}\right) \\
+			&\quad + \frac{1}{r\sin\theta}\left(\left[\pdv{F_r}{\varphi} - F_\varphi\sin\theta\right]\unitg{\theta} + \left[\pdv{F_\theta}{\varphi} - F_\varphi\cos\theta\right](-\unitv{r}) + \vtr{0}\right) \\
+			\curlop\vtr{F} &= \pdv{F_\theta}{r}\unitg{\varphi} - \pdv{F_\varphi}{r}\unitg{\theta} \\
+			&\quad + \frac{1}{r}\left[F_\theta - \pdv{F_r}{\theta}\right]\unitg{\varphi} + \frac{1}{r}\pdv{F_\varphi}{\theta}\unitv{r} \\
+			&\quad + \frac{1}{r\sin\theta}\left[\pdv{F_r}{\varphi} - F_\varphi\sin\theta\right]\unitg{\theta} + \frac{1}{r\sin\theta}\left[F_\varphi\cos\theta - \pdv{F_\theta}{\varphi}\right]\unitv{r} \\
+			\intertext{Kootaan termit kantavektoreittain:}
+			\curlop\vtr{F} &= \left(\frac{1}{r}\pdv{F_\varphi}{\theta} + \frac{1}{r\sin\theta}\left[F_\varphi\cos\theta - \pdv{F_\theta}{\varphi}\right]\right)\unitv{r} \\
+			&\quad + \left(\frac{1}{r\sin\theta}\left[\pdv{F_r}{\varphi} - F_\varphi\sin\theta\right] - \pdv{F_\varphi}{r}\right)\unitg{\theta} \\
+			&\quad + \left(\pdv{F_\theta}{r} + \frac{1}{r}\left[F_\theta - \pdv{F_r}{\theta}\right]\right)\unitg{\varphi} \\
+			\intertext{Otetaan ensimmäisestä termistä $\frac{1}{r\sin\theta}$ yhteiseksi tekijäksi ja toisesta sekä kolmannesta termistä $\frac{1}{r}$ yhteiseksi tekijäksi:}
+			\curlop\vtr{F} &= \frac{1}{r\sin\theta}\left(\sin\theta\pdv{F_\varphi}{\theta} + F_\varphi\cos\theta - \pdv{F_\theta}{\varphi}\right)\unitv{r} \\
+			&\quad + \frac{1}{r}\left(\frac{1}{\sin\theta}\pdv{F_r}{\varphi} - F_\varphi - r\pdv{F_\varphi}{r}\right)\unitg{\theta} \\
+			&\quad + \frac{1}{r}\left(r\pdv{F_\theta}{r} + F_\theta - \pdv{F_r}{\theta}\right)\unitg{\varphi}
+		\end{align}
+		
+		\noindent Tunnistetaan seuraavat tulon derivaatat: $\sin\theta\pdv{F_\varphi}{\theta} + F_\varphi\cos\theta = \pdv{(\sin\theta F_\varphi)}{\theta}, \ -F_\varphi - r\pdv{F_\varphi}{r} = -\pdv{(rF_\varphi)}{r}$ ja $r\pdv{F_\theta}{r} + F_\theta = \pdv{(rF_\theta)}{r}$. Lopulliseksi roottorin lausekkeeksi pallokoordinaatistossa saadaan:
+		
+		\begin{equation}
+			\boxed{\curlop\vtr{F} = \frac{1}{r\sin\theta}\left(\pdv{(\sin\theta F_\varphi)}{\theta} - \pdv{F_\theta}{\varphi}\right)\unitv{r}
+				+ \frac{1}{r}\left(\frac{1}{\sin\theta}\pdv{F_r}{\varphi} - \pdv{(rF_\varphi)}{r}\right)\unitg{\theta}
+				+ \frac{1}{r}\left(\pdv{(rF_\theta)}{r} - \pdv{F_r}{\theta}\right)\unitg{\varphi}}
+		\end{equation}
+		
+	\end{enumerate}
+	
+	\subsubsection{Laplacen operaattori}
+	
+	Laplacen operaattori $\nabla^2$ voidaan tulkita gradientin divergenssinä: $\divop\nabla f = (\divop\nabla)f = \nabla^2f$. Tällöin sille voidaan johtaa muoto hyödyntämällä saatuja lausekkeita gradienteilla ja divergensseille.
+	
+	\begin{enumerate}
+		\item \textbf{Karteesinen koordinaatisto}
+		
+		\begin{equation}
+			\nabla\cdot\nabla f = \left(\pdv{}{x}\unitv{x} + \pdv{}{y}\unitv{y} + \pdv{}{z}\unitv{z}\right)\cdot\left(\pdv{f}{x}\unitv{x} + \pdv{f}{y}\unitv{y} + \pdv{f}{\unitv{z}}\right)
+		\end{equation}
+		
+		\noindent Jälleen karteesisessa koordinaatistossa divergenssi voidaan tulkita naiivisti pistetuloksi ja Laplacen operaattoriksi saadaan suoraan:
+		
+		\begin{equation}
+			\boxed{\nabla^2 f = \pdv{^2f}{x^2} + \pdv{^2f}{y^2} + \pdv{^2f}{z^2}}
+		\end{equation}
+		
+		\item \textbf{Sylinterikoordinaatisto}
+		
+		\begin{align}
+			\nabla\cdot\nabla f &= \left(\pdv{}{\rho}\unitg{\rho} + \frac{1}{\rho}\pdv{}{\varphi}\unitg{\varphi} + \pdv{}{z}\unitv{z}\right)\cdot\left(\pdv{f}{\rho}\unitg{\rho} + \frac{1}{\rho}\pdv{f}{\varphi}\unitg{\varphi} + \pdv{f}{z}\unitv{z}\right) \\
+			\intertext{Sijoitetaan $\nabla f$ sylinterikoordinaatiston divergenssin lausekkeeseen (1.57):}
+			\nabla^2 f &= \frac{1}{\rho}\pdv{}{\rho}(\rho(\nabla f)_\rho) + \frac{1}{\rho}\pdv{}{\varphi}((\nabla f)_\varphi) + \pdv{}{z}((\nabla f)_z) \\
+			\intertext{Luetaan gradientin komponentit $(\nabla f)_i, i\in\{\rho, \varphi, z\}$ yhtälöstä (1.81):}
+			\nabla^2 f &= \frac{1}{\rho}\pdv{}{\rho}\left(\rho\pdv{f}{\rho}\right) + \frac{1}{\rho}\pdv{}{\varphi}\left(\frac{1}{\rho}\pdv{f}{\varphi}\right) + \pdv{}{z}\left(\pdv{f}{z}\right)
+		\end{align}
+		
+		\noindent Otetaan vakiokerroin $\frac{1}{\rho}$ ulos toisesta termistä ja yhdistetään derivaattaoperaattorit toisen kertaluvun derivaatoiksi, jolloin Laplacen operaattoriksi sylinterikoordinaatistossa saadaan:
+		
+		\begin{equation}
+			\boxed{\nabla^2 f = \frac{1}{\rho}\pdv{}{\rho}\left(\rho\pdv{f}{\rho}\right) + \frac{1}{\rho^2}\pdv{^2f}{\varphi^2} + \pdv{^2f}{z^2}}
+		\end{equation}
+		
+		Jos ensimmäisen termin derivaatta määritetään saadaan vaihtoehtoinen muoto Laplacen operaattorille:
+		
+		\begin{align}
+			\nabla^2 f &= \frac{1}{\rho}\left(\rho\pdv{^2f}{\rho^2} + \left(\pdv{\rho}{\rho}\right)\pdv{f}{\rho}\right) + \frac{1}{\rho^2}\pdv{^2f}{\varphi^2} + \pdv{^2f}{z^2} \\
+			\nabla^2 f &= \frac{1}{\rho}\left(\rho\pdv{^2f}{\rho^2} + \pdv{f}{\rho}\right) + \frac{1}{\rho^2}\pdv{^2f}{\varphi^2} + \pdv{^2f}{z^2}
+		\end{align}
+		
+		\noindent Kerrotaan $\frac{1}{\rho}$ sulkuihin, jolloin vaihtoehtoiseksi muodoksi saadaan:
+		
+		\begin{equation}
+			\boxed{\nabla^2 f = \pdv{^2f}{\rho^2} + \frac{1}{\rho}\pdv{f}{\rho} + \frac{1}{\rho^2}\pdv{^2f}{\varphi^2} + \pdv{^2f}{z^2}}
+		\end{equation}
+		
+		\item \textbf{Pallokoordinaatisto}
+		
+		\begin{align}
+			\divop\nabla f &= \left(\pdv{}{r}\unitv{r} + \frac{1}{r}\pdv{}{\theta}\unitg{\theta} + \frac{1}{r\sin\theta}\pdv{}{\varphi}\unitg{\varphi}\right)\cdot\left(\pdv{f}{r}\unitv{r} + \frac{1}{r}\pdv{f}{\theta}\unitg{\theta} + \frac{1}{r\sin\theta}\pdv{f}{\varphi}\unitg{\varphi}\right) \\
+			\intertext{Sijoitetaan $\nabla f$ pallokoordinaatiston divergenssin lausekkeeseen (1.78):}
+			\nabla^2 f &= \frac{1}{r^2}\pdv{(r^2(\nabla f)_r)}{r} + \frac{1}{r\sin\theta}\pdv{(\sin\theta(\nabla f)_\theta)}{\theta} + \frac{1}{r\sin\theta}\pdv{((\nabla f)_\varphi)}{\varphi} \\
+			\intertext{Luetaan gradientin komponentit $(\nabla f)_i, i\in\{r, \theta, \varphi\}$ yhtälöstä (1.88):}
+			\nabla^2 f &= \frac{1}{r^2}\pdv{}{r}\left(r^2\pdv{f}{r}\right) + \frac{1}{r\sin\theta}\pdv{}{\theta}\left(\sin\theta\frac{1}{r}\pdv{f}{\theta}\right) + \frac{1}{r\sin\theta}\pdv{}{\varphi}\left(\frac{1}{r\sin\theta}\pdv{f}{\varphi}\right)
+		\end{align}
+		
+		\noindent Otetaan vekiotermit ulos toisesta ja kolmannesta termistä ja yhdistetään kolmannen termin derivaattaoperaattorit toisen kertaluvun derivaataksi, jolloin Laplacen operaattoriksi pallokoordinaatistossa saadaan:
+		
+		\begin{equation}
+			\boxed{\nabla^2 f = \frac{1}{r^2}\pdv{}{r}\left(r^2\pdv{f}{r}\right) + \frac{1}{r^2\sin\theta}\pdv{}{\theta}\left(\sin\theta\pdv{f}{\theta}\right) + \frac{1}{r^2\sin^2\theta}\pdv{^2f}{\varphi^2}}
+		\end{equation}
+		
+		Jos ensimmäisen ja toisen termin derivaatat määritetään saadaan vaihtoehtoinen muoto Laplacen operaattorille:
+		
+		\begin{align}
+			\nabla^2 f &= \frac{1}{r^2}\left(r^2\pdv{^2f}{r^2} + \left(\pdv{(r^2)}{r}\right)\pdv{f}{r}\right) + \frac{1}{r^2\sin\theta}\left(\sin\theta\pdv{^2f}{\theta^2} + \left(\pdv{(\sin\theta)}{\theta}\right)\pdv{f}{\theta}\right) + \frac{1}{r^2\sin^2\theta}\pdv{^2f}{\varphi^2} \\
+			\nabla^2 f &= \frac{1}{r^2}\left(r^2\pdv{^2f}{r^2} + 2r\pdv{f}{r}\right) + \frac{1}{r^2\sin\theta}\left(\sin\theta\pdv{^2f}{\theta^2} + \cos\theta\pdv{f}{\theta}\right) + \frac{1}{r^2\sin^2\theta}\pdv{^2f}{\varphi^2}
+		\end{align}
+		
+		\noindent Kerrotaan $\frac{1}{r^2}$ ja $\frac{1}{r^2\sin\theta}$ sulkuihin, jolloin vaihtoehtoiseksi muodoksi saadaan:
+		
+		\begin{equation}
+			\boxed{\nabla^2 f = \pdv{^2f}{r^2} + \frac{2}{r}\pdv{f}{r} + \frac{1}{r^2}\pdv{^2f}{\theta^2} + \frac{\cos\theta}{r^2\sin\theta}\pdv{f}{\theta} + \frac{1}{r^2\sin^2\theta}\pdv{^2f}{\varphi^2}}
+		\end{equation}
+	\end{enumerate}
+	
+	\subsubsection{Laplacen vektorioperaattori}
+	
+	\begin{equation}
+		\nabla^2\vtr{F} = \nabla(\divop\vtr{F}) - \curlop(\curlop\vtr{F})
+	\end{equation}
+	
+	\subsubsection{Suunnattu derivaatta}
+\end{document}

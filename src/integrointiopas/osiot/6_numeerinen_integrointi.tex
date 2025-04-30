@@ -48,6 +48,10 @@
 
     Kirjoitetaan vielä $d$:n lauseke auki:
 
+    \begin{equation*}
+        A = \sum_{n = 0}^{N}d\cdot f\left( a + n\frac{|b - a|}{N} \right)
+    \end{equation*}
+
 	
 	\subsection{Puolisuunnikassääntö}
 	
@@ -60,6 +64,11 @@
 	\subsection{Numeerisen integroinnin toteuttaminen ohjelmoimalla}
 
     \subsubsection{Suorakaidesääntö Pythonilla}
+
+    Suorakaidesääntö toteutettuna Pythonilla:
+
+    \lstset{style=python-style}
+    \lstinputlisting[breaklines]{../koodit/sk\_saanto.py}
 
     \subsubsection{Puolisuunnikassääntö Fortranilla}
 

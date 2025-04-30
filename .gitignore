@@ -6,6 +6,11 @@
 *.synctex.gz
 *.toc
 
+# Compiled files
+*.mod
+*.o
+ps_saanto
+
 # directories
 aux
 out

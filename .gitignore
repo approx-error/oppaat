@@ -9,4 +9,5 @@
 # directories
 aux
 out
+__pycache__
 

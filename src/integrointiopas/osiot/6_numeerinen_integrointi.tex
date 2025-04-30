@@ -2,7 +2,52 @@
 \graphicspath{{\subfix{../kuvat/}}}
 
 \begin{document}
+    
+    Numeerisella integroinnilla tarkoitetaan sellaisia integroimismenetelmiä, jotka eivät tuota tarkkoja vaan likimääräisiä ratkaisuja.
+    Numeerisesta integroinnista on hyötyä erityisesti, kun laskettava integraali on liian työläs ratkaistavaksi analyyttisesti, tai kun
+    tuloksen ei tarvitse olla eksakti vaan tietty tarkkuus riittää. Etenkin jos integrointi suoritetaan osana jonkinlaista tietokonesimulaatiota,
+    on likimääräinen tulos hyväksyttävä ja jopa toivottava sillä muuten simulaation suoritusaika voisi kasvaa aivan liian pitkäksi. On myös olemassa
+    funktioita, joiden integraalifunktiota ei todistetusti voi ilmaista yksinkertaisena alkeisfunktioiden kombinaationa, vaan ratkaisu on jonkinlainen
+    ääretön sarja termejä. Tällöin tarkkaa ratkaisua ei voida edes teoriassa ilmaista yhtenä sievänä lausekkeena, vaan konkreettisten arvojen saamiseksi
+    on laskettava jokin määrä sarjan termejä, jolloin ratkaisu on aina likimääräinen.
+
+    Tässä osiossa esitellään neljä tapaa suorittaa jollakin välillä hyvin käyttäytyvän mielivaltaisen funktion numeerinen integrointi, sekä esimerkkejä
+    numeerisen integroinnin toteutuksesta tieteellisessä laskennassa usein käytetyillä ohjelmointikielillä: Python, Fortran ja C. Kaikki metodit soveltuvat
+    ainoastaan määrättyjen integraalien suorittamiseen.
+
 	\subsection{Suorakaidesääntö}
+
+    Suorakaidesääntö perustuu nimensä mukaisesti suorakaiteisiin ja niiden pinta-alan laskemiseen. Koska määrättyjen integraalien laskeminen voidaan tietyssä
+    mielessä tulkita funktion ja x-akselin väliin jäävän pinta-alan laskemiseksi (kunhan huomioidaan että x-akselin alapuolinen pinta-ala lasketaan negatiivisena),
+    voidaan integraaleja määrittää arvioimalla käyrän ja x-akselin välistä pinta-alaa jollakin välillä. Pinta-alaa voidaan arvioida monella tavall, mutta suorakaidesääntö
+    perustuu nimenomaan pinta-alan arvioimiseen käyttäen suorakulmioita. Kuvassa (X) on esitetty välillä $[a,b]$ määritellyn funktion $f(x)$ kuvaaja sekä suorakaiteita, jotka
+    arvioivat kuvaajan ja x-akselin välistä pinta-alaa:
+
+    [KUVA TÄHÄN]
+
+    Integrointia aiemmin opiskellut tunnistaa todennäköisesti kuvan (X) mukaisen konstruktion, sillä integroiminen usein opetetaan näyttämällä oppilaalle kuvia
+    yhä paremmista ja paremmista suorakulmioapproksimaatioista kunnes rajalla, jossa suorakuolmioiden leveys menee nollaan saadaan todellinen integraali. Tämä myös
+    perustelee, miksi suorakaidesääntö antaa tuloksia, jotka ovat likimääräisesti oikeita verrattuna integraalin todelliseen arvoon.
+
+    Siirrytään seuraavaksi ajattelemaan, kuinka kuvan (X) konstruktiota voitaisiin kuvailla matemaattisesti. Haluaisimme laskea kunkin suorakulmion pinta-alan ja summata
+    nämä pinta-alat yhteen integraalin määrittämiseksi. Aloitetaan miettimällä tilannetta, jossa väliä arvioidaan yhdellä suorakulmiolla. Tällöin suorakulmion leveys on
+    $b-a$ (yleisessä tapauksessa $|b-a|$, sillä $a$ ja $b$ voivat olla negatiivisia). Mikä on sitten suorakulmion korkeus? Voimme valita sen vapaasti, sillä mikään ei
+    sano, että jokin kuvaajan pisteistä olisi toista tärkeämpi. Esimerkin vuoksi valitaan suorakulmion korkeudeksi funktion arvo välin alussa, eli $f(a)$. Nyt suorakulmion
+    pinta-ala on $(b-a)f(a)$. On selvää, että vakiofunktiota lukuunottamatta oheinen arvio funktion integraalille välillä $[a,b]$ on hyvin epätarkka. Voimme kuitenkin parantaa
+    arviota lisäämällä suorakaiteiden määrää. Arvioidaankin nyt pinta-alaa kahdella suorakulmiolla, jotka ovat leveydeltään puolet välistä $[a,b]$ ja joiden korkeus on funktion
+    arvo kunkin välin alkupisteessä. Kokonaispinta-alaksi saadaan: $\frac{b-a}{2}f(a) + \frac{b-a}{2}f(a+(b-a)/2)$. Kunkin suorakulmion leveys on puolet välin pituudesta, eli
+    $\frac{b-a}{2}$. Ensimmäisen suorakulmion korkeus on funktion arvo välin alussa: $f(a)$ ja toisen korkeus on funktion arvo välin puolivälissä: $f(a+(b-a)/2)$. Tämä on jo
+    parempi arvio pinta-alasta mutta pystymme vielä parempaan. Jaetaan nyt väli suorakulmioihin, joiden lukumäärä on $N$. Nyt yhden suorakulmion leveys $d$ on välin pituus $b-a$ jaettuna
+    suorakulmioiden lukumäärällä $N$: $d = \frac{b - a}{N}$. Suorakulmion korkeus taas on funktion arvo kunkin välin alkupisteessä. Mikäli ollaan ensimmäisessä välissä, on korkeus $f(a)$,
+    mikäli ollaan toisessa välissä on korkeus $f(a + d)$, mikäli ollaan kolmannessa välissä on korkeus $f(a + 2d)$ ja niin edelleen. Yleisesti mikäli ollaan välissä $n < N$, on korkeus $f(a + nd)$.
+    Nyt siis kokonaispinta-alaksi saadaan summa: $d\cdot f(a) + d\cdot f(a + d) + d\cdot f(a + 2d) + \dots + d \cdot f(a + Nd)$. Kun tämä ilmaistaan summanotaatiolla, saadaan:
+
+    \begin{equation*}
+        A = \sum_{n = 0}^{N}d\cdot f(a + nd)
+    \end{equation*}
+
+    Kirjoitetaan vielä $d$:n lauseke auki:
+
 	
 	\subsection{Puolisuunnikassääntö}
 	
@@ -13,4 +58,12 @@
 	\subsection{Monte Carlo -integrointi}
 	
 	\subsection{Numeerisen integroinnin toteuttaminen ohjelmoimalla}
+
+    \subsubsection{Suorakaidesääntö Pythonilla}
+
+    \subsubsection{Puolisuunnikassääntö Fortranilla}
+
+    \subsubsection{Simpsonin sääntö C:llä}
+
+    \subsubsection{Monte Carlo -integrointi }
 \end{document}

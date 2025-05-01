@@ -14,5 +14,6 @@ ps_saanto
 # directories
 aux
 out
+obj
 __pycache__
 

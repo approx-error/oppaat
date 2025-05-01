@@ -1,30 +1,21 @@
-module lajimaareet
-  implicit none
-  integer, parameter :: ik16 = selected_int_kind(19)
-  integer, parameter :: rk16 = selected_real_kind(20, 100)
-end module lajimaareet
-
-module vakiot
-  use lajimaareet
-
-  implicit none
-
-  real (kind = rk16), parameter :: pii = 4.0_rk16 * atan(1.0_rk16)
-  
-end module vakiot
-
 module funktiot
   use lajimaareet
-  use vakiot
 
   implicit none
 
   contains
 
+  integer (kind = ik16) function pyorista(x, tarkkuus)
+    real (kind = rk16), intent (in) :: x
+    integer (kind = ik16), intent (in) :: tarkkuus
+    pyorista = nint(x * 10_ik16 ** tarkkuus) / 10_ik16 ** tarkkuus
+    return
+  end function pyorista
+
   real (kind = rk16) function yksi_per_x(x, virhe)
     real (kind = rk16), intent (in) :: x
     integer (kind = ik16), intent (out) :: virhe
-    if (round(x, 3) == 0) then
+    if (pyorista(x, 3_ik16) == 0) then
       virhe = 1
       return
     else
@@ -78,6 +69,7 @@ module funktiot
     real (kind = rk16), intent (in) :: x
     integer (kind = ik16), intent (out) :: virhe
     real (kind = ik16) :: testattava 
+    real (kind = rk16), parameter :: pii = 4.0_rk16 * atan(1.0_rk16)
     testattava = (2.0_rk16 / pii) * x
     if (modulo(int(testattava), 2) == 1) then
       virhe = 1
@@ -139,49 +131,32 @@ module funktiot
     integer (kind = ik16), intent (in) :: valien_lkm
     interface ulk_funktio
       function funktio(x, virhe)
-        implicit none
-        real funktio
+        use lajimaareet
+        real (kind = rk16) funktio
         real (kind = rk16), intent (in) :: x
         integer (kind = ik16), intent (out) :: virhe
       end function funktio
     end interface ulk_funktio
 
     ! Funktion suoritusosa alkaa
-    real (kind = rk16) :: tulos
-    integer (kind = ik16) :: virhe
+    real (kind = rk16) :: tulos, suunnikkaan_leveys, tod_sijainti
+    integer (kind = ik16) :: n, virhe
     ps_saanto = 0
-    sijainti = abs(sijainti - int(sijainti))
-    real (kind = rk16) :: suunnikkaan_leveys = abs(ylaraja - alaraja) / real(valien_lkm)
-    integer :: i
+    tod_sijainti = abs(sijainti - int(sijainti))
+    suunnikkaan_leveys = abs(ylaraja - alaraja) / real(valien_lkm)
     ! Alku ja loppu
-    ps_saanto += (suunnikkaan_leveys / 2) * (funktio(alaraja) + funktio(ylaraja))
+    ps_saanto = ps_saanto + (suunnikkaan_leveys / 2) * (funktio(alaraja, virhe) + funktio(ylaraja, virhe))
     ! Loput
-    do i = 0, valien_lkm - 2
-      tulos = funktio(alaraja + (n + sijainti) * suunnikkaan_leveys, virhe)
+    do n = 0, valien_lkm - 2
+      tulos = funktio(alaraja + (n + tod_sijainti) * suunnikkaan_leveys, virhe)
       if (virhe == 1) then
         ps_saanto = -1
         return
       else
-        ps_saanto += tulos
+        ps_saanto = ps_saanto + tulos
       end if
     end do
-
+    ps_saanto = ps_saanto * suunnikkaan_leveys
     return
   end function ps_saanto
 end module funktiot
-
-
-program pss
-  use lajimaareet
-  use funktiot
-
-  implicit none
-
-  real (kind = rk16) :: tulos = ps_saanto(x_toiseen, 0.0_rk16, 1.0_rk16, 100, 0.0_rk16)
-  
-  print '(a,x,f2.10)', 'Tulos:', tulos
-
-
-  
-end program pss
-  

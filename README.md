@@ -26,7 +26,7 @@ löytyvistä TeX-tiedostoista käyttäen haluamaasi menetelmää. Mikäli käyt�
 
 2. Kloonaa repositorio haluamaasi paikkaan
 
-2. Luo konfiguraatiotiedosto [Latexmk](https://www.cantab.net/users/johncollins/latexmk/)-ohjelmalle:
+3. Luo konfiguraatiotiedosto [Latexmk](https://www.cantab.net/users/johncollins/latexmk/)-ohjelmalle:
 
 ```sh
 mkdir ~/.config/latexmk
@@ -37,7 +37,7 @@ asetukset="\$pdflatex = \"pdflatex -file-line-error -halt-on-error -interaction=
 echo $asetukset > ~/.config/latexmk/latexmkrc
 ```
 
-3. Luo PDF suorittamalla latexmk-ohjelma:
+4. Luo PDF suorittamalla latexmk-ohjelma:
 
 ```sh
 latexmk -pdf -output-directory=[haluamasi-hakemisto] [haluamasi-tex-tiedosto]
@@ -53,7 +53,7 @@ HUOM! Alihakemisto `out/` luodaan siihen hakemistoon, jossa komento suoritettiin
 jonnekin muualle, kirjoita hakemiston absoluuttinen polku, esim. `~/Documents/Integrointiopas/out` tai käytä suhteelista polkua,
 esim. `../out` luodaksesi hakemiston nykyisen hakemiston yläpuolelle.
 
-4. Nyt PDF löytyy hakemistosta [haluamasi-hakemisto], josta voit lukea sen käyttämällä haluamaasi PDF-lukuohjelmaa (esim. okular, evince tai xreader):
+5. Nyt PDF löytyy hakemistosta [haluamasi-hakemisto], josta voit lukea sen käyttämällä haluamaasi PDF-lukuohjelmaa (esim. okular, evince tai xreader):
 
 
 ### Vaadittavat TeX-Paketit
